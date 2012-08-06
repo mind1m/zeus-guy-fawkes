@@ -1,0 +1,13 @@
+#container {
+    margin: 0 auto;
+    width: 960px;
+    background: #000;
+}
+
+
+#mapCanvas {
+
+    background: blue;
+    display: block;
+    margin: 0 auto;
+}
