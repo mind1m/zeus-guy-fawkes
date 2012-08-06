@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Map Test</title>
+</head>
+<body>
+<script src=Background.js></script>
+<script type="text/javascript">
+    var backGround = new BackGround();
+    backGround.constructor(256, 32);
+    var element;
+    for (var i = 0; i < backGround.getNumberOfTiles(); ++i) {
+        for (var j = 0; j < backGround.getNumberOfTiles(); ++j) {
+            element = document.createElement('div');
+            element.style.position = "absolute";
+            element.style.left = backGround.getSizeOfTile() * i + "px";
+            element.style.top = backGround.getSizeOfTile() * j + "px";
+            element.style.width = backGround.getSizeOfTile() + "px";
+            element.style.height = backGround.getSizeOfTile() + "px";
+            element.style.backgroundImage = "url(images/background.gif)";
+            document.getElementsByTagName("body")[0].appendChild(element);
+        }
+    }
+</script>
+</body>
+</html>
