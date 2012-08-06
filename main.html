@@ -24,8 +24,7 @@
     backGround = new Array();
     for (var i = 0; i < numberOfTiles; ++i) {
          for (var j = 0; j < numberOfTiles; ++j) {
-             backGround.push(new BackgroundTile());
-             backGround[backGround.length - 1].constructor(i, j);
+             backGround.push(new BackgroundTile(i,j));
          }
     }
 
