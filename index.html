@@ -1,10 +1,22 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title></title>
+<link rel="stylesheet" type="text/css" href="controls.css" />
+<script type="text/javascript" src="controls.js"></script>
 </head>
-<body>
-  hello world from branch sami.
+
+<body style="text-align: center;">
+
+<div id="content">
+    <div id="controls">
+        <a class="left" href="#" onclick="goTo('left', 20)">Left</a>
+        <a class="top" href="#" onclick="goTo('top', 20)">Top</a>
+        <a class="bottom" href="#" onclick="goTo('bottom', 20)">Bottom</a>
+        <a class="right" href="#" onclick="goTo('right', 20)">Right</a>
+    </div>
+
+    <div id="item"></div>
+</div>
+
 </body>
 </html>

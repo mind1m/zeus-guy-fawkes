@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="controls.css" />
+
+    <style type="text/css">
+        #myDiv{
+            background-color: #333;
+            width: 30px;
+            height: 30px;
+            position:absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('.right').click(function() {
+                $('#myDiv').animate({
+                    left: '+=30'
+                }, 400, function() {
+                    // callBack
+                });
+            });
+
+            $('.left').click(function() {
+                $('#myDiv').animate({
+                    left: '-=30'
+                }, 400, function() {
+                    // callBack
+                });
+            });
+
+            $('.top').click(function() {
+                $('#myDiv').animate({
+                    top: '-=30'
+                }, 400, function() {
+                    // callBack
+                });
+            });
+
+            $('.bottom').click(function() {
+                $('#myDiv').animate({
+                    top: '+=30'
+                }, 400, function() {
+                    // callBack
+                });
+            });
+        });
+
+    </script>
+
+
+
+</head>
+<body>
+<div id="container">
+
+    <div id="controls">
+        <a class="left" href="#">Left</a>
+        <a class="top" href="#">Top</a>
+        <a class="bottom" href="#">Bottom</a>
+        <a class="right" href="#">Right</a>
+    </div>
+
+    <div id="myDiv" >
+
+    </div>
+</div>
+</body>
+</html>
