@@ -8,10 +8,9 @@
 <script src=background.js></script>
 <script src=draw.js></script>
 <script type="text/javascript">
-    var backGround = new BackGround();
+    backGround = new BackGround();
     backGround.constructor(256, 32);
-    setInterval(draw(backGround), 50);
-    //draw(backGround);
+    setInterval(function() { draw(backGround); }, 50);
 </script>
 </body>
 </html>
