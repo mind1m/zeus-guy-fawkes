@@ -5,50 +5,26 @@
  * Time: 10:54
  * To change this template use File | Settings | File Templates.
  */
-function BackGround() {
-    var tiles = new Array();
-    var sizeOfTile;
-    var sizeOfMap;
-    var numberOfTiles;
+function BackgroundTile() {
+    var x;
+    var y;
 
-    this.getTiles = function() {
-        return tiles;
+
+    this.getX = function() {
+        return x;
     };
-    this.getSizeOfTile = function() {
-        return sizeOfTile;
+    this.getY = function() {
+        return y;
     };
-    this.getSizeOfMap = function() {
-        return sizeOfMap;
+    this.setX = function(newX) {
+        x = newX;
     };
-    this.getType = function() {
-        return type;
-    };
-    this.getNumberOfTiles = function() {
-        return numberOfTiles;
-    };
-    this.setTiles = function(newTiles) {
-        tiles = newTiles;
-    };
-    this.setSizeOfTile = function(newSizeOfTile) {
-        sizeOfTile = newSizeOfTile;
-    };
-    this.setSizeOfMap = function(newSizeOfMap) {
-        sizeOfMap = newSizeOfMap;
-    };
-    this.setNumberOfTiles = function(newNumberOfTiles) {
-        numberOfTiles = newNumberOfTiles;
+    this.setY = function(newY) {
+        y = newY;
     };
 
-    this.constructor = function(newSizeOfMap, newSizeOfTile) {
-        numberOfTiles = newSizeOfMap/newSizeOfTile;
-        sizeOfMap = newSizeOfMap;
-        sizeOfTile = newSizeOfTile;
-        var k = 0;
-        for (var i = 0; i < numberOfTiles; ++i) {
-            for (var j = 0; j < numberOfTiles; ++j) {
-                tiles[k] = {x: i, y: j};
-                k++;
-            }
-        }
+    this.constructor = function(newX, newY) {
+        x = newX;
+        y = newY;
     };
 }

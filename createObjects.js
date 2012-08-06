@@ -7,10 +7,11 @@
  */
 const sizeOfMap = 256;
 const sizeOfTile = 32;
+const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
 const backGroundImage = "url(images/background.gif)";
 
-function draw(backGround, blocks) {
+function createObjects(backGround, blocks) {
     var element;
     //Background
     var backGroundDiv = document.createElement('div');
@@ -19,12 +20,12 @@ function draw(backGround, blocks) {
     backGroundDiv.style.left = "0px";
     backGroundDiv.style.top = "0px";
     document.getElementById("field").appendChild(backGroundDiv);
-    for (var i = 0; i < backGround.getTiles().length; ++i) {
+    for (var i = 0; i < backGround.length; ++i) {
         element = document.createElement('div');
         element.setAttribute('id', 'partOfBackground');
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * backGround.getTiles()[i].x+ "px";
-        element.style.top = sizeOfTile * backGround.getTiles()[i].y + "px";
+        element.style.left = sizeOfTile * backGround[i].getX()+ "px";
+        element.style.top = sizeOfTile * backGround[i].getY() + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = backGroundImage;

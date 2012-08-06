@@ -2,15 +2,14 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Map Test</title>
+    <title>Game</title>
 </head>
 <body>
+<script src=additional.js></script>
 <script src=background.js></script>
-<script src=draw.js></script>
+<script src=createObjects.js></script>
 <script src=block.js></script>
 <script type="text/javascript">
-    const sizeOfMap = 256;
-    const sizeOfTile = 32;
 
     //Main field
     var element = document.createElement('div');
@@ -18,27 +17,37 @@
     element.style.position = "absolute";
     element.style.left = "0px";
     element.style.top = "0px";
-    document.getElementsByTagName("body")[0].appendChild(element);
+    document.body.appendChild(element);
 
     //Background of the field
-    backGround = new BackGround();
-    backGround.constructor(sizeOfMap, sizeOfTile);
+
+    backGround = new Array();
+    for (var i = 0; i < numberOfTiles; ++i) {
+         for (var j = 0; j < numberOfTiles; ++j) {
+             backGround.push(new BackgroundTile());
+             backGround[backGround.length - 1].constructor(i, j);
+         }
+    }
+
 
     //Block of the field
     blocks = new Array();
     for (var k = 0; k < 5; ++k) {
-        blocks[k] = new Block();
-        blocks[k].constructor(i, j, sizeOfTile);
+        blocks.push(new Block());
         var i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         var j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        blocks[k].constructor(i, j);
     }
 
-    //Main loop
-    setInterval(function() { draw(backGround, blocks); }, 50);
+    //Creating an objects
+    createObjects(backGround, blocks);
 
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
+    //Main loop
+    setInterval(function() {
+        //draw(backGround, blocks);
+        //clearDOM();
+    }, 550);
+
 </script>
 </body>
 </html>
