@@ -10,13 +10,9 @@ function BackGround() {
     var sizeOfTile;
     var sizeOfMap;
     var numberOfTiles;
-    var ImagePath = "url(images/background.gif)";
 
     this.getTiles = function() {
         return tiles;
-    };
-    this.getImagePath = function() {
-        return ImagePath;
     };
     this.getSizeOfTile = function() {
         return sizeOfTile;

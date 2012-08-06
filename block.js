@@ -8,26 +8,13 @@
 function Block() {
     var x;
     var y;
-    var sizeOfTile;
-    var ImagePath = "url(images/background.gif)";
 
-    this.getTiles = function() {
-        return tiles;
-    };
+
     this.getX = function() {
         return x;
     };
     this.getY = function() {
         return y;
-    };
-    this.getTiles = function() {
-        return tiles;
-    };
-    this.getSizeOfTile = function() {
-        return sizeOfTile;
-    };
-    this.setTiles = function(newTiles) {
-        tiles = newTiles;
     };
     this.setX = function(newX) {
         x = newX;
@@ -35,13 +22,9 @@ function Block() {
     this.setY = function(newY) {
         y = newY;
     };
-    this.setSizeOfTile = function(newSizeOfTile) {
-        sizeOfTile = newSizeOfTile;
-    };
 
-    this.constructor = function(newX, newY, newSizeOfTile) {
+    this.constructor = function(newX, newY) {
         x = newX;
         y = newY;
-        sizeOfTile = newSizeOfTile;
     };
 }

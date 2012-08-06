@@ -5,31 +5,47 @@
  * Time: 11:18
  * To change this template use File | Settings | File Templates.
  */
+const sizeOfMap = 256;
+const sizeOfTile = 32;
+const blockImage = "url(images/block.gif)";
+const backGroundImage = "url(images/background.gif)";
+
 function draw(backGround, blocks) {
     var element;
     //Background
+    var backGroundDiv = document.createElement('div');
+    backGroundDiv.setAttribute('id', 'background');
+    backGroundDiv.style.position = "absolute";
+    backGroundDiv.style.left = "0px";
+    backGroundDiv.style.top = "0px";
+    document.getElementById("field").appendChild(backGroundDiv);
     for (var i = 0; i < backGround.getTiles().length; ++i) {
-            element = document.createElement('div');
-            element.style.position = "absolute";
-            element.style.left = backGround.getSizeOfTile() * backGround.getTiles()[i].x+ "px";
-            element.style.top = backGround.getSizeOfTile() * backGround.getTiles()[i].y + "px";
-            element.style.width = backGround.getSizeOfTile() + "px";
-            element.style.height = backGround.getSizeOfTile() + "px";
-            element.style.backgroundImage = backGround.getImagePath();
-            //document.getElementsByTagName("body")[0].appendChild(element);
-            document.getElementById("main").appendChild(element);
+        element = document.createElement('div');
+        element.setAttribute('id', 'partOfBackground');
+        element.style.position = "absolute";
+        element.style.left = sizeOfTile * backGround.getTiles()[i].x+ "px";
+        element.style.top = sizeOfTile * backGround.getTiles()[i].y + "px";
+        element.style.width = sizeOfTile + "px";
+        element.style.height = sizeOfTile + "px";
+        element.style.backgroundImage = backGroundImage;
+        backGroundDiv.appendChild(element);
     }
     //Blocks
+    var blocksDiv = document.createElement('div');
+    blocksDiv.setAttribute('id', 'blocks');
+    blocksDiv.style.position = "absolute";
+    blocksDiv.style.left = "0px";
+    blocksDiv.style.top = "0px";
+    document.getElementById("field").appendChild(blocksDiv);
     for (var i = 0; i < blocks.length; ++i) {
         element = document.createElement('div');
+        element.setAttribute('id', 'Block');
         element.style.position = "absolute";
-        element.style.left = blocks[i].getSizeOfTile() * blocks[i].getX()+ "px";
-        element.style.top = blocks[i].getSizeOfTile() * blocks[i].getY() + "px";
-        element.style.width = blocks[i].getSizeOfTile() + "px";
-        element.style.height = blocks[i].getSizeOfTile() + "px";
-        //element.style.backgroundImage = blocks[i].getImagePath();
-        element.style.backgroundColor = "red";
-        //document.getElementsByTagName("body")[0].appendChild(element);
-        document.getElementById("main").appendChild(element);
+        element.style.left = sizeOfTile * blocks[i].getX()+ "px";
+        element.style.top = sizeOfTile * blocks[i].getY() + "px";
+        element.style.width = sizeOfTile + "px";
+        element.style.height = sizeOfTile + "px";
+        element.style.backgroundImage = blockImage;
+        blocksDiv.appendChild(element);
     }
 }

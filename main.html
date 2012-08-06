@@ -9,21 +9,31 @@
 <script src=draw.js></script>
 <script src=block.js></script>
 <script type="text/javascript">
+    const sizeOfMap = 256;
+    const sizeOfTile = 32;
+
+    //Main field
     var element = document.createElement('div');
-    element.setAttribute('id', 'main');
+    element.setAttribute('id', 'field');
     element.style.position = "absolute";
     element.style.left = "0px";
     element.style.top = "0px";
     document.getElementsByTagName("body")[0].appendChild(element);
+
+    //Background of the field
     backGround = new BackGround();
-    backGround.constructor(256, 32);
+    backGround.constructor(sizeOfMap, sizeOfTile);
+
+    //Block of the field
     blocks = new Array();
     for (var k = 0; k < 5; ++k) {
-        var i = getRandomInt(0, (256 - 32)/32);
-        var j = getRandomInt(0, (256 - 32)/32);
         blocks[k] = new Block();
-        blocks[k].constructor(i, j, 32);
+        blocks[k].constructor(i, j, sizeOfTile);
+        var i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        var j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
     }
+
+    //Main loop
     setInterval(function() { draw(backGround, blocks); }, 50);
 
     function getRandomInt(min, max) {
