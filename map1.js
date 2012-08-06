@@ -46,6 +46,8 @@ function brick() {
 }
 myplayer = new brick(); //creating a brick
 
+var map_block_size = 650/50;
+
 function drawMap() {
 
     // Draw 50 blocks.
@@ -63,6 +65,24 @@ function drawMap() {
         ctx.closePath();
         ctx.fill();
     }
+}
+
+//random stuff
+for (var i=0; i< map_block_size; i++) {
+    if (i % 2 == 1) {
+        var line = 0;
+        for (var j=0; j < map_block_size; j++) {
+            if ((Math.random() > 0.5) && (line<4) ) {
+                //draw a block at [i,j] position
+                console.log(i+' '+j);
+                line = line + 1
+            } else {
+                line = 0
+            }
+        }
+
+    }
+
 }
 
 
