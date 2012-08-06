@@ -5,26 +5,25 @@
  * Time: 12:31
  * To change this template use File | Settings | File Templates.
  */
-function Block() {
-    var x;
-    var y;
+function Block(x, y) {
+    this.x = x;
+    this.y = y;
+}
 
+Block.prototype = {
+    getX: function() {
+        return this.x;
+    },
 
-    this.getX = function() {
-        return x;
-    };
-    this.getY = function() {
-        return y;
-    };
-    this.setX = function(newX) {
-        x = newX;
-    };
-    this.setY = function(newY) {
-        y = newY;
-    };
+    getY: function() {
+        return this.y;
+    },
 
-    this.constructor = function(newX, newY) {
-        x = newX;
-        y = newY;
-    };
+    setX: function(value) {
+        this.x = value;
+    },
+
+    setY: function(value) {
+        this.y = value;
+    }
 }

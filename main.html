@@ -5,11 +5,12 @@
     <title>Game</title>
 </head>
 <body>
-<script src=additional.js></script>
-<script src=background.js></script>
-<script src=createObjects.js></script>
-<script src=block.js></script>
+<script type="text/javascript" src=additional.js></script>
+<script type="text/javascript" src=background.js></script>
+<script type="text/javascript" src=createObjects.js></script>
+<script type="text/javascript" src=block.js></script>
 <script type="text/javascript">
+    var i, j ,k;
 
     //Main field
     var element = document.createElement('div');
@@ -22,8 +23,8 @@
     //Background of the field
 
     backGround = new Array();
-    for (var i = 0; i < numberOfTiles; ++i) {
-         for (var j = 0; j < numberOfTiles; ++j) {
+    for (i = 0; i < numberOfTiles; ++i) {
+         for (j = 0; j < numberOfTiles; ++j) {
              backGround.push(new BackgroundTile(i,j));
          }
     }
@@ -31,11 +32,10 @@
 
     //Block of the field
     blocks = new Array();
-    for (var k = 0; k < 5; ++k) {
-        blocks.push(new Block());
-        var i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        var j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks[k].constructor(i, j);
+    for (k = 0; k < 5; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        blocks.push(new Block(i, j));
     }
 
     //Creating an objects
