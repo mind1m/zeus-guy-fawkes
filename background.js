@@ -9,11 +9,14 @@ function BackGround() {
     var tiles = new Array();
     var sizeOfTile;
     var sizeOfMap;
-    var type = 1;
     var numberOfTiles;
+    var ImagePath = "url(images/background.gif)";
 
     this.getTiles = function() {
         return tiles;
+    };
+    this.getImagePath = function() {
+        return ImagePath;
     };
     this.getSizeOfTile = function() {
         return sizeOfTile;
@@ -44,9 +47,11 @@ function BackGround() {
         numberOfTiles = newSizeOfMap/newSizeOfTile;
         sizeOfMap = newSizeOfMap;
         sizeOfTile = newSizeOfTile;
+        var k = 0;
         for (var i = 0; i < numberOfTiles; ++i) {
             for (var j = 0; j < numberOfTiles; ++j) {
-                tiles[i, j] = type;
+                tiles[k] = {x: i, y: j};
+                k++;
             }
         }
     };
