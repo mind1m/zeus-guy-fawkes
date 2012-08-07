@@ -11,26 +11,26 @@
 }*/
 
 function goTo(dir, px){
-    var item = document.getElementById('item');
+    //var item = document.getElementById('item');
 
     if (dir == 'left') {
-        //alert('left');
-        item.style.left -= px+"px";
+        alert('left');
+        //item.style.left -= px+"px";
     }
 
     if (dir == 'right') {
-        //alert('right');
-        item.style.right += px+"px";
+        alert('right');
+        //item.style.right += px+"px";
     }
 
     if (dir == 'top') {
-      // alert('top');
-        item.style.top += px+"px";
+        alert('top');
+        //item.style.top += px+"px";
     }
 
     if (dir == 'bottom') {
-        //alert('bottom');
-        item.style.top -= px+"px";
+        alert('bottom');
+        //item.style.top -= px+"px";
     }
 
     //document.body.apendChild(img);
