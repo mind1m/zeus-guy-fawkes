@@ -2,9 +2,59 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title></title>
+    <title>Game</title>
 </head>
 <body>
-  hello world
+<script type="text/javascript" src=additional.js></script>
+<script type="text/javascript" src=background.js></script>
+<script type="text/javascript" src=createObjects.js></script>
+<script type="text/javascript" src=block.js></script>
+<script type="text/javascript">
+    var i, j ,k;
+
+    //Main field
+    var element = document.createElement('div');
+    element.setAttribute('id', 'field');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.body.appendChild(element);
+
+    //Background of the field
+
+    backGround = new Array();
+    for (i = 0; i < numberOfTiles; ++i) {
+        for (j = 0; j < numberOfTiles; ++j) {
+            backGround.push(new BackgroundTile(i,j));
+        }
+    }
+
+
+    //Block of the field
+    blocks = new Array();
+    for (k = 0; k < 5; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        blocks.push(new Block(i, j));
+    }
+
+    //Creating an objects
+    createObjects(backGround, blocks);
+
+    //Main loop
+    setInterval(function() {
+        //draw(backGround, blocks);
+        //clearDOM();
+    }, 550);
+
+</script>
+
+<div id="controls">
+    <a class="left" href="#" onclick="goTo('left', 20)">Left</a>
+    <a class="top" href="#" onclick="goTo('top', 20)">Top</a>
+    <a class="bottom" href="#" onclick="goTo('bottom', 20)">Bottom</a>
+    <a class="right" href="#" onclick="goTo('right', 20)">Right</a>
+</div>
+
 </body>
 </html>
