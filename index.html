@@ -2,9 +2,51 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title></title>
+    <title>Game</title>
 </head>
 <body>
-<h1>Hello all</h1>
+<script type="text/javascript" src=additional.js></script>
+<script type="text/javascript" src=background.js></script>
+<script type="text/javascript" src=createObjects.js></script>
+<script type="text/javascript" src=block.js></script>
+<script type="text/javascript">
+    var i, j ,k;
+
+    //Main field
+    var element = document.createElement('div');
+    element.setAttribute('id', 'field');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.body.appendChild(element);
+
+    //Background of the field
+
+    backGround = new Array();
+    for (i = 0; i < numberOfTiles; ++i) {
+        for (j = 0; j < numberOfTiles; ++j) {
+            backGround.push(new BackgroundTile(i,j));
+        }
+    }
+
+
+    //Block of the field
+    blocks = new Array();
+    for (k = 0; k < 5; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        blocks.push(new Block(i, j));
+    }
+
+    //Creating an objects
+    createObjects(backGround, blocks);
+
+    //Main loop
+    setInterval(function() {
+        //draw(backGround, blocks);
+        //clearDOM();
+    }, 550);
+
+</script>
 </body>
 </html>
