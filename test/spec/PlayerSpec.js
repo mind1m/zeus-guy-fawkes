@@ -26,15 +26,7 @@ describe("Player must go", function() {
         player.goRight();
         expect(player.x).toBeGreaterThan(xpos);
     });
-});
 
-
-describe("Player must go", function() {
-    var player = new Player(0,0);
-    it("initial pos", function(){
-        expect(player.getX()).toEqual(0);
-        expect(player.getY()).toEqual(0);
-    })
     it("should go up", function() {
 
         var xpos=player.getX();
@@ -50,4 +42,6 @@ describe("Player must go", function() {
         expect(player.y).toBeLessThan(ypos);
     });
 });
+
+
 
