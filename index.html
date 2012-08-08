@@ -5,11 +5,14 @@
     <title>Game</title>
     <link rel="stylesheet" type="text/css" href="controls.css" />
     <script type="text/javascript" src="controls.js"></script>
-    <script type="text/javascript" src=additional.js></script>
-    <script type="text/javascript" src=background.js></script>
-    <script type="text/javascript" src=createObjects.js></script>
-    <script type="text/javascript" src=block.js></script>
-
+    <script type="text/javascript" src="additional.js"></script>
+    <script type="text/javascript" src="background.js"></script>
+    <script type="text/javascript" src="createObjects.js"></script>
+    <script type="text/javascript" src="box.js"></script>
+    <script type="text/javascript" src="block.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="bomb.js"></script>
+    <script type="text/javascript" src="draw.js"></script>
 </head>
 <body>
 
@@ -26,7 +29,7 @@
 
     //Background of the field
 
-    backGround = new Array();
+    var backGround = new Array();
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
             backGround.push(new BackgroundTile(i,j));
@@ -35,30 +38,45 @@
 
 
     //Block of the field
-    blocks = new Array();
+    var blocks = new Array();
     for (k = 0; k < 5; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         blocks.push(new Block(i, j));
     }
+    //Box
+    var box = new Array();
+    for (k = 0; k < 10; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        box.push(new Box(i, j));
+    }
+
+    //Player
+    var player = new Player(0, 0);
+    var bomb = new Bomb();
+
 
     //Creating an objects
-    createObjects(backGround, blocks);
+    createObjects(backGround, blocks, player,bomb, box);
 
     //Main loop
     setInterval(function() {
         //clearDOM();
-        //draw(backGround, blocks);
+        draw(player, bomb);
 
-    }, 550);
+    }, 200);
 
 </script>
 
 <div id="controls">
-    <a class="left" href="#" onclick="goTo('left', 20)">Left</a>
-    <a class="top" href="#" onclick="goTo('top', 20)">Top</a>
-    <a class="bottom" href="#" onclick="goTo('bottom', 20)">Bottom</a>
-    <a class="right" href="#" onclick="goTo('right', 20)">Right</a>
+    <span class="left" onclick="goTo('left', 20, player)">Left</span>
+    <span class="top"  onclick="goTo('top', 20, player)">Top</span>
+    <span class="bottom"  onclick="goTo('bottom', 20, player)">Bottom</span>
+    <span class="right" onclick="goTo('right', 20, player)">Right</span>
+</div>
+<div style="position: absolute; top: 500px;">
+    <input type="button" value="Bomb" onclick="debugger;putBomb(player.getX(),player.getY())">
 </div>
 
 </body>

@@ -1,16 +1,16 @@
 /**
  * Created with JetBrains WebStorm.
  * User: V
- * Date: 06.08.12
- * Time: 12:31
+ * Date: 08.08.12
+ * Time: 11:54
  * To change this template use File | Settings | File Templates.
  */
-function Block(x, y) {
+function Fire(x, y) {
     this.x = x;
     this.y = y;
 }
 
-Block.prototype = {
+Fire.prototype = {
     getX: function() {
         return this.x;
     },

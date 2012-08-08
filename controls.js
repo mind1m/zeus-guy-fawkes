@@ -10,28 +10,37 @@
     }
 }*/
 
-function goTo(dir, px){
+function goTo(dir, px, player){
     //var item = document.getElementById('item');
 
     if (dir == 'left') {
-        alert('left');
+        //alert('left');
         //item.style.left -= px+"px";
+        player.goLeft();
     }
 
     if (dir == 'right') {
-        alert('right');
+        //alert('right');
         //item.style.right += px+"px";
+        //debugger;
+        player.goRight();
     }
 
     if (dir == 'top') {
-        alert('top');
+        //alert('top');
         //item.style.top += px+"px";
+        player.goUp();
     }
 
     if (dir == 'bottom') {
-        alert('bottom');
+        //alert('bottom');
         //item.style.top -= px+"px";
+        player.goDown();
     }
 
     //document.body.apendChild(img);
+}
+
+function putBomb(x,y) {
+  bomb.setXY(x,y);
 }

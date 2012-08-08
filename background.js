@@ -26,4 +26,5 @@ BackgroundTile.prototype = {
     setY: function(value) {
         this.y = value;
     }
-}
+};
+
