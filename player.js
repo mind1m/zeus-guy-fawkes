@@ -5,25 +5,24 @@
  * Time: 14:09
  * To change this template use File | Settings | File Templates.
  */
-function Player() {
+function Player(newX, newY) {
     var x;
     var y;
 
+
+    this.x = newX;
+    this.y = newY;
+
     this.getX = function() {
-        return x;
+        return this.x;
     };
     this.getY = function() {
-        return y;
+        return this.y;
     };
     this.setX = function(newX) {
         this.x = newX;
     };
     this.setY = function(newY) {
-        this.y = newY;
-    };
-
-    this.constructor = function(newX, newY) {
-        this.x = newX;
         this.y = newY;
     };
 
@@ -40,10 +39,3 @@ function Player() {
         this.y=this.y-1;
     };
 }
-/**
- * Created with JetBrains WebStorm.
- * User: user
- * Date: 08.08.12
- * Time: 10:00
- * To change this template use File | Settings | File Templates.
- */
