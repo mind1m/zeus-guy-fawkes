@@ -12,13 +12,12 @@
         $(document).ready(function() {
 
             $('.container').live('swipeleft swiperight',function(event){
-                var player = document.getElementById('player');
-                alert(player);
+
 
                 if (event.type == "swiperight") {
                     //var prev = $("#previndex",$.mobile.activePage);
                     //alert("swiped right");
-                    player.style.right +=20px;
+                    player.style.right += 20+"px";
                 }
                 if (event.type == "swipeleft") {
                     alert("swiped left");
