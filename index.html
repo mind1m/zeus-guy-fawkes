@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>Game</title>
+    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="controls.css" />
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="additional.js"></script>
@@ -67,13 +69,32 @@
 
     }, 200);
 
+
+    $(document).ready(function() {
+        jQuery('.left').bind('tapone',function(){
+            goTo('left', 20, player);
+        });
+
+        jQuery('.right').bind('tapone',function(){
+            goTo('right', 20, player);
+        });
+
+        jQuery('.top').bind('tapone',function(){
+            goTo('top', 20, player);
+        });
+
+        jQuery('.bottom').bind('tapone',function(){
+            goTo('bottom', 20, player);
+        });
+
+    })
 </script>
 
 <div id="controls">
-    <span class="left" onclick="goTo('left', 20, player)">Left</span>
-    <span class="top"  onclick="goTo('top', 20, player)">Top</span>
-    <span class="bottom"  onclick="goTo('bottom', 20, player)">Bottom</span>
-    <span class="right" onclick="goTo('right', 20, player)">Right</span>
+    <span class="left"></span>
+    <span class="top"></span>
+    <span class="bottom" ></span>
+    <span class="right"></span>
 </div>
 <div style="position: absolute; top: 500px;">
     <input type="button" value="Bomb" onclick="debugger;putBomb(player.getX(),player.getY())">
