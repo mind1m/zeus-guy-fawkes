@@ -27,4 +27,5 @@ function Block() {
         x = newX;
         y = newY;
     };
+
 }

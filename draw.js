@@ -10,7 +10,8 @@ const sizeOfTile = 32;
 const blockImage = "url(images/block.gif)";
 const backGroundImage = "url(images/background.gif)";
 
-function draw(backGround, blocks) {
+
+function draw(backGround, blocks, bomba) {
     var element;
     //Background
     var backGroundDiv = document.createElement('div');
@@ -48,4 +49,20 @@ function draw(backGround, blocks) {
         element.style.backgroundImage = blockImage;
         blocksDiv.appendChild(element);
     }
+    //bomba
+    var bombDiv = document.createElement('div');
+    bombDiv.setAttribute('id', 'bombs');
+    bombDiv.style.position = "absolute";
+    bombDiv.style.left = "0px";
+    bombDiv.style.top = "0px";
+    document.getElementById("field").appendChild(bombDiv);
+
+    var bang = document.createElement('div');
+    bang.style.position = "absolute";
+    bang.style.left = "64px";
+    bang.style.top = "0px";
+    bang.style.width = sizeOfTile + "px";
+    bang.style.height = sizeOfTile + "px";
+    document.getElementById("bombs").appendChild(bang);
+    bang.style.backgroundImage="url(images/bomb.png)"
 }
