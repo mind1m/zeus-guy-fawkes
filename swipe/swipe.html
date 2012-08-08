@@ -17,7 +17,10 @@
                 if (event.type == "swiperight") {
                     //var prev = $("#previndex",$.mobile.activePage);
                     //alert("swiped right");
-                    player.style.right += 1+"px";
+                    //player.style.right += 1+"px";
+
+                    $("#player").animate({"right": "+=30px"}, "slow");
+
                 }
                 if (event.type == "swipeleft") {
                     alert("swiped left");
@@ -33,7 +36,7 @@
         .container{
             width: 500px;
             height: 500px;
-            background: #adff2f;
+            background: blue;
             display: block;
             position: relative;
         }
