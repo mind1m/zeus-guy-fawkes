@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
+    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.container').live('swipeleft swiperight',function(event){
+                if (event.type == "swiperight") {
+                    //var prev = $("#previndex",$.mobile.activePage);
+                    alert("swiped right");
+                }
+                if (event.type == "swipeleft") {
+                    alert("swiped left");
+                }
+                event.preventDefault();
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+
+       <div>
+           <p>Swipe me!</p>
+    </div>
+    <!--
+    <span id="swipe-left"></span>
+    <span id="swipe-right"></span>
+    -->
+</div>
+</body>
+</html>
