@@ -11,11 +11,13 @@ const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
 const backgroundImage = "url(images/background.gif)";
 const playerImage = "url(images/player.gif)";
+const bombImage = "url(images/bomb.png)";
 const backgroundIndex = 1;
 const blocksIndex = 2;
 const playerIndex = 2;
+const bombIndex = 3;
 
-function createObjects(backGround, blocks) {
+function createObjects(backGround, blocks, player, bomb) {
     var element;
     //Background
     var backgroundDiv = document.createElement('div');
@@ -68,4 +70,16 @@ function createObjects(backGround, blocks) {
     playerDiv.style.zIndex = playerIndex;
     playerDiv.style.backgroundImage = playerImage;
     document.getElementById("field").appendChild(playerDiv);
+
+    //Bomb
+    var bombDiv = document.createElement('div');
+    bombDiv.setAttribute('id', 'bomb');
+    bombDiv.style.position = "absolute";
+    bombDiv.style.left = sizeOfTile * bomb.getX()+ "px";
+    bombDiv.style.top = sizeOfTile * bomb.getY()+ "px";
+    bombDiv.style.width = sizeOfTile + "px";
+    bombDiv.style.height = sizeOfTile + "px";
+    bombDiv.style.zIndex = bombIndex;
+    bombDiv.style.backgroundImage = bombImage;
+    document.getElementById("field").appendChild(bombDiv);
 }

@@ -40,3 +40,7 @@ function goTo(dir, px, player){
 
     //document.body.apendChild(img);
 }
+
+function putBomb(x,y) {
+  bomb.setXY(x,y);
+}

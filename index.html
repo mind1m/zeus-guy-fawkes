@@ -10,6 +10,7 @@
     <script type="text/javascript" src=createObjects.js></script>
     <script type="text/javascript" src=block.js></script>
     <script type="text/javascript" src=player.js></script>
+    <script type="text/javascript" src=bomb.js></script>
     <script type="text/javascript" src=draw.js></script>
 </head>
 <body>
@@ -45,15 +46,16 @@
 
     //Player
     var player = new Player(0, 0);
+    var bomb = new Bomb();
 
 
     //Creating an objects
-    createObjects(backGround, blocks, player);
+    createObjects(backGround, blocks, player,bomb);
 
     //Main loop
     setInterval(function() {
         //clearDOM();
-        draw(player);
+        draw(player, bomb);
 
     }, 550);
 
@@ -64,6 +66,9 @@
     <a class="top" href="#" onclick="goTo('top', 20, player)">Top</a>
     <a class="bottom" href="#" onclick="goTo('bottom', 20, player)">Bottom</a>
     <a class="right" href="#" onclick="goTo('right', 20, player)">Right</a>
+</div>
+<div style="position: absolute; top: 500px;">
+    <input type="button" value="Bomb" onclick="debugger;putBomb(player.getX(),player.getY())">
 </div>
 
 </body>
