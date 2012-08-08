@@ -10,8 +10,10 @@ const sizeOfTile = 32;
 const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
 const backgroundImage = "url(images/background.gif)";
+const playerImage = "url(images/player.gif)";
 const backgroundIndex = 1;
 const blocksIndex = 2;
+const playerIndex = 2;
 
 function createObjects(backGround, blocks) {
     var element;
@@ -32,7 +34,6 @@ function createObjects(backGround, blocks) {
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = backgroundImage;
-        //element.style.zIndex = backgroundIndex;
         backgroundDiv.appendChild(element);
     }
     //Blocks
@@ -42,6 +43,7 @@ function createObjects(backGround, blocks) {
     blocksDiv.style.left = "0px";
     blocksDiv.style.top = "0px";
     blocksDiv.style.zIndex = blocksIndex;
+    //debugger;
     document.getElementById("field").appendChild(blocksDiv);
     for (var i = 0; i < blocks.length; ++i) {
         element = document.createElement('div');
@@ -55,4 +57,15 @@ function createObjects(backGround, blocks) {
         //element.style.zIndex = blocksIndex;
         blocksDiv.appendChild(element);
     }
+    //Player
+    var playerDiv = document.createElement('div');
+    playerDiv.setAttribute('id', 'player');
+    playerDiv.style.position = "absolute";
+    playerDiv.style.left = sizeOfTile * player.getX()+ "px";
+    playerDiv.style.top = sizeOfTile * player.getY()+ "px";
+    playerDiv.style.width = sizeOfTile + "px";
+    playerDiv.style.height = sizeOfTile + "px";
+    playerDiv.style.zIndex = playerIndex;
+    playerDiv.style.backgroundImage = playerImage;
+    document.getElementById("field").appendChild(playerDiv);
 }

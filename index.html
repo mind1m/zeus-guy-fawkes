@@ -9,7 +9,8 @@
     <script type="text/javascript" src=background.js></script>
     <script type="text/javascript" src=createObjects.js></script>
     <script type="text/javascript" src=block.js></script>
-
+    <script type="text/javascript" src=player.js></script>
+    <script type="text/javascript" src=draw.js></script>
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 
     //Background of the field
 
-    backGround = new Array();
+    var backGround = new Array();
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
             backGround.push(new BackgroundTile(i,j));
@@ -35,30 +36,34 @@
 
 
     //Block of the field
-    blocks = new Array();
+    var blocks = new Array();
     for (k = 0; k < 5; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         blocks.push(new Block(i, j));
     }
 
+    //Player
+    var player = new Player(0, 0);
+
+
     //Creating an objects
-    createObjects(backGround, blocks);
+    createObjects(backGround, blocks, player);
 
     //Main loop
     setInterval(function() {
         //clearDOM();
-        //draw(backGround, blocks);
+        draw(player);
 
     }, 550);
 
 </script>
 
 <div id="controls">
-    <a class="left" href="#" onclick="goTo('left', 20)">Left</a>
-    <a class="top" href="#" onclick="goTo('top', 20)">Top</a>
-    <a class="bottom" href="#" onclick="goTo('bottom', 20)">Bottom</a>
-    <a class="right" href="#" onclick="goTo('right', 20)">Right</a>
+    <a class="left" href="#" onclick="goTo('left', 20, player)">Left</a>
+    <a class="top" href="#" onclick="goTo('top', 20, player)">Top</a>
+    <a class="bottom" href="#" onclick="goTo('bottom', 20, player)">Bottom</a>
+    <a class="right" href="#" onclick="goTo('right', 20, player)">Right</a>
 </div>
 
 </body>

@@ -27,15 +27,15 @@ function Player(newX, newY) {
     };
 
     this.goLeft = function() {
-        this.x=this.x-1;
+        this.x=this.x-sizeOfTile;
     };
     this.goUp = function() {
-        this.y=this.y+1;
+        this.y=this.y-sizeOfTile;
     };
     this.goRight = function() {
-        this.x=this.x+1;
+        this.x=this.x+sizeOfTile;
     };
     this.goDown = function() {
-        this.y=this.y-1;
+        this.y=this.y+sizeOfTile;
     };
 }
