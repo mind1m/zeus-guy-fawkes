@@ -70,10 +70,10 @@
 </script>
 
 <div id="controls">
-    <a class="left" href="#" onclick="goTo('left', 20, player)">Left</a>
-    <a class="top" href="#" onclick="goTo('top', 20, player)">Top</a>
-    <a class="bottom" href="#" onclick="goTo('bottom', 20, player)">Bottom</a>
-    <a class="right" href="#" onclick="goTo('right', 20, player)">Right</a>
+    <span class="left" onclick="goTo('left', 20, player)">Left</span>
+    <span class="top"  onclick="goTo('top', 20, player)">Top</span>
+    <span class="bottom"  onclick="goTo('bottom', 20, player)">Bottom</span>
+    <span class="right" onclick="goTo('right', 20, player)">Right</span>
 </div>
 <div style="position: absolute; top: 500px;">
     <input type="button" value="Bomb" onclick="debugger;putBomb(player.getX(),player.getY())">

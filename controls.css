@@ -1,14 +1,15 @@
 #controls{
-     width: 90px;
+    margin: 0 auto;
+    width: 90px;
     height: 90px;
     position: absolute;
+    top: 300px;
     display: block;
     clear: both;
-    top: 300px;
 
 }
 
-#controls a{
+#controls span{
     text-indent: -999em;
     display: block;
     padding: 10px 0;
@@ -16,6 +17,7 @@
     height: 32px;
     float: left;
     position: absolute;
+    cursor: pointer;
 }
 
 #controls .left{
