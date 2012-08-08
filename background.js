@@ -27,3 +27,4 @@ BackgroundTile.prototype = {
         this.y = value;
     }
 };
+

@@ -12,12 +12,14 @@ const blockImage = "url(images/block.gif)";
 const backgroundImage = "url(images/background.gif)";
 const playerImage = "url(images/player.gif)";
 const bombImage = "url(images/bomb.png)";
+const boxImage = "url(images/box.jpg)";
 const backgroundIndex = 1;
 const blocksIndex = 2;
+const boxIndex = 2;
 const playerIndex = 2;
 const bombIndex = 3;
 
-function createObjects(backGround, blocks, player, bomb) {
+function createObjects(backGround, blocks, player, bomb, box) {
     var element;
     //Background
     var backgroundDiv = document.createElement('div');
@@ -45,7 +47,6 @@ function createObjects(backGround, blocks, player, bomb) {
     blocksDiv.style.left = "0px";
     blocksDiv.style.top = "0px";
     blocksDiv.style.zIndex = blocksIndex;
-    //debugger;
     document.getElementById("field").appendChild(blocksDiv);
     for (var i = 0; i < blocks.length; ++i) {
         element = document.createElement('div');
@@ -82,4 +83,25 @@ function createObjects(backGround, blocks, player, bomb) {
     bombDiv.style.zIndex = bombIndex;
     bombDiv.style.backgroundImage = bombImage;
     document.getElementById("field").appendChild(bombDiv);
+
+    //Box
+    var boxDiv = document.createElement('div');
+    boxDiv.setAttribute('id', 'box');
+    boxDiv.style.position = "absolute";
+    boxDiv.style.left = "0px";
+    boxDiv.style.top = "0px";
+    boxDiv.style.zIndex = boxIndex;
+    document.getElementById("field").appendChild(boxDiv);
+    for (var i = 0; i < box.length; ++i) {
+        element = document.createElement('div');
+        element.setAttribute('id', 'Box');
+        element.style.position = "absolute";
+        element.style.left = sizeOfTile * box[i].getX()+ "px";
+        element.style.top = sizeOfTile * box[i].getY() + "px";
+        element.style.width = sizeOfTile + "px";
+        element.style.height = sizeOfTile + "px";
+        element.style.backgroundImage = boxImage;
+        element.style.zIndex = boxIndex;
+        boxDiv.appendChild(element);
+    }
 }

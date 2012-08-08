@@ -5,13 +5,14 @@
     <title>Game</title>
     <link rel="stylesheet" type="text/css" href="controls.css" />
     <script type="text/javascript" src="controls.js"></script>
-    <script type="text/javascript" src=additional.js></script>
-    <script type="text/javascript" src=background.js></script>
-    <script type="text/javascript" src=createObjects.js></script>
-    <script type="text/javascript" src=block.js></script>
-    <script type="text/javascript" src=player.js></script>
-    <script type="text/javascript" src=bomb.js></script>
-    <script type="text/javascript" src=draw.js></script>
+    <script type="text/javascript" src="additional.js"></script>
+    <script type="text/javascript" src="background.js"></script>
+    <script type="text/javascript" src="createObjects.js"></script>
+    <script type="text/javascript" src="box.js"></script>
+    <script type="text/javascript" src="block.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="bomb.js"></script>
+    <script type="text/javascript" src="draw.js"></script>
 </head>
 <body>
 
@@ -43,6 +44,13 @@
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         blocks.push(new Block(i, j));
     }
+    //Box
+    var box = new Array();
+    for (k = 0; k < 10; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        box.push(new Box(i, j));
+    }
 
     //Player
     var player = new Player(0, 0);
@@ -50,7 +58,7 @@
 
 
     //Creating an objects
-    createObjects(backGround, blocks, player,bomb);
+    createObjects(backGround, blocks, player,bomb, box);
 
     //Main loop
     setInterval(function() {
