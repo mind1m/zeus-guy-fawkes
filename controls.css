@@ -9,7 +9,7 @@
 
 }
 
-#controls a{
+#controls span{
     text-indent: -999em;
     display: block;
     padding: 10px 0;
@@ -17,14 +17,13 @@
     height: 32px;
     float: left;
     position: absolute;
+    cursor: pointer;
 }
 
 #controls .left{
     background: url('images/arrow_left.png') no-repeat;
     left: 0;
     top: 20px;
-
-
 }
 
 #controls .right{
@@ -45,18 +44,23 @@
     bottom: 0px;
 }
 
-#item {
-    width: 50px;
-    height: 50px;
+/*
+#myDiv{
+    background-color: #333;
+    width: 30px;
+    height: 30px;
     display: block;
-    background: red;
-    position: absolute;
+    position: relative;
+    left: 60px;
 }
 
-#content {
+#container {
     width: 800px;
     height: 800px;
     margin: 0 auto;
     border:1px solid black;
     position: relative;
 }
+*/
+#container {position: relative; left: 60px; border : groove;}
+#player {width: 60px; color: red; position: relative; left: 60px;}​

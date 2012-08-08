@@ -6,45 +6,41 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="controls.css" />
 
-    <style type="text/css">
-        #myDiv{
-            background-color: #333;
-            width: 30px;
-            height: 30px;
-            position:absolute;
-        }
-    </style>
+
 
     <script type="text/javascript">
 
         $(document).ready(function(){
             $('.right').click(function() {
-                $('#myDiv').animate({
-                    left: '+=30'
+                $('#player').animate({
+                    marginLeft: '+=30'
                 }, 400, function() {
                     // callBack
                 });
             });
 
             $('.left').click(function() {
-                $('#myDiv').animate({
-                    left: '-=30'
-                }, 400, function() {
-                    // callBack
-                });
+                if (parseInt($('#player').css('left')) >= 30) {
+                    $('#player').animate({
+                        left: '-=30'
+                    }, 400, function() {
+                        // callBack
+                    });
+
+                }
             });
 
             $('.top').click(function() {
-                $('#myDiv').animate({
-                    top: '-=30'
+                $('#player').animate({
+                    marginTop: '-=30'
                 }, 400, function() {
                     // callBack
                 });
             });
 
             $('.bottom').click(function() {
-                $('#myDiv').animate({
-                    top: '+=30'
+                $('#player').animate({
+                    marginTop: '+=30'
                 }, 400, function() {
                     // callBack
                 });
@@ -57,18 +53,19 @@
 
 </head>
 <body>
+
+
 <div id="container">
 
     <div id="controls">
-        <a class="left" href="#">Left</a>
-        <a class="top" href="#">Top</a>
-        <a class="bottom" href="#">Bottom</a>
-        <a class="right" href="#">Right</a>
+        <span class="left">Left</span>
+        <span class="top">Top</span>
+        <span class="bottom">Bottom</span>
+        <span class="right">Right</span>
     </div>
 
-    <div id="myDiv" >
+    <div id="player">Move me</div>
+</div>​
 
-    </div>
-</div>
 </body>
 </html>
