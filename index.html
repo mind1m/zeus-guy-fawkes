@@ -18,6 +18,7 @@
 <script type="text/javascript">
     var i, j ,k;
     var bombsCounter = 0;
+    firesCounter = 0;
 
     //Main field
     var element = document.createElement('div');
@@ -66,6 +67,8 @@
     //Bombs
     var bombs = new Array();
 
+    var fires = new Array();
+
     //Creating an objects
     createObjects(backGround, blocks, player, boxes);
 
@@ -73,7 +76,7 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
-        draw(player, bombs);
+        draw(player, bombs, fires);
 
     }, 200);
 
@@ -95,7 +98,7 @@
             goTo('bottom', 20, player);
         });
         jQuery('.bomb_creation').bind('click',function(){
-            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter)
+            putBomb(bombs,fires, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
     })
 </script>

@@ -161,3 +161,40 @@ Box.prototype = {
         this.y = value;
     }
 };
+
+function Fire(x, y, id) {
+    this.x = x;
+    this.y = y;
+    this.timer = 0;
+    this.power = 0;
+    this.id = id;
+}
+
+Fire.prototype = {
+    getX: function() {
+        return this.x;
+    },
+
+    getY: function() {
+        return this.y;
+    },
+
+    setX: function(value) {
+        this.x = value;
+    },
+
+    setY: function(value) {
+        this.y = value;
+    },
+    setXY: function(newX,newY){
+        this.x = newX;
+        this.y = newY;
+    },
+    getID: function() {
+        return this.id;
+    },
+
+    setID: function(value) {
+        this.id = value;
+    }
+};

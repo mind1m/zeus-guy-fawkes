@@ -5,7 +5,7 @@
  * Time: 14:33
  * To change this template use File | Settings | File Templates.
  */
-function draw(player,bombs) {
+function draw(player,bombs, fires) {
     //Player
     var playerDiv = document.getElementById("player");
     playerDiv.style.left = player.getX() + "px";
@@ -22,6 +22,23 @@ function draw(player,bombs) {
                     }
                     bombDivs[j].style.top = bombs[i].getY() + "px";
                     bombDivs[j].style.left = bombs[i].getX() + "px";
+                    break;
+                }
+            }
+        }
+    }
+
+    //Fire
+    if (fires.length != 0) {
+        var fireDivs = document.getElementsByClassName("fire");
+        for (var i = 0; i < fires.length; ++i) {
+            for (var j = 0; j < fireDivs.length; ++j) {
+                if (fireDivs[j].getAttribute("id") == fires[i].getID()) {
+                    if (fireDivs[j].style.visibility == "hidden") {
+                        fireDivs[j].style.visibility = "visible";
+                    }
+                    fireDivs[j].style.top = fires[i].getY() + "px";
+                    fireDivs[j].style.left = fires[i].getX() + "px";
                     break;
                 }
             }
