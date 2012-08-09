@@ -14,9 +14,17 @@ function draw(player,bombs) {
     //Bombs
     if (bombs.length != 0) {
         var bombDivs = document.getElementsByClassName("bomb");
-        for (var i = 0; i < bombDivs.length; ++i) {
-            bombDivs[i].style.top = bombs[bombDivs[i].getAttribute("id")].getY() + "px";
-            bombDivs[i].style.left = bombs[bombDivs[i].getAttribute("id")].getX() + "px";
+        for (var i = 0; i < bombs.length; ++i) {
+            for (var j = 0; j < bombDivs.length; ++j) {
+                if (bombDivs[j].getAttribute("id") == bombs[i].getID()) {
+                    if (bombDivs[j].style.visibility == "hidden") {
+                        bombDivs[j].style.visibility = "visible";
+                    }
+                    bombDivs[j].style.top = bombs[i].getY() + "px";
+                    bombDivs[j].style.left = bombs[i].getX() + "px";
+                    break;
+                }
+            }
         }
     }
 }

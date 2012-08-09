@@ -13,11 +13,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function Bomb(x, y) {
+function Bomb(x, y, id) {
     this.x = x;
     this.y = y;
     this.timer = 0;
     this.power = 0;
+    this.id = id;
 }
 
 Bomb.prototype = {
@@ -39,5 +40,12 @@ Bomb.prototype = {
     setXY: function(newX,newY){
         this.x = newX;
         this.y = newY;
+    },
+    getID: function() {
+        return this.id;
+    },
+
+    setID: function(value) {
+        this.id = value;
     }
 };

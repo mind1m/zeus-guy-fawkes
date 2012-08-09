@@ -22,6 +22,7 @@
 
 <script type="text/javascript">
     var i, j ,k;
+    var bombsCounter = 0;
 
     //Main field
     var element = document.createElement('div');
@@ -76,7 +77,7 @@
     //Main loop
     setInterval(function() {
         //clearDOM();
-        update(bombs);
+        //update(bombs);
         draw(player, bombs);
 
     }, 200);
@@ -98,7 +99,9 @@
         jQuery('.bottom').bind('tapone',function(){
             goTo('bottom', 20, player);
         });
-
+        jQuery('.bomb_creation').bind('click',function(){
+            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter)
+        });
     })
 </script>
 
@@ -109,7 +112,7 @@
     <span class="right"></span>
 </div>
 <div style="position: absolute; top: 400px;">
-    <input type="button" value="Bomb" onclick="putBomb(bombs, player.getX(),player.getY())">
+    <input class="bomb_creation" type="button" value="Bomb">
 </div>
 
 </body>

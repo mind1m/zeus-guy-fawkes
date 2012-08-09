@@ -29,6 +29,21 @@ function goTo(dir, px, player){
     }
 }
 
-function putBomb(bombs, x,y) {
-    bombs.push(new Bomb(x, y));
+function putBomb(bombs, x,y, bombsCounter) {
+    bombs.push(new Bomb(x, y, bombsCounter));
+    var bombsDiv = document.getElementById("bombs");
+    var bombDiv = document.createElement('div');
+    bombDiv.setAttribute('id', bombs[bombs.length - 1].getID().toString());
+    bombDiv.setAttribute('class', "bomb");
+    bombDiv.style.visibility = "hidden";
+    bombDiv.style.position = "absolute";
+    bombDiv.style.width = sizeOfTile + "px";
+    bombDiv.style.height = sizeOfTile + "px";
+    bombDiv.style.zIndex = bombIndex;
+    bombDiv.style.backgroundImage = bombImage;
+    document.getElementById("bombs").appendChild(bombDiv);
+    setTimeout(function() {
+        bombs.splice(0, 1);
+        bombsDiv.removeChild(bombDiv);
+    },2000);
 }

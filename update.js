@@ -7,20 +7,19 @@
  */
 function update(bombs) {
     //Bombs
-    if (bombs.length != 0) {
+    /*if (bombs.length != 0) {
         for (var i = 0; i < bombs.length; ++i) {
             //Bomb
             var bombDiv = document.createElement('div');
             bombDiv.setAttribute('id', i.toString());
             bombDiv.setAttribute('class', "bomb");
             bombDiv.style.position = "absolute";
-            bombDiv.style.left = bombs[i].getX()+ "px";
-            bombDiv.style.top = bombs[i].getY()+ "px";
             bombDiv.style.width = sizeOfTile + "px";
             bombDiv.style.height = sizeOfTile + "px";
             bombDiv.style.zIndex = bombIndex;
             bombDiv.style.backgroundImage = bombImage;
             document.getElementById("bombs").appendChild(bombDiv);
+
         }
-    }
+    }*/
 }
