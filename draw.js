@@ -1,68 +1,23 @@
 /**
  * Created with JetBrains WebStorm.
  * User: V
- * Date: 06.08.12
- * Time: 11:18
+ * Date: 08.08.12
+ * Time: 14:33
  * To change this template use File | Settings | File Templates.
  */
-const sizeOfMap = 256;
-const sizeOfTile = 32;
-const blockImage = "url(images/block.gif)";
-const backGroundImage = "url(images/background.gif)";
+function draw(player,bombs) {
+    //Player
+    var playerDiv = document.getElementById("player");
+    playerDiv.style.left = player.getX() + "px";
+    playerDiv.style.top = player.getY() + "px";
 
-
-function draw(backGround, blocks, bomba) {
-    var element;
-    //Background
-    var backGroundDiv = document.createElement('div');
-    backGroundDiv.setAttribute('id', 'background');
-    backGroundDiv.style.position = "absolute";
-    backGroundDiv.style.left = "0px";
-    backGroundDiv.style.top = "0px";
-    document.getElementById("field").appendChild(backGroundDiv);
-    for (var i = 0; i < backGround.getTiles().length; ++i) {
-        element = document.createElement('div');
-        element.setAttribute('id', 'partOfBackground');
-        element.style.position = "absolute";
-        element.style.left = sizeOfTile * backGround.getTiles()[i].x+ "px";
-        element.style.top = sizeOfTile * backGround.getTiles()[i].y + "px";
-        element.style.width = sizeOfTile + "px";
-        element.style.height = sizeOfTile + "px";
-        element.style.backgroundImage = backGroundImage;
-        backGroundDiv.appendChild(element);
+    //Bombs
+    if (bombs.length != 0) {
+        var bombDivs = document.getElementsByClassName("bomb");
+        for (var i = 0; i < bombDivs.length; ++i) {
+            bombDivs[i].style.top = bombs[bombDivs[i].getAttribute("id")].getY() + "px";
+            bombDivs[i].style.left = bombs[bombDivs[i].getAttribute("id")].getX() + "px";
+        }
     }
-    //Blocks
-    var blocksDiv = document.createElement('div');
-    blocksDiv.setAttribute('id', 'blocks');
-    blocksDiv.style.position = "absolute";
-    blocksDiv.style.left = "0px";
-    blocksDiv.style.top = "0px";
-    document.getElementById("field").appendChild(blocksDiv);
-    for (var i = 0; i < blocks.length; ++i) {
-        element = document.createElement('div');
-        element.setAttribute('id', 'Block');
-        element.style.position = "absolute";
-        element.style.left = sizeOfTile * blocks[i].getX()+ "px";
-        element.style.top = sizeOfTile * blocks[i].getY() + "px";
-        element.style.width = sizeOfTile + "px";
-        element.style.height = sizeOfTile + "px";
-        element.style.backgroundImage = blockImage;
-        blocksDiv.appendChild(element);
-    }
-    //bomba
-    var bombDiv = document.createElement('div');
-    bombDiv.setAttribute('id', 'bombs');
-    bombDiv.style.position = "absolute";
-    bombDiv.style.left = "0px";
-    bombDiv.style.top = "0px";
-    document.getElementById("field").appendChild(bombDiv);
-
-    var bang = document.createElement('div');
-    bang.style.position = "absolute";
-    bang.style.left = "64px";
-    bang.style.top = "0px";
-    bang.style.width = sizeOfTile + "px";
-    bang.style.height = sizeOfTile + "px";
-    document.getElementById("bombs").appendChild(bang);
-    bang.style.backgroundImage="url(images/bomb.png)"
 }
+

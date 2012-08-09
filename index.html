@@ -1,23 +1,140 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head><style type="text/css">
-    #square {
-        width: 100px;
-        height: 100px;
-        background: #ccc;
-    }
-
-    #square:hover {
-        background: #666;
-    }
-</style>
-    <title></title>
-    <script src=http://10.6.2.38:8080/target/target-script-min.js#anonymous></script>
+<head>
+    <title>Game</title>
+    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <script src="jgestures.min.js"  type="text/javascript"></script>
+    <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="controls.css" />
+    <script type="text/javascript" src="controls.js"></script>
+    <script type="text/javascript" src="additional.js"></script>
+    <script type="text/javascript" src="background.js"></script>
+    <script type="text/javascript" src="createObjects.js"></script>
+    <script type="text/javascript" src="box.js"></script>
+    <script type="text/javascript" src="block.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="bomb.js"></script>
+    <script type="text/javascript" src="draw.js"></script>
+    <script type="text/javascript" src="update.js"></script>
 </head>
 <body>
-  hello world
-  <div id="square"></div>
+
+<script type="text/javascript">
+    var i, j ,k;
+
+    //Main field
+    var element = document.createElement('div');
+    element.setAttribute('id', 'field');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.body.appendChild(element);
+
+    //Bombs
+    element = document.createElement('div');
+    element.setAttribute('id', 'bombs');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.getElementById("field").appendChild(element);
+
+    //Background of the field
+
+    var backGround = new Array();
+    for (i = 0; i < numberOfTiles; ++i) {
+        for (j = 0; j < numberOfTiles; ++j) {
+            backGround.push(new BackgroundTile(i,j));
+        }
+    }
+
+
+    //Block of the field
+    var blocks = new Array();
+    for (k = 0; k < 5; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        blocks.push(new Block(i, j));
+    }
+    //Box
+    var box = new Array();
+    for (k = 0; k < 10; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        box.push(new Box(i, j));
+    }
+
+    //Player
+    var player = new Player(0, 0);
+
+    //Bombs
+    var bombs = new Array();
+
+    //Creating an objects
+    createObjects(backGround, blocks, player, box);
+
+    //Main loop
+    setInterval(function() {
+        //clearDOM();
+        update(bombs);
+        draw(player, bombs);
+
+    }, 200);
+
+
+    $(document).ready(function() {
+        jQuery('.left').bind('tapone',function(){
+            goTo('left', 20, player);
+        });
+
+        jQuery('.right').bind('tapone',function(){
+            goTo('right', 20, player);
+        });
+
+        jQuery('.top').bind('tapone',function(){
+            goTo('top', 20, player);
+        });
+
+        jQuery('.bottom').bind('tapone',function(){
+            goTo('bottom', 20, player);
+        });
+
+        jQuery(".partOfBackground").click(function() {
+            //var contentPanelId = jQuery(this).attr("id");
+            //alert(contentPanelId);
+            var playerPos = jQuery("#player").position();
+            //alert(playerPos.top + ', ' + playerPos.left);
+
+            var pos = jQuery(this).position();
+            //alert(pos.top + ', ' + pos.left);
+
+            $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
+
+        });
+
+
+        //var p = $("p:first");
+        //var position = currentId.position();
+
+       // var pos = jQuery(currentId).position();
+        //alert(pos.top + ', ' + pos.left);
+
+
+        //$("p:last").text( "left: " + position.left + ", top: " + position.top );
+
+
+    })
+</script>
+
+<div id="controls">
+    <span class="left"></span>
+    <span class="top"></span>
+    <span class="bottom" ></span>
+    <span class="right"></span>
+</div>
+<div style="position: absolute; top: 500px;">
+    <input type="button" value="Bomb" onclick="putBomb(bombs, player.getX(),player.getY())">
+</div>
 
 </body>
 </html>
