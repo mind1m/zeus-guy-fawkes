@@ -11,11 +11,11 @@ function update(bombs) {
         for (var i = 0; i < bombs.length; ++i) {
             //Bomb
             var bombDiv = document.createElement('div');
-            bombDiv.setAttribute('id', 'bomb');
-            bombDiv.setAttribute('number', i.toString());
+            bombDiv.setAttribute('id', i.toString());
+            bombDiv.setAttribute('class', "bomb");
             bombDiv.style.position = "absolute";
-            bombDiv.style.left = sizeOfTile * bombs[i].getX()+ "px";
-            bombDiv.style.top = sizeOfTile * bombs[i].getY()+ "px";
+            bombDiv.style.left = bombs[i].getX()+ "px";
+            bombDiv.style.top = bombs[i].getY()+ "px";
             bombDiv.style.width = sizeOfTile + "px";
             bombDiv.style.height = sizeOfTile + "px";
             bombDiv.style.zIndex = bombIndex;

@@ -20,7 +20,7 @@ function Bomb(x, y) {
     this.power = 0;
 }
 
-BackgroundTile.prototype = {
+Bomb.prototype = {
     getX: function() {
         return this.x;
     },

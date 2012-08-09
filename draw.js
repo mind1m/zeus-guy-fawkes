@@ -13,13 +13,11 @@ function draw(player,bombs) {
 
     //Bombs
     if (bombs.length != 0) {
-        for (var i = 0; i < bombs.length; ++i) {
-
+        var bombDivs = document.getElementsByClassName("bomb");
+        for (var i = 0; i < bombDivs.length; ++i) {
+            bombDivs[i].style.top = bombs[bombDivs[i].getAttribute("id")].getY() + "px";
+            bombDivs[i].style.left = bombs[bombDivs[i].getAttribute("id")].getX() + "px";
         }
     }
-    var bombDiv = document.getElementById("bomb")
-    bombDiv.style.left = bomb.getX() + "px";
-    bombDiv.style.top = bomb.getY() + "px";
-
 }
 

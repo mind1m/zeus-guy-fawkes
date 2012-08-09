@@ -31,7 +31,8 @@ function createObjects(backGround, blocks, player, box) {
     document.getElementById("field").appendChild(backgroundDiv);
     for (var i = 0; i < backGround.length; ++i) {
         element = document.createElement('div');
-        element.setAttribute('id', 'partOfBackground');
+        element.setAttribute('class', 'partOfBackground');
+        element.setAttribute('id', i.toString());
         element.style.position = "absolute";
         element.style.left = sizeOfTile * backGround[i].getX()+ "px";
         element.style.top = sizeOfTile * backGround[i].getY() + "px";
@@ -50,7 +51,8 @@ function createObjects(backGround, blocks, player, box) {
     document.getElementById("field").appendChild(blocksDiv);
     for (var i = 0; i < blocks.length; ++i) {
         element = document.createElement('div');
-        element.setAttribute('id', 'Block');
+        element.setAttribute('class', 'block');
+        element.setAttribute('id', i.toString());
         element.style.position = "absolute";
         element.style.left = sizeOfTile * blocks[i].getX()+ "px";
         element.style.top = sizeOfTile * blocks[i].getY() + "px";
@@ -82,7 +84,8 @@ function createObjects(backGround, blocks, player, box) {
     document.getElementById("field").appendChild(boxDiv);
     for (var i = 0; i < box.length; ++i) {
         element = document.createElement('div');
-        element.setAttribute('id', 'Box');
+        element.setAttribute('class', 'box');
+        element.setAttribute('id', i.toString());
         element.style.position = "absolute";
         element.style.left = sizeOfTile * box[i].getX()+ "px";
         element.style.top = sizeOfTile * box[i].getY() + "px";
