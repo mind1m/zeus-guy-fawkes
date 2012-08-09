@@ -24,3 +24,11 @@
     background-image: url('images/fox_name.png');
     background-repeat: no-repeat;
 }
+
+div#new_game img {
+    border: 1px solid #fff; /* Убираем рамку вокруг изображения */
+}
+
+div#continue img {
+    border: 1px solid  #fff; /* Убираем рамку вокруг изображения */
+}
