@@ -1,0 +1,26 @@
+
+#container {
+    background-color: #000;
+    width: 480px;
+    height: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#top_pic {
+    width: 346px;
+    height: 496px;
+    background-image: url('images/fox.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    margin: 0 auto;
+
+}
+
+#name {
+    width: 400px;
+    height: 100px;
+    background-image: url('images/fox_name.png');
+    background-repeat: no-repeat;
+}
