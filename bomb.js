@@ -12,32 +12,32 @@
  * Time: 14:28
  * To change this template use File | Settings | File Templates.
  */
-function Bomb(){
-    var x;
-    var y;
-    var timer;
-    var power;
-    this.getX = function(){
+
+function Bomb(x, y) {
+    this.x = x;
+    this.y = y;
+    this.timer = 0;
+    this.power = 0;
+}
+
+BackgroundTile.prototype = {
+    getX: function() {
         return this.x;
-    };
-    this.getY = function(){
+    },
+
+    getY: function() {
         return this.y;
-    };
-    this.setXY = function(newX,newY){
+    },
+
+    setX: function(value) {
+        this.x = value;
+    },
+
+    setY: function(value) {
+        this.y = value;
+    },
+    setXY: function(newX,newY){
         this.x = newX;
         this.y = newY;
-    };
-    this.getPower=function(){
-        return newPower;
-    };
-    this.setPower=function(newPower){
-        this.power=newPower;
-    };
-    this.setTimer = function(newTime){
-        this.timer = newTime;
-    };
-
-    this.explose = function(){
-        return true;
-    };
-}
+    }
+};

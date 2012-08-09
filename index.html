@@ -16,6 +16,7 @@
     <script type="text/javascript" src="player.js"></script>
     <script type="text/javascript" src="bomb.js"></script>
     <script type="text/javascript" src="draw.js"></script>
+    <script type="text/javascript" src="update.js"></script>
 </head>
 <body>
 
@@ -29,6 +30,14 @@
     element.style.left = "0px";
     element.style.top = "0px";
     document.body.appendChild(element);
+
+    //Bombs
+    element = document.createElement('div');
+    element.setAttribute('id', 'bombs');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.getElementById("field").appendChild(element);
 
     //Background of the field
 
@@ -57,16 +66,18 @@
 
     //Player
     var player = new Player(0, 0);
-    var bomb = new Bomb();
 
+    //Bombs
+    var bombs = new Array();
 
     //Creating an objects
-    createObjects(backGround, blocks, player,bomb, box);
+    createObjects(backGround, blocks, player, box);
 
     //Main loop
     setInterval(function() {
         //clearDOM();
-        draw(player, bomb);
+        update(bombs);
+        draw(player, bombs);
 
     }, 200);
 
@@ -98,7 +109,7 @@
     <span class="right"></span>
 </div>
 <div style="position: absolute; top: 500px;">
-    <input type="button" value="Bomb" onclick="debugger;putBomb(player.getX(),player.getY())">
+    <input type="button" value="Bomb" onclick="debugger;putBomb(bombs, player.getX(),player.getY())">
 </div>
 
 </body>

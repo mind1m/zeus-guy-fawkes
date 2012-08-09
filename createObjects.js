@@ -19,7 +19,7 @@ const boxIndex = 2;
 const playerIndex = 2;
 const bombIndex = 3;
 
-function createObjects(backGround, blocks, player, bomb, box) {
+function createObjects(backGround, blocks, player, box) {
     var element;
     //Background
     var backgroundDiv = document.createElement('div');
@@ -71,18 +71,6 @@ function createObjects(backGround, blocks, player, bomb, box) {
     playerDiv.style.zIndex = playerIndex;
     playerDiv.style.backgroundImage = playerImage;
     document.getElementById("field").appendChild(playerDiv);
-
-    //Bomb
-    var bombDiv = document.createElement('div');
-    bombDiv.setAttribute('id', 'bomb');
-    bombDiv.style.position = "absolute";
-    bombDiv.style.left = sizeOfTile * bomb.getX()+ "px";
-    bombDiv.style.top = sizeOfTile * bomb.getY()+ "px";
-    bombDiv.style.width = sizeOfTile + "px";
-    bombDiv.style.height = sizeOfTile + "px";
-    bombDiv.style.zIndex = bombIndex;
-    bombDiv.style.backgroundImage = bombImage;
-    document.getElementById("field").appendChild(bombDiv);
 
     //Box
     var boxDiv = document.createElement('div');
