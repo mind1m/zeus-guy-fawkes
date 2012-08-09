@@ -26,9 +26,9 @@
 }
 
 div#new_game img {
-    border: 1px solid #fff; /* Убираем рамку вокруг изображения */
+    border: 1px solid #fff;
 }
 
 div#continue img {
-    border: 1px solid  #fff; /* Убираем рамку вокруг изображения */
+    border: 1px solid  #fff;
 }
