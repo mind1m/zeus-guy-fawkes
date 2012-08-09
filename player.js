@@ -5,41 +5,47 @@
  * Time: 14:09
  * To change this template use File | Settings | File Templates.
  */
-function Player(newX, newY) {
-    var x;
-    var y;
 
-
-    this.x = newX;
-    this.y = newY;
-
-    this.getX = function() {
-        return this.x;
-    };
-    this.getY = function() {
-        return this.y;
-    };
-    this.setX = function(newX) {
-        this.x = newX;
-    };
-    this.setY = function(newY) {
-        this.y = newY;
-    };
-
-    this.goLeft = function() {
-        if(this.x-sizeOfTile >= 0)
-         this.x=this.x-sizeOfTile;
-    };
-    this.goUp = function() {
-        if(this.y-sizeOfTile >= 0)
-        this.y=this.y-sizeOfTile;
-    };
-    this.goRight = function() {
-        if(this.x+sizeOfTile < sizeOfMap)
-          this.x=this.x+sizeOfTile;
-    };
-    this.goDown = function() {
-        if(this.y+sizeOfTile < sizeOfMap)
-         this.y=this.y+sizeOfTile;
-    };
+function Player(x, y) {
+    this.x = x;
+    this.y = y;
 }
+
+Player.prototype = {
+    getX: function() {
+        return this.x;
+    },
+
+    getY: function() {
+        return this.y;
+    },
+
+    setX: function(value) {
+        this.x = value;
+    },
+
+    setY: function(value) {
+        this.y = value;
+    },
+
+    goLeft: function() {
+        if (checkCollisions(this.x-sizeOfTile, this.y))
+        //if(this.x-sizeOfTile >= 0)
+            this.x=this.x-sizeOfTile;
+    },
+    goUp: function() {
+        if (checkCollisions(this.x, this.y-sizeOfTile))
+        //if(this.y-sizeOfTile >= 0)
+            this.y=this.y-sizeOfTile;
+    },
+    goRight: function() {
+        if (checkCollisions(this.x+sizeOfTile, this.y))
+        //if(this.x+sizeOfTile < sizeOfMap)
+            this.x=this.x+sizeOfTile;
+    },
+    goDown: function() {
+        if (checkCollisions(this.x, this.y+sizeOfTile))
+        //if(this.y+sizeOfTile < sizeOfMap)
+            this.y=this.y+sizeOfTile;
+    }
+};

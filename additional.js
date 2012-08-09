@@ -14,5 +14,29 @@ function clearDOM() {
     {
         field.removeChild(field.firstChild);
     }
+}
+function checkCollisions(newX, newY) {
+    //Screen limit
+    if(newX >= sizeOfMap || newX < 0 || newY >= sizeOfMap || newY < 0)
+        return false;
 
+    //Blocks
+    for (var i = 0; i < blocks.length; ++i) {
+        if (blocks[i].getX() == newX && blocks[i].getY() == newY) {
+            return false;
+        }
+    }
+    //Boxes
+    for (var i = 0; i < boxes.length; ++i) {
+        if (boxes[i].getX() == newX && boxes[i].getY() == newY) {
+            return false;
+        }
+    }
+    //Bombs
+    for (var i = 0; i < bombs.length; ++i) {
+        if (bombs[i].getX() == newX && bombs[i].getY() == newY) {
+            return false;
+        }
+    }
+    return true;
 }

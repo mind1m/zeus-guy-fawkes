@@ -44,7 +44,7 @@
     var backGround = new Array();
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
-            backGround.push(new BackgroundTile(i,j));
+            backGround.push(new BackgroundTile(i * sizeOfTile,j * sizeOfTile));
         }
     }
 
@@ -54,14 +54,14 @@
     for (k = 0; k < 5; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks.push(new Block(i, j));
+        blocks.push(new Block(i * sizeOfTile, j * sizeOfTile));
     }
     //Box
-    var box = new Array();
+    var boxes = new Array();
     for (k = 0; k < 10; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        box.push(new Box(i, j));
+        boxes.push(new Box(i * sizeOfTile, j * sizeOfTile));
     }
 
     //Player
@@ -71,7 +71,7 @@
     var bombs = new Array();
 
     //Creating an objects
-    createObjects(backGround, blocks, player, box);
+    createObjects(backGround, blocks, player, boxes);
 
     //Main loop
     setInterval(function() {
@@ -108,7 +108,7 @@
     <span class="bottom" ></span>
     <span class="right"></span>
 </div>
-<div style="position: absolute; top: 500px;">
+<div style="position: absolute; top: 400px;">
     <input type="button" value="Bomb" onclick="putBomb(bombs, player.getX(),player.getY())">
 </div>
 

@@ -19,7 +19,7 @@ const boxIndex = 2;
 const playerIndex = 2;
 const bombIndex = 3;
 
-function createObjects(backGround, blocks, player, box) {
+function createObjects(backGround, blocks, player, boxes) {
     var element;
     //Background
     var backgroundDiv = document.createElement('div');
@@ -34,8 +34,8 @@ function createObjects(backGround, blocks, player, box) {
         element.setAttribute('class', 'partOfBackground');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * backGround[i].getX()+ "px";
-        element.style.top = sizeOfTile * backGround[i].getY() + "px";
+        element.style.left = backGround[i].getX()+ "px";
+        element.style.top = backGround[i].getY() + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = backgroundImage;
@@ -54,8 +54,8 @@ function createObjects(backGround, blocks, player, box) {
         element.setAttribute('class', 'block');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * blocks[i].getX()+ "px";
-        element.style.top = sizeOfTile * blocks[i].getY() + "px";
+        element.style.left = blocks[i].getX()+ "px";
+        element.style.top = blocks[i].getY() + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = blockImage;
@@ -66,29 +66,29 @@ function createObjects(backGround, blocks, player, box) {
     var playerDiv = document.createElement('div');
     playerDiv.setAttribute('id', 'player');
     playerDiv.style.position = "absolute";
-    playerDiv.style.left = sizeOfTile * player.getX()+ "px";
-    playerDiv.style.top = sizeOfTile * player.getY()+ "px";
+    playerDiv.style.left = player.getX()+ "px";
+    playerDiv.style.top = player.getY()+ "px";
     playerDiv.style.width = sizeOfTile + "px";
     playerDiv.style.height = sizeOfTile + "px";
     playerDiv.style.zIndex = playerIndex;
     playerDiv.style.backgroundImage = playerImage;
     document.getElementById("field").appendChild(playerDiv);
 
-    //Box
+    //Boxes
     var boxDiv = document.createElement('div');
-    boxDiv.setAttribute('id', 'box');
+    boxDiv.setAttribute('id', 'boxes');
     boxDiv.style.position = "absolute";
     boxDiv.style.left = "0px";
     boxDiv.style.top = "0px";
     boxDiv.style.zIndex = boxIndex;
     document.getElementById("field").appendChild(boxDiv);
-    for (var i = 0; i < box.length; ++i) {
+    for (var i = 0; i < boxes.length; ++i) {
         element = document.createElement('div');
         element.setAttribute('class', 'box');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * box[i].getX()+ "px";
-        element.style.top = sizeOfTile * box[i].getY() + "px";
+        element.style.left = boxes[i].getX()+ "px";
+        element.style.top = boxes[i].getY() + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = boxImage;
