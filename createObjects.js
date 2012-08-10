@@ -5,7 +5,7 @@
  * Time: 11:18
  * To change this template use File | Settings | File Templates.
  */
-const sizeOfMap = 384;
+const sizeOfMap = 416;
 const sizeOfTile = 32;
 const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
@@ -25,7 +25,7 @@ function createObjects(backGround, blocks, player, boxes) {
     var backgroundDiv = document.createElement('div');
     backgroundDiv.setAttribute('id', 'background');
     backgroundDiv.style.position = "absolute";
-    backgroundDiv.style.left = "8px";
+    backgroundDiv.style.left = "0px";
     backgroundDiv.style.top = "0px";
     backgroundDiv.style.zIndex = backgroundIndex;
     document.getElementById("field").appendChild(backgroundDiv);
@@ -45,7 +45,7 @@ function createObjects(backGround, blocks, player, boxes) {
     var blocksDiv = document.createElement('div');
     blocksDiv.setAttribute('id', 'blocks');
     blocksDiv.style.position = "absolute";
-    blocksDiv.style.left = "8px";
+    blocksDiv.style.left = "px";
     blocksDiv.style.top = "0px";
     blocksDiv.style.zIndex = blocksIndex;
     document.getElementById("field").appendChild(blocksDiv);
@@ -78,7 +78,7 @@ function createObjects(backGround, blocks, player, boxes) {
     var boxDiv = document.createElement('div');
     boxDiv.setAttribute('id', 'boxes');
     boxDiv.style.position = "absolute";
-    boxDiv.style.left = "8px";
+    boxDiv.style.left = "px";
     boxDiv.style.top = "0px";
     boxDiv.style.zIndex = boxIndex;
     document.getElementById("field").appendChild(boxDiv);
