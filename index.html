@@ -100,6 +100,30 @@
         jQuery('.bomb_creation').bind('click',function(){
             putBomb(bombs,fires, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
+        jQuery(".partOfBackground").click(function() {
+            //var contentPanelId = jQuery(this).attr("id");
+            //alert(contentPanelId);
+            var playerPos = jQuery("#player").position();
+            //alert(playerPos.top + ', ' + playerPos.left);
+
+            var pos = jQuery(this).position();
+            //alert(pos.top + ', ' + pos.left);
+
+            $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
+
+        });
+
+
+        //var p = $("p:first");
+        //var position = currentId.position();
+
+       // var pos = jQuery(currentId).position();
+        //alert(pos.top + ', ' + pos.left);
+
+
+        //$("p:last").text( "left: " + position.left + ", top: " + position.top );
+
+
     })
 </script>
 
