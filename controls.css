@@ -3,7 +3,8 @@
     width: 90px;
     height: 90px;
     position: absolute;
-    top: 180px;
+    top: 300px;
+    left: 300px;
     display: block;
     clear: both;
     z-index: 999;
