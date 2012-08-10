@@ -8,7 +8,7 @@
 function draw(player,bombs) {
     //Player
     var playerDiv = document.getElementById("player");
-    playerDiv.style.left = player.getX() + "px";
+    playerDiv.style.left = player.getX() + "8px";
     playerDiv.style.top = player.getY() + "px";
 
     //Bombs
