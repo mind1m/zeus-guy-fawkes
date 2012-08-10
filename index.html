@@ -19,6 +19,7 @@
 <script type="text/javascript">
     var i, j ,k;
     var bombsCounter = 0;
+    firesCounter = 0;
 
     //Main field
     var element = document.createElement('div');
@@ -41,7 +42,7 @@
     var backGround = new Array();
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
-            backGround.push(new BackgroundTile(i * sizeOfTile,j * sizeOfTile));
+            backGround.push(new BackgroundTile(i,j));
         }
     }
 
@@ -51,14 +52,14 @@
     for (k = 0; k < 5; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks.push(new Block(i * sizeOfTile, j * sizeOfTile));
+        blocks.push(new Block(i, j));
     }
     //Box
     var boxes = new Array();
     for (k = 0; k < 10; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        boxes.push(new Box(i * sizeOfTile, j * sizeOfTile));
+        boxes.push(new Box(i, j));
     }
 
     //Player
@@ -70,6 +71,8 @@
     //Bombs
     var bombs = new Array();
 
+    var fires = new Array();
+
     //Creating an objects
     createObjects(backGround, blocks, player, boxes, enemy);
 
@@ -78,7 +81,7 @@
         //clearDOM();
         //update(bombs);
         getPath(player, enemy);
-        draw(player, bombs, enemy);
+        draw(player, bombs, enemy, fires);
 
     }, 200);
 
@@ -100,8 +103,32 @@
             goTo('bottom', 20, player);
         });
         jQuery('.bomb_creation').bind('click',function(){
-            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter)
+            putBomb(bombs,fires, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
+    //    jQuery(".partOfBackground").click(function() {
+            //var contentPanelId = jQuery(this).attr("id");
+            //alert(contentPanelId);
+     //       var playerPos = jQuery("#player").position();
+            //alert(playerPos.top + ', ' + playerPos.left);
+
+     //       var pos = jQuery(this).position();
+            //alert(pos.top + ', ' + pos.left);
+
+       //     $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
+
+   //     });
+
+
+        //var p = $("p:first");
+        //var position = currentId.position();
+
+       // var pos = jQuery(currentId).position();
+        //alert(pos.top + ', ' + pos.left);
+
+
+        //$("p:last").text( "left: " + position.left + ", top: " + position.top );
+
+
     })
 </script>
 
@@ -111,7 +138,7 @@
     <span class="bottom" ></span>
     <span class="right"></span>
 </div>
-<div style="position: absolute; top: 400px;">
+<div style="position: absolute; top: 450px;">
     <input class="bomb_creation" type="button" value="Bomb">
 </div>
 
