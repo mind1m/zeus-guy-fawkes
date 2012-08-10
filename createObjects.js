@@ -83,9 +83,11 @@ function createObjects(backGround, blocks, player, boxes) {
     boxDiv.style.zIndex = boxIndex;
     document.getElementById("field").appendChild(boxDiv);
     for (var i = 0; i < boxes.length; ++i) {
+        id = getRandomInt(1,1000);
+        boxes[i].id = id;
         element = document.createElement('div');
         element.setAttribute('class', 'box');
-        element.setAttribute('id', i.toString());
+        element.setAttribute('id', "box_"+id.toString());
         element.style.position = "absolute";
         element.style.left = boxes[i].getX()*sizeOfTile+ "px";
         element.style.top = boxes[i].getY()*sizeOfTile + "px";

@@ -143,6 +143,7 @@ Player.prototype = {
 function Box(x, y) {
     this.x = x;
     this.y = y;
+    this.id = 0;
 }
 Box.prototype = {
     getX: function() {

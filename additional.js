@@ -15,7 +15,7 @@ function clearDOM() {
         field.removeChild(field.firstChild);
     }
 }
-function checkCollisions(newX, newY) {
+function checkCollisions(newX, newY, fire) {
     //Screen limit
     if(newX*sizeOfTile >= sizeOfMap || newX*sizeOfTile < 0 || newY*sizeOfTile >= sizeOfMap || newY*sizeOfTile < 0)
         return false;
@@ -29,7 +29,16 @@ function checkCollisions(newX, newY) {
     //Boxes
     for (var i = 0; i < boxes.length; ++i) {
         if (boxes[i].getX() == newX && boxes[i].getY() == newY) {
-            return false;
+            if (typeof fire === "undefined") {
+                return false;
+            } else {
+                var box_div = document.getElementById("box_"+boxes[i].id.toString());
+                box_div.parentNode.removeChild(box_div);
+                boxes.splice(i, 1);
+                i = i-1;
+                return true;
+            }
+
         }
     }
     //Bombs

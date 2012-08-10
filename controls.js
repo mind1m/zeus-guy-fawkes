@@ -62,30 +62,30 @@ function putBomb(bombs,fires, x,y, bombsCounter, firesCounter) {
         bombs.splice(0, 1);
         bombContainer.removeChild(bombDiv);
         putFire(fireContainer, firesCounter, fires, x,y);
-        if (checkCollisions(x+1,y)) {
+        if (checkCollisions(x+1,y, true)) {
             putFire(fireContainer, firesCounter, fires, x+1,y);
-            if (checkCollisions(x+2,y)) {
+            if (checkCollisions(x+2,y, true)) {
                 putFire(fireContainer, firesCounter, fires, x+2,y);
             }
         }
 
-        if (checkCollisions(x-1,y)) {
+        if (checkCollisions(x-1,y, true)) {
             putFire(fireContainer, firesCounter, fires, x-1,y);
-            if (checkCollisions(x-2,y)) {
+            if (checkCollisions(x-2,y, true)) {
                 putFire(fireContainer, firesCounter, fires, x-2,y);
             }
         }
 
-        if (checkCollisions(x,y+1)) {
+        if (checkCollisions(x,y+1, true)) {
             putFire(fireContainer, firesCounter, fires, x,y+1);
-            if (checkCollisions(x,y+2)) {
+            if (checkCollisions(x,y+2, true)) {
                 putFire(fireContainer, firesCounter, fires, x,y+2);
             }
         }
 
-        if (checkCollisions(x,y-1)) {
+        if (checkCollisions(x,y-1, true)) {
             putFire(fireContainer, firesCounter, fires, x,y-1);
-            if (checkCollisions(x,y-2)) {
+            if (checkCollisions(x,y-2, true)) {
                 putFire(fireContainer, firesCounter, fires, x,y-2);
             }
         }
