@@ -17,7 +17,7 @@ function clearDOM() {
 }
 function checkCollisions(newX, newY) {
     //Screen limit
-    if(newX >= sizeOfMap || newX < 0 || newY >= sizeOfMap || newY < 0)
+    if(newX*sizeOfTile >= sizeOfMap || newX*sizeOfTile < 0 || newY*sizeOfTile >= sizeOfMap || newY*sizeOfTile < 0)
         return false;
 
     //Blocks

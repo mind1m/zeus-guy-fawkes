@@ -32,6 +32,13 @@ function goTo(dir, px, player){
 function putBomb(bombs,fires, x,y, bombsCounter, firesCounter) {
     bombs.push(new Bomb(x, y, bombsCounter));
     var bombsDiv = document.getElementById("bombs");
+
+    var bombContainer = document.createElement('div');
+    bombContainer.style.position = "absolute";
+    bombContainer.style.left = "0px";
+    bombContainer.style.top = "0px";
+    document.getElementById("bombs").appendChild(bombContainer);
+
     var bombDiv = document.createElement('div');
     bombDiv.setAttribute('id', bombs[bombs.length - 1].getID().toString());
     bombDiv.setAttribute('class', "bomb");
@@ -40,18 +47,20 @@ function putBomb(bombs,fires, x,y, bombsCounter, firesCounter) {
     bombDiv.style.width = sizeOfTile + "px";
     bombDiv.style.height = sizeOfTile + "px";
     bombDiv.style.zIndex = bombIndex;
+    bombDiv.overflowStyle = "visible";
     bombDiv.style.backgroundImage = bombImage;
 
     var fireContainer = document.createElement('div');
+    fireContainer.className = "firecontainer";
     fireContainer.style.position = "absolute";
     fireContainer.style.left = "0px";
     fireContainer.style.top = "0px";
 
-    document.getElementById("bombs").appendChild(bombDiv);
-    bombDiv.appendChild(fireContainer);
+    bombContainer.appendChild(bombDiv);
+    bombContainer.appendChild(fireContainer);
     setTimeout(function() {
         bombs.splice(0, 1);
-        bombsDiv.removeChild(bombDiv);
+        bombContainer.removeChild(bombDiv);
 
         if (checkCollisions(x+1,y)) {
             putFire(fireContainer, firesCounter, fires, x+1,y);
@@ -83,13 +92,14 @@ function putBomb(bombs,fires, x,y, bombsCounter, firesCounter) {
 
         setTimeout(function(){
             fires = [];
-            fireContainer.remove();
-        }, 1000)
+            fireContainer.parentNode.removeChild(fireContainer);
+        }, 2000)
     },2000);
 }
 
 function putFire(fireContainer, firesCounter, fires,x,y) {
-    fires.push(new Fire(x, y, firesCounter));
+    var id = getRandomInt(1,100000);
+    fires.push(new Fire(x, y, id));
     var fireDiv = document.createElement('div');
     fireDiv.setAttribute('class', "fire");
     fireDiv.setAttribute('id', fires[fires.length - 1].getID().toString());
@@ -98,6 +108,6 @@ function putFire(fireContainer, firesCounter, fires,x,y) {
     fireDiv.style.width = sizeOfTile + "px";
     fireDiv.style.height = sizeOfTile + "px";
     fireDiv.style.zIndex = bombIndex;
-    fireDiv.style.backgroundColor = "#121212";
+    fireDiv.style.backgroundColor = "#FF9900";
     fireContainer.appendChild(fireDiv);
 }

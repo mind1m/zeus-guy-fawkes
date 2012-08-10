@@ -8,8 +8,8 @@
 function draw(player,bombs, fires) {
     //Player
     var playerDiv = document.getElementById("player");
-    playerDiv.style.left = player.getX() + "px";
-    playerDiv.style.top = player.getY() + "px";
+    playerDiv.style.left = player.getX()*sizeOfTile + "px";
+    playerDiv.style.top = player.getY()*sizeOfTile + "px";
 
     //Bombs
     if (bombs.length != 0) {
@@ -20,8 +20,8 @@ function draw(player,bombs, fires) {
                     if (bombDivs[j].style.visibility == "hidden") {
                         bombDivs[j].style.visibility = "visible";
                     }
-                    bombDivs[j].style.top = bombs[i].getY() + "px";
-                    bombDivs[j].style.left = bombs[i].getX() + "px";
+                    bombDivs[j].style.top = bombs[i].getY()*sizeOfTile + "px";
+                    bombDivs[j].style.left = bombs[i].getX()*sizeOfTile + "px";
                     break;
                 }
             }
@@ -37,8 +37,8 @@ function draw(player,bombs, fires) {
                     if (fireDivs[j].style.visibility == "hidden") {
                         fireDivs[j].style.visibility = "visible";
                     }
-                    fireDivs[j].style.top = fires[i].getY() + "px";
-                    fireDivs[j].style.left = fires[i].getX() + "px";
+                    fireDivs[j].style.top = fires[i].getY()*sizeOfTile + "px";
+                    fireDivs[j].style.left = fires[i].getX()*sizeOfTile + "px";
                     break;
                 }
             }

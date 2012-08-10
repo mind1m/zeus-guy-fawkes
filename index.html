@@ -41,7 +41,7 @@
     var backGround = new Array();
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
-            backGround.push(new BackgroundTile(i * sizeOfTile,j * sizeOfTile));
+            backGround.push(new BackgroundTile(i,j));
         }
     }
 
@@ -51,14 +51,14 @@
     for (k = 0; k < 5; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks.push(new Block(i * sizeOfTile, j * sizeOfTile));
+        blocks.push(new Block(i, j));
     }
     //Box
     var boxes = new Array();
     for (k = 0; k < 10; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        boxes.push(new Box(i * sizeOfTile, j * sizeOfTile));
+        boxes.push(new Box(i, j));
     }
 
     //Player
