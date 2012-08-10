@@ -13,13 +13,15 @@ const backgroundImage = "url(images/background.gif)";
 const playerImage = "url(images/player.gif)";
 const bombImage = "url(images/bomb.png)";
 const boxImage = "url(images/box.jpg)";
+const enemyImage = "url(images/ninja.png)";
 const backgroundIndex = 1;
 const blocksIndex = 2;
 const boxIndex = 2;
 const playerIndex = 2;
+const enemyIndex = 2;
 const bombIndex = 3;
 
-function createObjects(backGround, blocks, player, boxes) {
+function createObjects(backGround, blocks, player, boxes, enemy) {
     var element;
     //Background
     var backgroundDiv = document.createElement('div');
@@ -95,4 +97,16 @@ function createObjects(backGround, blocks, player, boxes) {
         element.style.zIndex = boxIndex;
         boxDiv.appendChild(element);
     }
+
+    //Enemy
+    var enemyDiv = document.createElement('div');
+    enemyDiv.setAttribute('id', 'enemy');
+    enemyDiv.style.position = "absolute";
+    enemyDiv.style.left = enemy.getX()+ "px";
+    enemyDiv.style.top = enemy.getY()+ "px";
+    enemyDiv.style.width = sizeOfTile + "px";
+    enemyDiv.style.height = sizeOfTile + "px";
+    enemyDiv.style.zIndex = enemyIndex;
+    enemyDiv.style.backgroundImage = enemyImage;
+    document.getElementById("field").appendChild(enemyDiv);
 }

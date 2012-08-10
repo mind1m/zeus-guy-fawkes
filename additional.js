@@ -20,6 +20,10 @@ function checkCollisions(newX, newY) {
     if(newX >= sizeOfMap || newX < 0 || newY >= sizeOfMap || newY < 0)
         return false;
 
+    //Enemy
+    if(enemy.getX() == newX && enemy.getY() == newY)
+        return false;
+
     //Blocks
     for (var i = 0; i < blocks.length; ++i) {
         if (blocks[i].getX() == newX && blocks[i].getY() == newY) {

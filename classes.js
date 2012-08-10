@@ -161,3 +161,65 @@ Box.prototype = {
         this.y = value;
     }
 };
+
+function Enemy(x, y) {
+    this.x = x;
+    this.y = y;
+    this.lastX = 0;
+    this.lastY = 0;
+}
+
+Enemy.prototype = {
+    getX: function() {
+        return this.x;
+    },
+
+    getY: function() {
+        return this.y;
+    },
+
+    getLastX: function() {
+        return this.lastY;
+    },
+
+    getLastY: function() {
+        return this.lastY;
+    },
+
+    setX: function(value) {
+        this.x = value;
+    },
+
+    setY: function(value) {
+        this.y = value;
+    },
+
+    setLastX: function(value) {
+        this.lastX = value;
+    },
+
+    setLastY: function(value) {
+        this.lastY = value;
+    },
+
+    goLeft: function() {
+        if (checkCollisions(this.x-sizeOfTile, this.y))
+        //if(this.x-sizeOfTile >= 0)
+            this.x=this.x-sizeOfTile;
+    },
+    goUp: function() {
+        if (checkCollisions(this.x, this.y-sizeOfTile))
+        //if(this.y-sizeOfTile >= 0)
+            this.y=this.y-sizeOfTile;
+    },
+    goRight: function() {
+        if (checkCollisions(this.x+sizeOfTile, this.y))
+        //if(this.x+sizeOfTile < sizeOfMap)
+            this.x=this.x+sizeOfTile;
+    },
+    goDown: function() {
+        if (checkCollisions(this.x, this.y+sizeOfTile))
+        //if(this.y+sizeOfTile < sizeOfMap)
+            this.y=this.y+sizeOfTile;
+    }
+};
