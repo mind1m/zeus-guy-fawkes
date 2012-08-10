@@ -34,8 +34,8 @@ function createObjects(backGround, blocks, player, boxes) {
         element.setAttribute('class', 'partOfBackground');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = backGround[i].getX()+ "px";
-        element.style.top = backGround[i].getY() + "px";
+        element.style.left = backGround[i].getX()*sizeOfTile+ "px";
+        element.style.top = backGround[i].getY()*sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = backgroundImage;
@@ -54,8 +54,8 @@ function createObjects(backGround, blocks, player, boxes) {
         element.setAttribute('class', 'block');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = blocks[i].getX()+ "px";
-        element.style.top = blocks[i].getY() + "px";
+        element.style.left = blocks[i].getX()*sizeOfTile+ "px";
+        element.style.top = blocks[i].getY()*sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = blockImage;
@@ -66,8 +66,8 @@ function createObjects(backGround, blocks, player, boxes) {
     var playerDiv = document.createElement('div');
     playerDiv.setAttribute('id', 'player');
     playerDiv.style.position = "absolute";
-    playerDiv.style.left = player.getX()+ "px";
-    playerDiv.style.top = player.getY()+ "px";
+    playerDiv.style.left = player.getX()*sizeOfTile+ "px";
+    playerDiv.style.top = player.getY()*sizeOfTile+ "px";
     playerDiv.style.width = sizeOfTile + "px";
     playerDiv.style.height = sizeOfTile + "px";
     playerDiv.style.zIndex = playerIndex;
@@ -87,8 +87,8 @@ function createObjects(backGround, blocks, player, boxes) {
         element.setAttribute('class', 'box');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = boxes[i].getX()+ "px";
-        element.style.top = boxes[i].getY() + "px";
+        element.style.left = boxes[i].getX()*sizeOfTile+ "px";
+        element.style.top = boxes[i].getY()*sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = boxImage;
