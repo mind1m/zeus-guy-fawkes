@@ -104,8 +104,8 @@ function createObjects(backGround, blocks, player, boxes, enemy) {
     var enemyDiv = document.createElement('div');
     enemyDiv.setAttribute('id', 'enemy');
     enemyDiv.style.position = "absolute";
-    enemyDiv.style.left = enemy.getX()+ "px";
-    enemyDiv.style.top = enemy.getY()+ "px";
+    enemyDiv.style.left = enemy.getX() * sizeOfTile+ "px";
+    enemyDiv.style.top = enemy.getY() * sizeOfTile+ "px";
     enemyDiv.style.width = sizeOfTile + "px";
     enemyDiv.style.height = sizeOfTile + "px";
     enemyDiv.style.zIndex = enemyIndex;
