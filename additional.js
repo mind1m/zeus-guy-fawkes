@@ -46,19 +46,20 @@ function checkCollisions(newX, newY, fire,player) {
         if (bombs[i].getX() == newX && bombs[i].getY() == newY) {
             return false;
         }
-    } if (player.getX()===newX && player.getY()===newY){
+    }
+
     if (typeof player==="undefined"){
         return true;
     } else{
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
+                alert("Boooooooooom!");
                 return false;
             }
         }
-        alert("Boooooooooom!");
-        return false;
+
     }
-    }
+
 
 
     return true;

@@ -44,6 +44,6 @@ function draw(player,bombs, fires) {
             }
         }
     }
-    checkCollisions(player.x, player.y, undefined, true)
+    checkCollisions(player.getX(), player.getY(), undefined, true)
 }
 

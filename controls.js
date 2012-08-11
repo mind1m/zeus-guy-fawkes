@@ -29,7 +29,7 @@ function goTo(dir, px, player){
     }
 }
 
-function putBomb(bombs,fires, x,y, bombsCounter, firesCounter) {
+function putBomb(bombs, x,y, bombsCounter, firesCounter) {
     bombs.push(new Bomb(x, y, bombsCounter));
     var bombsDiv = document.getElementById("bombs");
 
@@ -60,38 +60,46 @@ function putBomb(bombs,fires, x,y, bombsCounter, firesCounter) {
     bombContainer.appendChild(fireContainer);
     setTimeout(function() {
         bombs.splice(0, 1);
+        var ids = [];
         bombContainer.removeChild(bombDiv);
         putFire(fireContainer, firesCounter, fires, x,y);
         if (checkCollisions(x+1,y, true)) {
-            putFire(fireContainer, firesCounter, fires, x+1,y);
+            ids.push(putFire(fireContainer, firesCounter, fires, x+1,y));
             if (checkCollisions(x+2,y, true)) {
-                putFire(fireContainer, firesCounter, fires, x+2,y);
+                ids.push(putFire(fireContainer, firesCounter, fires, x+2,y));
             }
         }
 
         if (checkCollisions(x-1,y, true)) {
-            putFire(fireContainer, firesCounter, fires, x-1,y);
+            ids.push(putFire(fireContainer, firesCounter, fires, x-1,y));
             if (checkCollisions(x-2,y, true)) {
-                putFire(fireContainer, firesCounter, fires, x-2,y);
+                ids.push(putFire(fireContainer, firesCounter, fires, x-2,y));
             }
         }
 
         if (checkCollisions(x,y+1, true)) {
-            putFire(fireContainer, firesCounter, fires, x,y+1);
+            ids.push(putFire(fireContainer, firesCounter, fires, x,y+1));
             if (checkCollisions(x,y+2, true)) {
-                putFire(fireContainer, firesCounter, fires, x,y+2);
+                ids.push(putFire(fireContainer, firesCounter, fires, x,y+2));
             }
         }
 
         if (checkCollisions(x,y-1, true)) {
-            putFire(fireContainer, firesCounter, fires, x,y-1);
+            ids.push(putFire(fireContainer, firesCounter, fires, x,y-1));
             if (checkCollisions(x,y-2, true)) {
-                putFire(fireContainer, firesCounter, fires, x,y-2);
+                ids.push(putFire(fireContainer, firesCounter, fires, x,y-2));
             }
         }
 
         setTimeout(function(){
-            fires = [];
+            for (var i = 0; i < ids.length; ++i) {
+                for (var j = 0; j < fires.length; ++j) {
+                    if (fires[j].id == ids[j]) {
+                        fires.splice(j ,1);
+                        break;
+                    }
+                }
+            }
             fireContainer.parentNode.removeChild(fireContainer);
         }, 2000)
     },2000);
@@ -110,4 +118,5 @@ function putFire(fireContainer, firesCounter, fires,x,y) {
     fireDiv.style.zIndex = bombIndex;
     fireDiv.style.backgroundColor = "#FF9900";
     fireContainer.appendChild(fireDiv);
+    return id;
 }
