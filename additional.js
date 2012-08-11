@@ -15,7 +15,7 @@ function clearDOM() {
         field.removeChild(field.firstChild);
     }
 }
-function checkCollisions(newX, newY, fire) {
+function checkCollisions(newX, newY, fire,player) {
     //Screen limit
     if(newX*sizeOfTile >= sizeOfMap || newX*sizeOfTile < 0 || newY*sizeOfTile >= sizeOfMap || newY*sizeOfTile < 0)
         return false;
@@ -51,5 +51,20 @@ function checkCollisions(newX, newY, fire) {
             return false;
         }
     }
+
+    if (typeof player==="undefined"){
+        return true;
+    } else{
+        for (var i = 0; i < fires.length; ++i) {
+            if (fires[i].getX() == newX && fires[i].getY() == newY) {
+                alert("Boooooooooom!");
+                return false;
+            }
+        }
+
+    }
+
+
+
     return true;
 }
