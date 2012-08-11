@@ -15,7 +15,7 @@ function clearDOM() {
         field.removeChild(field.firstChild);
     }
 }
-function checkCollisions(newX, newY, fire) {
+function checkCollisions(newX, newY, fire,player) {
     //Screen limit
     if(newX*sizeOfTile >= sizeOfMap || newX*sizeOfTile < 0 || newY*sizeOfTile >= sizeOfMap || newY*sizeOfTile < 0)
         return false;
@@ -46,6 +46,20 @@ function checkCollisions(newX, newY, fire) {
         if (bombs[i].getX() == newX && bombs[i].getY() == newY) {
             return false;
         }
+    } if (player.getX()===newX && player.getY()===newY){
+    if (typeof player==="undefined"){
+        return true;
+    } else{
+        for (var i = 0; i < fires.length; ++i) {
+            if (fires[i].getX() == newX && fires[i].getY() == newY) {
+                return false;
+            }
+        }
+        alert("Boooooooooom!");
+        return false;
     }
+    }
+
+
     return true;
 }
