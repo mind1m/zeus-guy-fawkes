@@ -1,12 +1,16 @@
-
-#container {
-    background-color: #000;
-    width: 480px;
-    height: 800px;
-    margin: 0 auto;
-    overflow: hidden;
+#field{
+    display: none;
+}
+#manag {
+    display: none;
 }
 
+#menu {
+    display: block;
+}
+#over {
+    display: none;
+}
 #top_pic {
     width: 346px;
     height: 496px;

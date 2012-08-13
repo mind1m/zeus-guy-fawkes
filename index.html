@@ -13,10 +13,56 @@
     <script type="text/javascript" src="classes.js"></script>
     <script type="text/javascript" src="createObjects.js"></script>
     <script type="text/javascript" src="draw.js"></script>
+    <script>
+        function ng(){
+            removeElement(document.getElementById("field"));
+            clearObject();
+            $('#menu').hide();
+            $('#over').hide();
+            $("#field:hidden").show();
+            $('#manag:hidden').show();
+        }
+        function pause() {
+            $('#menu:hidden').show();
+            $('#field').hide();
+            $('#manag').hide();
+        }
+        function cont(){
+            $('#menu').hide();
+            $('#over').hide();
+            $("#field:hidden").show();
+            $('#manag:hidden').show();
+        }
+
+    </script>
 </head>
-<body>
-
-
+<body style="background-color: #000">
+<center>
+<div id="menu">
+    <div id="top_pic"></div>
+    <div id="name" align="center"></div><br>
+    <div id="new game" >
+        <a href="index.html" onclick="ng()"><img src="images/ng.png" ></a>
+    </div>
+    <div id="continue">
+        <a href="" onclick="cont()"><img src="images/cont.png"></a>
+    </div>
+   <!-- <div id="new_game">
+        <a href="index.html"><img src="images/ng.png"></a>
+    </div>
+    <div id="continue">
+        <a href="index.html"><img src="images/cont.png"></a>
+    </div>-->
+</div>
+    <div id="over">
+        <div id="go"></div>
+        <div id="score"></div><br>
+        <div id="try">
+            <a href="" onclick="ng()"><img src="images/ta.png"></a>
+        </div><br><br><br>
+        <div id="sad"></div>
+    </div>
+</center>
 
 <script type="text/javascript">
     var i, j ,k;
@@ -129,16 +175,19 @@
 
     })
 </script>
-
-<div id="controls">
-    <span class="left"></span>
-    <span class="top"></span>
-    <span class="bottom" ></span>
-    <span class="right"></span>
+<div id="manag">
+    <div id="controls">
+        <span class="left"></span>
+        <span class="top"></span>
+        <span class="bottom" ></span>
+        <span class="right"></span>
+    </div>
+    <div style="position: absolute; top: 450px;">
+        <input class="bomb_creation" type="button" value="Bomb">
+    </div>
+    <div style="position: absolute; top: 550px;">
+        <input type="button" value="Pause" onclick="pause()">
+    </div>
 </div>
-<div style="position: absolute; top: 450px;">
-    <input class="bomb_creation" type="button" value="Bomb">
-</div>
-
 </body>
 </html>
