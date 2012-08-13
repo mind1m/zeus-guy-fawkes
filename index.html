@@ -89,7 +89,7 @@
     //Background of the field
 
     var backGround = new Array();
-    for (i = 0; i < numberOfTiles; ++i) {
+    for (var i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
             backGround.push(new BackgroundTile(i,j));
         }
@@ -98,14 +98,14 @@
 
     //Block of the field
     var blocks = new Array();
-    for (k = 0; k < 5; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks.push(new Block(i, j));
+    for (var p = 0; p < 5; ++p) {
+        for (var k = 0; k < 5; ++k) {
+            blocks.push(new Block(p*2, k*2));
+        }
     }
     //Box
     var boxes = new Array();
-    for (k = 0; k < 10; ++k) {
+    for (var k = 0; k < 10; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         boxes.push(new Box(i, j));
@@ -151,7 +151,7 @@
         enemy.goTo(to_go[0], to_go[1]);
 
 
-    }, 2000);
+    }, 1000);
 
 
     $(document).ready(function() {

@@ -93,7 +93,9 @@ function clearObject () {
     var id;
 
     var element;
-
+    //Player
+    player.setX(0);
+    player.setY(0);
 
     //Background
     backGround.splice(0, background.length);
@@ -104,17 +106,19 @@ function clearObject () {
     }
     //Block of the field
     blocks.splice(0, blocks.length);
-    for (k = 0; k < 5; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks.push(new Block(i, j));
+    for (var p = 0; p<5; p++) {
+        for (k = 0; k < 5; ++k) {
+            blocks.push(new Block(p*2+1, k*2+1));
+        }
     }
     //Box
     boxes.splice(0, boxes.length);
-    for (k = 0; k < 10; ++k) {
+    for (k = 0; k < 25; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        boxes.push(new Box(i, j));
+        if (checkCollisions(i,j) && (i != player.x+1) && (j != player.y+1)) {
+            boxes.push(new Box(i, j));
+        }
     }
     //Player
     player.setX(0);

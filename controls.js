@@ -101,7 +101,7 @@ function putBomb(bombs, x,y, bombsCounter, firesCounter) {
                 }
             }
             fireContainer.parentNode.removeChild(fireContainer);
-        }, 2000)
+        }, 1000)
     },2000);
 }
 
