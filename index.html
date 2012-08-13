@@ -65,6 +65,10 @@
     //Player
     var player = new Player(0, 0);
 
+    player_go = false;
+    player_go_x = 0;
+    player_go_y = 0;
+
     //Enemy
     var enemy = new Enemy(5, 6);
 
@@ -82,13 +86,21 @@
         //update(bombs);
 
         draw(player, bombs, fires, enemy);
-
+        if (player_go) {
+            var to_go = pathFind(player.x, player.y, player_go_x, player_go_y);
+            if (to_go[2]) {
+                player_go = false;
+            } else {
+                player.goTo(to_go[0], to_go[1]);
+            }
+        }
     }, 200);
     setInterval(function() {
         //clearDOM();
         //update(bombs);
         var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
         enemy.goTo(to_go[0], to_go[1]);
+
 
     }, 2000);
 
@@ -112,18 +124,18 @@
         jQuery('.bomb_creation').bind('click',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
-    //    jQuery(".partOfBackground").click(function() {
-            //var contentPanelId = jQuery(this).attr("id");
-            //alert(contentPanelId);
-     //       var playerPos = jQuery("#player").position();
-            //alert(playerPos.top + ', ' + playerPos.left);
+        jQuery(".partOfBackground").bind('tapone', function() {
+            var contentPanelId = jQuery(this).attr("id");
 
-     //       var pos = jQuery(this).position();
+            var pos = jQuery(this).position();
             //alert(pos.top + ', ' + pos.left);
+            player_go = true;
+            player_go_x = pos.left/sizeOfTile;
+            player_go_y = pos.top/sizeOfTile;
 
-       //     $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
 
-   //     });
+
+        });
 
 
         //var p = $("p:first");

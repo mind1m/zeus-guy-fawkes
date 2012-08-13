@@ -116,6 +116,13 @@ function pathFind(startx, starty, finishx, finishy) {
 
     var count = 1;
     var steps = 0;
+    if ((finishx == startx) && (finishy == starty)) {
+        var res = new Array();
+        res.push(startx)
+        res.push(starty)
+        res.push(true)
+        return res
+    }
     while (count < 12) {
         for (var i = 0; i < queuex.length; i++) {
             var x = queuex[i];
@@ -125,8 +132,9 @@ function pathFind(startx, starty, finishx, finishy) {
                 ((x == startx) && (y + 1 == starty)) ||
                 ((x == startx) && (y - 1 == starty))) {
                 var res = new Array();
-                res.push(x)
-                res.push(y)
+                res.push(x);
+                res.push(y);
+                res.push(false);
                 return res
             }
             if ((x+1<=map_size) && (map[y][x+1] == 0)) {

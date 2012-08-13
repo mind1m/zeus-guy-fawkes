@@ -99,6 +99,8 @@ Bomb.prototype = {
 function Player(x, y) {
     this.x = x;
     this.y = y;
+    this.need_x = x;
+    this.need_y = y;
 }
 
 Player.prototype = {
@@ -137,6 +139,23 @@ Player.prototype = {
         if (checkCollisions(this.x, this.y+1, undefined, this))
         //if(this.y+sizeOfTile < sizeOfMap)
             this.y=this.y+1;
+    },
+    goTo: function(x,y) {
+        if (x<this.x) {
+            this.goLeft();
+        }
+        else
+        if (x>this.x) {
+            this.goRight();
+        }
+        else
+        if (y>this.y) {
+            this.goDown();
+        }
+        else
+        if (y<this.y) {
+            this.goUp();
+        }
     }
 };
 
@@ -277,8 +296,6 @@ Enemy.prototype = {
         if (y<this.y) {
             this.goUp();
         }
-        console.log(x);
-        console.log(y);
     }
 };
 
