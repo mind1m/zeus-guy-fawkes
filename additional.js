@@ -113,7 +113,7 @@ function pathFind(startx, starty, finishx, finishy) {
 
     var count = 1;
     var steps = 0;
-    while (steps < 1000) {
+    while (count < 12) {
         for (var i = 0; i < queuex.length; i++) {
             var x = queuex[i];
             var y = queuey[i];
@@ -126,23 +126,23 @@ function pathFind(startx, starty, finishx, finishy) {
                 res.push(y)
                 return res
             }
-            if ((x+1<=map_size) && (map[x + 1][y] == 0)) {
-                map[x + 1][y] = count;
+            if ((x+1<=map_size) && (map[y][x+1] == 0)) {
+                map[y][x+1] = count;
                 new_queuex.push(x+1);
                 new_queuey.push(y);
             }
             if ((x-1>=0) && (map[x - 1][y] == 0)) {
-                map[x - 1][y] = count;
+                map[y][x - 1] = count;
                 new_queuex.push(x-1);
                 new_queuey.push(y);
             }
-            if ((y+1<=map_size) && (map[x][y+1] == 0)) {
-                map[x][y+1] = count;
+            if ((y+1<=map_size) && (map[y+1][x] == 0)) {
+                map[y+1][x] = count;
                 new_queuex.push(x);
                 new_queuey.push(y+1);
             }
-            if ((y-1>=0) && (map[x][y-1] == 0)) {
-                map[x][y-1] = count;
+            if ((y-1>=0) && (map[y-1][x] == 0)) {
+                map[y-1][x] = count;
                 new_queuex.push(x);
                 new_queuey.push(y-1);
             }

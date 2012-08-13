@@ -241,24 +241,43 @@ Enemy.prototype = {
     },
 
     goLeft: function() {
-        if (checkCollisions(this.x-sizeOfTile, this.y))
+        if (checkCollisions(this.x-1, this.y))
         //if(this.x-sizeOfTile >= 0)
-            this.x=this.x-sizeOfTile;
+            this.x=this.x-1;
     },
     goUp: function() {
-        if (checkCollisions(this.x, this.y-sizeOfTile))
+        if (checkCollisions(this.x, this.y-1))
         //if(this.y-sizeOfTile >= 0)
-            this.y=this.y-sizeOfTile;
+            this.y=this.y-1;
     },
     goRight: function() {
-        if (checkCollisions(this.x+sizeOfTile, this.y))
+        if (checkCollisions(this.x+1, this.y))
         //if(this.x+sizeOfTile < sizeOfMap)
-            this.x=this.x+sizeOfTile;
+            this.x=this.x+1;
     },
     goDown: function() {
-        if (checkCollisions(this.x, this.y+sizeOfTile))
+        if (checkCollisions(this.x, this.y+1))
         //if(this.y+sizeOfTile < sizeOfMap)
-            this.y=this.y+sizeOfTile;
+            this.y=this.y+1;
+    },
+    goTo: function(x,y) {
+        if (x<this.x) {
+            this.goLeft();
+        }
+        else
+        if (x>this.x) {
+            this.goRight();
+        }
+        else
+        if (y>this.y) {
+            this.goDown();
+        }
+        else
+        if (y<this.y) {
+            this.goUp();
+        }
+        console.log(x);
+        console.log(y);
     }
 };
 
