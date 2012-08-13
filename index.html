@@ -66,7 +66,7 @@
     var player = new Player(0, 0);
 
     //Enemy
-    var enemy = new Player(2, 2);
+    var enemy = new Enemy(9, 9);
 
     //Bombs
     var bombs = new Array();
@@ -80,6 +80,7 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
+        followObject();
         draw(player, bombs, fires, enemy);
 
     }, 200);
