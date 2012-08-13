@@ -19,6 +19,17 @@ function checkCollisions(newX, newY, fire, player) {
     if (newX * sizeOfTile >= sizeOfMap || newX * sizeOfTile < 0 || newY * sizeOfTile >= sizeOfMap || newY * sizeOfTile < 0)
         return false;
 
+    //Enemy
+    if (enemy.getX() == newX && enemy.getY() == newY) {
+        if (typeof fire === "undefined") {
+            return false;
+        } else {
+            var enemy_div = document.getElementById("enemy");
+            enemy_div.parentNode.removeChild(enemy_div);
+            return true;
+        }
+    }
+
     //Blocks
     for (var i = 0; i < blocks.length; ++i) {
         if (blocks[i].getX() == newX && blocks[i].getY() == newY) {
