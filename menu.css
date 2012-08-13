@@ -1,0 +1,80 @@
+#field{
+    display: none;
+}
+#manag {
+    display: none;
+}
+
+#menu {
+    display: block;
+}
+#over {
+    display: none;
+}
+#top_pic {
+    width: 346px;
+    height: 496px;
+    background-image: url('images/fox.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    margin: 0 auto;
+
+}
+
+#name {
+    width: 400px;
+    height: 100px;
+    background-image: url('images/fox_name.png');
+    background-repeat: no-repeat;
+}
+
+div#new_game img {
+    border: 1px solid #fff;
+}
+
+div#continue img {
+    border: 1px solid  #fff;
+}
+
+#Congratulations {
+    width: 480px;
+    height: 160px;
+    background-image: url('images/cong.png');
+    background-repeat: no-repeat;
+}
+#bang {
+    width: 480px;
+    height: 300px;
+    background-image: url('images/cong1.png');
+    background-repeat: no-repeat;
+}
+#area {
+    width: 480px;
+    height: 100px;
+    background-image: url('images/cong0.png');
+    background-repeat: no-repeat;
+}
+#score {
+    width: 200px;
+    height: 100px;
+    background-image: url('images/Score.png');
+    background-repeat: no-repeat;
+}
+div#try img {
+    border: 1px solid white;
+}
+
+#go {
+    width: 480px;
+    height: 300px;
+    background-image: url('images/go.png');
+    background-repeat: no-repeat;
+}
+
+#sad {
+    width: 160px;
+    height: 172px;
+    background-image: url('images/sad.png');
+    background-repeat: no-repeat;
+}
