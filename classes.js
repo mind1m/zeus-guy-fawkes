@@ -99,6 +99,8 @@ Bomb.prototype = {
 function Player(x, y) {
     this.x = x;
     this.y = y;
+    this.need_x = x;
+    this.need_y = y;
 }
 
 Player.prototype = {
@@ -137,6 +139,23 @@ Player.prototype = {
         if (checkCollisions(this.x, this.y+1, undefined, this))
         //if(this.y+sizeOfTile < sizeOfMap)
             this.y=this.y+1;
+    },
+    goTo: function(x,y) {
+        if (x<this.x) {
+            this.goLeft();
+        }
+        else
+        if (x>this.x) {
+            this.goRight();
+        }
+        else
+        if (y>this.y) {
+            this.goDown();
+        }
+        else
+        if (y<this.y) {
+            this.goUp();
+        }
     }
 };
 
@@ -199,3 +218,84 @@ Fire.prototype = {
         this.id = value;
     }
 };
+
+function Enemy(x, y) {
+    this.x = x;
+    this.y = y;
+    this.lastX = 0;
+    this.lastY = 0;
+    this.dead = false;
+}
+
+Enemy.prototype = {
+    getX: function() {
+        return this.x;
+    },
+
+    getY: function() {
+        return this.y;
+    },
+
+    getLastX: function() {
+        return this.lastY;
+    },
+
+    getLastY: function() {
+        return this.lastY;
+    },
+
+    setX: function(value) {
+        this.x = value;
+    },
+
+    setY: function(value) {
+        this.y = value;
+    },
+
+    setLastX: function(value) {
+        this.lastX = value;
+    },
+
+    setLastY: function(value) {
+        this.lastY = value;
+    },
+
+    goLeft: function() {
+        if (checkCollisions(this.x-1, this.y))
+        //if(this.x-sizeOfTile >= 0)
+            this.x=this.x-1;
+    },
+    goUp: function() {
+        if (checkCollisions(this.x, this.y-1))
+        //if(this.y-sizeOfTile >= 0)
+            this.y=this.y-1;
+    },
+    goRight: function() {
+        if (checkCollisions(this.x+1, this.y))
+        //if(this.x+sizeOfTile < sizeOfMap)
+            this.x=this.x+1;
+    },
+    goDown: function() {
+        if (checkCollisions(this.x, this.y+1))
+        //if(this.y+sizeOfTile < sizeOfMap)
+            this.y=this.y+1;
+    },
+    goTo: function(x,y) {
+        if (x<this.x) {
+            this.goLeft();
+        }
+        else
+        if (x>this.x) {
+            this.goRight();
+        }
+        else
+        if (y>this.y) {
+            this.goDown();
+        }
+        else
+        if (y<this.y) {
+            this.goUp();
+        }
+    }
+};
+
