@@ -3,10 +3,12 @@
     width: 90px;
     height: 90px;
     position: absolute;
-    top: 300px;
+    top: 200px;
+    left: 200px;
     display: block;
     clear: both;
-
+    z-index: 999;
+    opacity: 0.5;
 }
 
 #controls span{

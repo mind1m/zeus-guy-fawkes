@@ -10,12 +10,8 @@
     <link rel="stylesheet" type="text/css" href="menu.css" />
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="additional.js"></script>
-    <script type="text/javascript" src="background.js"></script>
+    <script type="text/javascript" src="classes.js"></script>
     <script type="text/javascript" src="createObjects.js"></script>
-    <script type="text/javascript" src="box.js"></script>
-    <script type="text/javascript" src="block.js"></script>
-    <script type="text/javascript" src="player.js"></script>
-    <script type="text/javascript" src="bomb.js"></script>
     <script type="text/javascript" src="draw.js"></script>
 </head>
 <body>
@@ -24,6 +20,8 @@
 
 <script type="text/javascript">
     var i, j ,k;
+    var bombsCounter = 0;
+    firesCounter = 0;
 
     //Main field
     var element = document.createElement('div');
@@ -32,6 +30,14 @@
     element.style.left = "0px";
     element.style.top = "0px";
     document.body.appendChild(element);
+
+    //Bombs
+    element = document.createElement('div');
+    element.setAttribute('id', 'bombs');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.getElementById("field").appendChild(element);
 
     //Background of the field
 
@@ -51,25 +57,29 @@
         blocks.push(new Block(i, j));
     }
     //Box
-    var box = new Array();
+    var boxes = new Array();
     for (k = 0; k < 10; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        box.push(new Box(i, j));
+        boxes.push(new Box(i, j));
     }
 
     //Player
     var player = new Player(0, 0);
-    var bomb = new Bomb();
 
+    //Bombs
+    var bombs = new Array();
+
+    var fires = new Array();
 
     //Creating an objects
-    createObjects(backGround, blocks, player,bomb, box);
+    createObjects(backGround, blocks, player, boxes);
 
     //Main loop
     setInterval(function() {
         //clearDOM();
-        draw(player, bomb);
+        //update(bombs);
+        draw(player, bombs, fires);
 
     }, 200);
 
@@ -90,6 +100,32 @@
         jQuery('.bottom').bind('tapone',function(){
             goTo('bottom', 20, player);
         });
+        jQuery('.bomb_creation').bind('click',function(){
+            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
+        });
+    //    jQuery(".partOfBackground").click(function() {
+            //var contentPanelId = jQuery(this).attr("id");
+            //alert(contentPanelId);
+     //       var playerPos = jQuery("#player").position();
+            //alert(playerPos.top + ', ' + playerPos.left);
+
+     //       var pos = jQuery(this).position();
+            //alert(pos.top + ', ' + pos.left);
+
+       //     $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
+
+   //     });
+
+
+        //var p = $("p:first");
+        //var position = currentId.position();
+
+       // var pos = jQuery(currentId).position();
+        //alert(pos.top + ', ' + pos.left);
+
+
+        //$("p:last").text( "left: " + position.left + ", top: " + position.top );
+
 
     })
 </script>
@@ -100,8 +136,8 @@
     <span class="bottom" ></span>
     <span class="right"></span>
 </div>
-<div style="position: absolute; top: 500px;">
-    <input type="button" value="Bomb" onclick="debugger;putBomb(player.getX(),player.getY())">
+<div style="position: absolute; top: 450px;">
+    <input class="bomb_creation" type="button" value="Bomb">
 </div>
 
 </body>

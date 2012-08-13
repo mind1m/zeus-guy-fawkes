@@ -5,7 +5,7 @@
  * Time: 11:18
  * To change this template use File | Settings | File Templates.
  */
-const sizeOfMap = 256;
+const sizeOfMap = 320;
 const sizeOfTile = 32;
 const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
@@ -19,7 +19,7 @@ const boxIndex = 2;
 const playerIndex = 2;
 const bombIndex = 3;
 
-function createObjects(backGround, blocks, player, bomb, box) {
+function createObjects(backGround, blocks, player, boxes) {
     var element;
     //Background
     var backgroundDiv = document.createElement('div');
@@ -31,10 +31,11 @@ function createObjects(backGround, blocks, player, bomb, box) {
     document.getElementById("field").appendChild(backgroundDiv);
     for (var i = 0; i < backGround.length; ++i) {
         element = document.createElement('div');
-        element.setAttribute('id', 'partOfBackground');
+        element.setAttribute('class', 'partOfBackground');
+        element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * backGround[i].getX()+ "px";
-        element.style.top = sizeOfTile * backGround[i].getY() + "px";
+        element.style.left = backGround[i].getX()*sizeOfTile+ "px";
+        element.style.top = backGround[i].getY()*sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = backgroundImage;
@@ -44,16 +45,17 @@ function createObjects(backGround, blocks, player, bomb, box) {
     var blocksDiv = document.createElement('div');
     blocksDiv.setAttribute('id', 'blocks');
     blocksDiv.style.position = "absolute";
-    blocksDiv.style.left = "0px";
+    blocksDiv.style.left = "px";
     blocksDiv.style.top = "0px";
     blocksDiv.style.zIndex = blocksIndex;
     document.getElementById("field").appendChild(blocksDiv);
     for (var i = 0; i < blocks.length; ++i) {
         element = document.createElement('div');
-        element.setAttribute('id', 'Block');
+        element.setAttribute('class', 'block');
+        element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * blocks[i].getX()+ "px";
-        element.style.top = sizeOfTile * blocks[i].getY() + "px";
+        element.style.left = blocks[i].getX()*sizeOfTile+ "px";
+        element.style.top = blocks[i].getY()*sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = blockImage;
@@ -64,40 +66,31 @@ function createObjects(backGround, blocks, player, bomb, box) {
     var playerDiv = document.createElement('div');
     playerDiv.setAttribute('id', 'player');
     playerDiv.style.position = "absolute";
-    playerDiv.style.left = sizeOfTile * player.getX()+ "px";
-    playerDiv.style.top = sizeOfTile * player.getY()+ "px";
+    playerDiv.style.left = player.getX()*sizeOfTile+ "px";
+    playerDiv.style.top = player.getY()*sizeOfTile+ "px";
     playerDiv.style.width = sizeOfTile + "px";
     playerDiv.style.height = sizeOfTile + "px";
     playerDiv.style.zIndex = playerIndex;
     playerDiv.style.backgroundImage = playerImage;
     document.getElementById("field").appendChild(playerDiv);
 
-    //Bomb
-    var bombDiv = document.createElement('div');
-    bombDiv.setAttribute('id', 'bomb');
-    bombDiv.style.position = "absolute";
-    bombDiv.style.left = sizeOfTile * bomb.getX()+ "px";
-    bombDiv.style.top = sizeOfTile * bomb.getY()+ "px";
-    bombDiv.style.width = sizeOfTile + "px";
-    bombDiv.style.height = sizeOfTile + "px";
-    bombDiv.style.zIndex = bombIndex;
-    bombDiv.style.backgroundImage = bombImage;
-    document.getElementById("field").appendChild(bombDiv);
-
-    //Box
+    //Boxes
     var boxDiv = document.createElement('div');
-    boxDiv.setAttribute('id', 'box');
+    boxDiv.setAttribute('id', 'boxes');
     boxDiv.style.position = "absolute";
-    boxDiv.style.left = "0px";
+    boxDiv.style.left = "px";
     boxDiv.style.top = "0px";
     boxDiv.style.zIndex = boxIndex;
     document.getElementById("field").appendChild(boxDiv);
-    for (var i = 0; i < box.length; ++i) {
+    for (var i = 0; i < boxes.length; ++i) {
+        id = getRandomInt(1,1000);
+        boxes[i].id = id;
         element = document.createElement('div');
-        element.setAttribute('id', 'Box');
+        element.setAttribute('class', 'box');
+        element.setAttribute('id', "box_"+id.toString());
         element.style.position = "absolute";
-        element.style.left = sizeOfTile * box[i].getX()+ "px";
-        element.style.top = sizeOfTile * box[i].getY() + "px";
+        element.style.left = boxes[i].getX()*sizeOfTile+ "px";
+        element.style.top = boxes[i].getY()*sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = boxImage;
