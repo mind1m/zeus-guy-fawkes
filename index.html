@@ -147,8 +147,13 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
-        var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
-        enemy.goTo(to_go[0], to_go[1]);
+        if (!enemy.dead) {
+            var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
+            enemy.goTo(to_go[0], to_go[1]);
+            if (getRandomInt(0,25)<2) {
+                putBomb(bombs, enemy.getX(),enemy.getY(), ++bombsCounter, ++firesCounter)
+            }
+        }
 
 
     }, 1000);

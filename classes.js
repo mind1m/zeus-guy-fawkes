@@ -261,22 +261,22 @@ Enemy.prototype = {
     },
 
     goLeft: function() {
-        if (checkCollisions(this.x-1, this.y))
+        if (checkCollisions(this.x-1, this.y, undefined, undefined, true))
         //if(this.x-sizeOfTile >= 0)
             this.x=this.x-1;
     },
     goUp: function() {
-        if (checkCollisions(this.x, this.y-1))
+        if (checkCollisions(this.x, this.y-1, undefined, undefined, true))
         //if(this.y-sizeOfTile >= 0)
             this.y=this.y-1;
     },
     goRight: function() {
-        if (checkCollisions(this.x+1, this.y))
+        if (checkCollisions(this.x+1, this.y, undefined, undefined, true))
         //if(this.x+sizeOfTile < sizeOfMap)
             this.x=this.x+1;
     },
     goDown: function() {
-        if (checkCollisions(this.x, this.y+1))
+        if (checkCollisions(this.x, this.y+1, undefined, undefined, true))
         //if(this.y+sizeOfTile < sizeOfMap)
             this.y=this.y+1;
     },

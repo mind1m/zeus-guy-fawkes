@@ -23,7 +23,7 @@ function clearDOM() {
         field.removeChild(field.firstChild);
     }
 }
-function checkCollisions(newX, newY, fire, player) {
+function checkCollisions(newX, newY, fire, player, isenemy) {
     //Screen limit
     if (newX * sizeOfTile >= sizeOfMap || newX * sizeOfTile < 0 || newY * sizeOfTile >= sizeOfMap || newY * sizeOfTile < 0)
         return false;
@@ -84,6 +84,20 @@ function checkCollisions(newX, newY, fire, player) {
 
     }
 
+
+    if (typeof enemy === "undefined") {
+        return true;
+    } else {
+        for (var i = 0; i < fires.length; ++i) {
+            if (fires[i].getX() == newX && fires[i].getY() == newY) {
+                var enemy_div = document.getElementById("enemy");
+                enemy_div.style.display = "None";
+                enemy.dead = true;
+                return false;
+            }
+        }
+
+    }
 
     return true;
 }
@@ -253,4 +267,9 @@ function pathFind(startx, starty, finishx, finishy) {
         new_queuey = [];
         count++;
     }
+    var res = new Array();
+    res.push(startx)
+    res.push(starty)
+    res.push(false)
+    return res
 }
