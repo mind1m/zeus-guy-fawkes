@@ -80,12 +80,17 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
-        var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
-        enemy.goTo(to_go[0], to_go[1]);
 
         draw(player, bombs, fires, enemy);
 
     }, 200);
+    setInterval(function() {
+        //clearDOM();
+        //update(bombs);
+        var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
+        enemy.goTo(to_go[0], to_go[1]);
+
+    }, 2000);
 
 
     $(document).ready(function() {

@@ -12,9 +12,11 @@ function draw(player,bombs, fires, enemy) {
     playerDiv.style.top = player.getY()*sizeOfTile + "px";
 
     //Enemy
-    var enemyDiv = document.getElementById("enemy");
-    enemyDiv.style.left = enemy.getX()*sizeOfTile + "px";
-    enemyDiv.style.top = enemy.getY()*sizeOfTile + "px";
+    if (!enemy.dead) {
+        var enemyDiv = document.getElementById("enemy");
+        enemyDiv.style.left = enemy.getX()*sizeOfTile + "px";
+        enemyDiv.style.top = enemy.getY()*sizeOfTile + "px";
+    }
 
     //Bombs
     if (bombs.length != 0) {

@@ -20,13 +20,16 @@ function checkCollisions(newX, newY, fire, player) {
         return false;
 
     //Enemy
-    if (enemy.getX() == newX && enemy.getY() == newY) {
-        if (typeof fire === "undefined") {
-            return false;
-        } else {
-            var enemy_div = document.getElementById("enemy");
-            enemy_div.parentNode.removeChild(enemy_div);
-            return true;
+    if (!enemy.dead) {
+        if (enemy.getX() == newX && enemy.getY() == newY) {
+            if (typeof fire === "undefined") {
+                return false;
+            } else {
+                var enemy_div = document.getElementById("enemy");
+                enemy_div.style.display = "None";
+                enemy.dead = true;
+                return true;
+            }
         }
     }
 

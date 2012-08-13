@@ -205,6 +205,7 @@ function Enemy(x, y) {
     this.y = y;
     this.lastX = 0;
     this.lastY = 0;
+    this.dead = false;
 }
 
 Enemy.prototype = {
