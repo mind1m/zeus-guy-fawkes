@@ -82,7 +82,7 @@ function getArrayOfMap() {
     //Background
     for (var i = 0; i < numberOfTiles; ++i) {
         dots[i] = new Array();
-        for (j = 0; j < numberOfTiles; ++j) {
+        for (var j = 0; j < numberOfTiles; ++j) {
             dots[i][j] = 0;
         }
     }
