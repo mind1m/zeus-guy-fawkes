@@ -20,6 +20,17 @@ function checkCollisions(newX, newY, fire,player) {
     if(newX*sizeOfTile >= sizeOfMap || newX*sizeOfTile < 0 || newY*sizeOfTile >= sizeOfMap || newY*sizeOfTile < 0)
         return false;
 
+    //Enemy
+    if (enemy.getX() == newX && enemy.getY() == newY) {
+        if (typeof fire === "undefined") {
+            return false;
+        } else {
+            var enemy_div = document.getElementById("enemy");
+            enemy_div.parentNode.removeChild(enemy_div);
+            return true;
+        }
+    }
+
     //Blocks
     for (var i = 0; i < blocks.length; ++i) {
         if (blocks[i].getX() == newX && blocks[i].getY() == newY) {
@@ -63,4 +74,25 @@ function checkCollisions(newX, newY, fire,player) {
 
 
     return true;
+}
+
+function getArrayOfMap() {
+    //Field
+    var dots = new Array();
+    //Background
+    for (var i = 0; i < numberOfTiles; ++i) {
+        dots[i] = new Array();
+        for (j = 0; j < numberOfTiles; ++j) {
+            dots[i][j] = 0;
+        }
+    }
+    //Blocks
+    for (var i = 0; i < blocks.length; ++i) {
+        dots[blocks[i].getY()][blocks[i].getX()] = 1;
+    }
+    //Boxes
+    for (var i = 0; i < boxes.length; ++i) {
+        dots[boxes[i].getY()][boxes[i].getX()] = 1;
+    }
+    return dots;
 }

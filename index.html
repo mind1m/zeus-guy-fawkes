@@ -12,6 +12,7 @@
     <script type="text/javascript" src="classes.js"></script>
     <script type="text/javascript" src="createObjects.js"></script>
     <script type="text/javascript" src="draw.js"></script>
+    <script type="text/javascript" src="enemy_ai.js"></script>
 </head>
 <body>
 
@@ -64,6 +65,9 @@
     //Player
     var player = new Player(0, 0);
 
+    //Enemy
+    var enemy = new Player(2, 2);
+
     //Bombs
     var bombs = new Array();
 
@@ -76,7 +80,7 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
-        draw(player, bombs, fires);
+        draw(player, bombs, fires, enemy);
 
     }, 200);
 
