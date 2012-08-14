@@ -5,8 +5,8 @@
  * Time: 11:18
  * To change this template use File | Settings | File Templates.
  */
-const sizeOfMap = 352;
-const sizeOfTile = 32;
+sizeOfMap = 352;
+sizeOfTile = 32;
 const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
 const backgroundImage = "url(images/background.gif)";
@@ -61,7 +61,8 @@ function createObjects(backGround, blocks, player, boxes) {
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = blockImage;
-        //element.style.zIndex = blocksIndex;
+
+
         blocksDiv.appendChild(element);
     }
     //Player
@@ -74,6 +75,8 @@ function createObjects(backGround, blocks, player, boxes) {
     playerDiv.style.height = sizeOfTile + "px";
     playerDiv.style.zIndex = playerIndex;
     playerDiv.style.backgroundImage = playerImage;
+    playerDiv.style.backgroundRepeat = "no-repeat";
+    playerDiv.style.backgroundSize = "100% 100%";
     document.getElementById("field").appendChild(playerDiv);
 
     //Boxes
