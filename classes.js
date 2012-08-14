@@ -220,11 +220,13 @@ Fire.prototype = {
 };
 
 function Enemy(x, y) {
+    this.id = 0;
     this.x = x;
     this.y = y;
     this.lastX = 0;
     this.lastY = 0;
     this.dead = false;
+    this.just_put = 0;
 }
 
 Enemy.prototype = {

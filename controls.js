@@ -60,7 +60,7 @@ function putBomb(bombs, x,y, bombsCounter, firesCounter) {
     bombContainer.appendChild(fireContainer);
     setTimeout(function() {
         bombs.splice(0, 1);
-        ids = [];
+        var ids = [];
         bombContainer.removeChild(bombDiv);
         ids.push(putFire(fireContainer, firesCounter, fires, x,y));
         if (checkCollisions(x+1,y, true)) {

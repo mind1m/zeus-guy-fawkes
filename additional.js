@@ -29,19 +29,28 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
         return false;
 
     //Enemy
-    if (!enemy.dead) {
-        if (enemy.getX() == newX && enemy.getY() == newY) {
-            if (typeof fire === "undefined") {
-                return false;
-            } else {
-                var enemy_div = document.getElementById("enemy");
-                enemy_div.style.display = "None";
-                enemy.dead = true;
-                return true;
+    for (var i=0; i<enemies.length; i++) {
+        if (!enemies[i].dead) {
+            if (enemies[i].getX() == newX && enemies[i].getY() == newY) {
+                if (typeof fire === "undefined") {
+                    return false;
+                } else {
+                    var enemyDivs = document.getElementsByClassName("enemy");
+                    for (var j = 0; j<enemyDivs.length; j++) {
+                        if (enemies[i].id == enemyDivs[j].getAttribute('id')) {
+                            enemyDivs[j].style.display = "None";
+                            enemies[i].dead = true;
+                            break;
+                        }
+                    }
+                    //var enemy_div = document.getElementById("enemy");
+                    //enemy_div.style.display = "None"; TODO!!
+
+                    return true;
+                }
             }
         }
     }
-
     //Blocks
     for (var i = 0; i < blocks.length; ++i) {
         if (blocks[i].getX() == newX && blocks[i].getY() == newY) {
@@ -85,14 +94,24 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     }
 
 
-    if (typeof enemy === "undefined") {
+    if (typeof isenemy === "undefined") {
         return true;
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
-                var enemy_div = document.getElementById("enemy");
-                enemy_div.style.display = "None";
-                enemy.dead = true;
+                for (var p = 0; p < fires.length; ++p) {
+                    if (fires[i].getX() == enemies[j].x && fires[i].getY() == enemies[j].y) {
+                        var enemyDivs = document.getElementsByClassName("enemy");
+                        for (var j = 0; j<enemyDivs.length; j++) {
+                            if (enemies[p].id == enemyDivs[j].getAttribute('id')) {
+                                enemyDivs[j].style.display = "None";
+                                enemies[p].dead = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 return false;
             }
         }
@@ -102,20 +121,90 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     return true;
 }
 
-function clearObject () {
+function createObjects () {
     var i, j;
     var id;
 
+
+
+    bombs = []
     var element;
     //Player
     player.setX(0);
     player.setY(0);
 
+    //Enemy
+
+
+    var element = document.createElement('div');
+    element.setAttribute('id', 'field');
+    element.style.position = "absolute";
+    element.style.left = "0px";
+    element.style.top = "0px";
+    document.body.appendChild(element);
+
+
     //Background
-    backGround.splice(0, background.length);
+    var backgroundDiv = document.createElement('div');
+    backgroundDiv.setAttribute('id', 'background');
+    backgroundDiv.style.position = "absolute";
+    backgroundDiv.style.left = "0px";
+    backgroundDiv.style.top = "0px";
+    backgroundDiv.style.zIndex = backgroundIndex;
+    element.appendChild(backgroundDiv);
+
+    //Blocks
+    var blocksDiv = document.createElement('div');
+    blocksDiv.setAttribute('id', 'blocks');
+    blocksDiv.style.position = "absolute";
+    blocksDiv.style.left = "px";
+    blocksDiv.style.top = "0px";
+    blocksDiv.style.zIndex = blocksIndex;
+    document.getElementById("field").appendChild(blocksDiv);
+
+    //Player
+    var playerDiv = document.createElement('div');
+    playerDiv.setAttribute('id', 'player');
+    playerDiv.style.position = "absolute";
+    playerDiv.style.left = player.getX()*sizeOfTile+ "px";
+    playerDiv.style.top = player.getY()*sizeOfTile+ "px";
+    playerDiv.style.width = sizeOfTile + "px";
+    playerDiv.style.height = sizeOfTile + "px";
+    playerDiv.style.zIndex = playerIndex;
+    playerDiv.style.backgroundImage = playerImage;
+    playerDiv.style.backgroundRepeat = "no-repeat";
+    playerDiv.style.backgroundSize = "100% 100%";
+    document.getElementById("field").appendChild(playerDiv);
+
+    //Boxes
+    var boxDiv = document.createElement('div');
+    boxDiv.setAttribute('id', 'boxes');
+    boxDiv.style.position = "absolute";
+    boxDiv.style.left = "px";
+    boxDiv.style.top = "0px";
+    boxDiv.style.zIndex = boxIndex;
+    document.getElementById("field").appendChild(boxDiv);
+    for (var i = 0; i < boxes.length; ++i) {
+        id = getRandomInt(1,1000);
+        boxes[i].id = id;
+        element = document.createElement('div');
+        element.setAttribute('class', 'box');
+        element.setAttribute('id', "box_"+id.toString());
+        element.style.position = "absolute";
+        element.style.left = boxes[i].getX()*sizeOfTile+ "px";
+        element.style.top = boxes[i].getY()*sizeOfTile + "px";
+        element.style.width = sizeOfTile + "px";
+        element.style.height = sizeOfTile + "px";
+        element.style.backgroundImage = boxImage;
+        element.style.zIndex = boxIndex;
+        boxDiv.appendChild(element);
+    }
+
+    //Background
+    background.splice(0, background.length);
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
-            backGround.push(new BackgroundTile(i,j));
+            background.push(new BackgroundTile(i,j));
         }
     }
     //Block of the field
@@ -159,6 +248,13 @@ function clearObject () {
         blocksDiv.appendChild(element);
     }
 
+    bombDiv = document.createElement('div');
+    bombDiv.setAttribute('id', 'bombs');
+    bombDiv.style.position = "absolute";
+    bombDiv.style.left = "0px";
+    bombDiv.style.top = "0px";
+    document.getElementById("field").appendChild(bombDiv);
+
     //Boxes
     var boxDiv = document.getElementById('boxes');
     boxDiv.innerHTML = "";
@@ -177,6 +273,32 @@ function clearObject () {
         element.style.zIndex = boxIndex;
         boxDiv.appendChild(element);
     }
+
+    enemies = new Array();
+    for (var k = 0; k < 3; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        //if (checkCollisions(i,j)){
+        enemies.push(new Enemy(i, j));
+        //}
+    }
+    for (var i=0; i<enemies.length; i++) {
+        var id = getRandomInt(1,1000);
+        enemies[i].id = id;
+        var enemyDiv = document.createElement('div');
+        enemyDiv.setAttribute('id', enemies[i].id);
+        enemyDiv.setAttribute('class', 'enemy');
+        enemyDiv.style.position = "absolute";
+        enemyDiv.style.left = enemies[i].getX() * sizeOfTile+ "px";
+        enemyDiv.style.top = enemies[i].getY() * sizeOfTile+ "px";
+        enemyDiv.style.width = sizeOfTile + "px";
+        enemyDiv.style.height = sizeOfTile + "px";
+        enemyDiv.style.zIndex = enemyIndex;
+        enemyDiv.style.backgroundImage = enemyImage;
+        document.getElementById("field").appendChild(enemyDiv);
+    }
+
+
 }
 
 function getArrayOfMap() {
@@ -225,7 +347,7 @@ function pathFind(startx, starty, finishx, finishy) {
         res.push(true)
         return res
     }
-    while (count < 12) {
+    while (count < 50) {
         for (var i = 0; i < queuex.length; i++) {
             var x = queuex[i];
             var y = queuey[i];
