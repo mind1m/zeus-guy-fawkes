@@ -21,8 +21,11 @@
     <script>
         function ng(){
             removeElement(document.getElementById("field"));
-            clearObject();
+            createObjects();
             resize();
+            window.onresize = function() {
+                resize();
+            };
             $('#menu').hide();
             $('#over').hide();
             $("#field:hidden").show();
@@ -79,114 +82,6 @@
 
     </style>
 
-    <script>
-
-        function resize(){
-            var element;
-            body_height =  window.innerHeight;
-            body_width = window.innerWidth;
-
-            max_size = Math.min(body_height,body_width)
-
-            summary_div_heigth = max_size * 0.9;
-            div_height = summary_div_heigth/numberOfTiles;
-
-            sizeOfTile = div_height;
-            //alert(sizeOfTile);
-            sizeOfMap = summary_div_heigth;
-
-            //Background
-            var backgroundDiv = document.getElementById("background");
-            backgroundDiv.innerHTML = "";
-            //document.getElementById("field").appendChild(backgroundDiv);
-            for (var i = 0; i < backGround.length; ++i) {
-                element = document.createElement('div');
-                element.setAttribute('class', 'partOfBackground');
-                element.setAttribute('id', i.toString());
-                element.style.position = "absolute";
-                element.style.left = backGround[i].getX()*sizeOfTile+ "px";
-                element.style.top = backGround[i].getY()*sizeOfTile + "px";
-                element.style.width = sizeOfTile + "px";
-                element.style.height = sizeOfTile + "px";
-                element.style.backgroundImage = backgroundImage;
-                element.style.backgroundRepeat = "no-repeat";
-                element.style.backgroundSize = "100% 100%";
-                backgroundDiv.appendChild(element);
-            }
-
-            //Blocks
-            var blocksDiv = document.getElementById("blocks");
-            blocksDiv.innerHTML = "";
-            for (var i = 0; i < blocks.length; ++i) {
-                element = document.createElement('div');
-                element.setAttribute('class', 'block');
-                element.setAttribute('id', i.toString());
-                element.style.position = "absolute";
-                element.style.left = blocks[i].getX()*sizeOfTile+ "px";
-                element.style.top = blocks[i].getY()*sizeOfTile + "px";
-                element.style.width = sizeOfTile + "px";
-                element.style.height = sizeOfTile + "px";
-                element.style.backgroundImage = blockImage;
-                element.style.backgroundRepeat = "no-repeat";
-                element.style.backgroundSize = "100% 100%";
-                blocksDiv.appendChild(element);
-            }
-
-            //Boxes
-            var boxDiv = document.getElementById("boxes");
-            boxDiv.innerHTML = "";
-            for (var i = 0; i < boxes.length; ++i) {
-                id = getRandomInt(1,1000);
-                boxes[i].id = id;
-                element = document.createElement('div');
-                element.setAttribute('class', 'box');
-                element.setAttribute('id', "box_"+id.toString());
-                element.style.position = "absolute";
-                element.style.left = boxes[i].getX()*sizeOfTile+ "px";
-                element.style.top = boxes[i].getY()*sizeOfTile + "px";
-                element.style.width = sizeOfTile + "px";
-                element.style.height = sizeOfTile + "px";
-                element.style.backgroundImage = boxImage;
-                element.style.zIndex = boxIndex;
-                element.style.backgroundRepeat = "no-repeat";
-                element.style.backgroundSize = "100% 100%";
-                boxDiv.appendChild(element);
-            }
-            //Player
-            var playerDiv = document.getElementById("player");
-            playerDiv.style.width = sizeOfTile + "px";
-            playerDiv.style.height = sizeOfTile + "px";
-            playerDiv.style.backgroundRepeat = "no-repeat";
-            playerDiv.style.backgroundSize = "100% 100%";
-
-            //Enemy
-            var enemyDiv = document.getElementById("enemy");
-            enemyDiv.style.width = sizeOfTile + "px";
-            enemyDiv.style.height = sizeOfTile + "px";
-            enemyDiv.style.backgroundRepeat = "no-repeat";
-            enemyDiv.style.backgroundSize = "100% 100%";
-
-            //alert(div_height);
-            //$('div.partOfBackground').css('height', div_height);
-            //$('div.partOfBackground').css('width', div_height);
-
-            //Creating an objects
-            //createObjects(backGround, blocks, player, boxes);
-
-            //Main loop
-
-
-        }
-
-        window.onload = function() {
-            resize();
-        };
-
-        window.onresize = function() {
-            resize();
-        };
-
-    </script>
 
 
 </head>
@@ -223,71 +118,39 @@
     var bombsCounter = 0;
     firesCounter = 0;
 
+
+
     //Main field
-    var element = document.createElement('div');
-    element.setAttribute('id', 'field');
-    element.style.position = "absolute";
-    element.style.left = "0px";
-    element.style.top = "0px";
-    document.body.appendChild(element);
+
 
     //Bombs
-    element = document.createElement('div');
-    element.setAttribute('id', 'bombs');
-    element.style.position = "absolute";
-    element.style.left = "0px";
-    element.style.top = "0px";
-    document.getElementById("field").appendChild(element);
+
 
     //Background of the field
 
-    var backGround = new Array();
-    for (var i = 0; i < numberOfTiles; ++i) {
-        for (j = 0; j < numberOfTiles; ++j) {
-            backGround.push(new BackgroundTile(i,j));
-        }
-    }
+    background = new Array();
 
 
     //Block of the field
-    var blocks = new Array();
-    for (var p = 0; p < 5; ++p) {
-        for (var k = 0; k < 5; ++k) {
-            blocks.push(new Block(p*2, k*2));
-        }
-    }
+    blocks = new Array();
     //Box
-    var boxes = new Array();
-    for (var k = 0; k < 10; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        boxes.push(new Box(i, j));
-    }
+    boxes = new Array();
 
     //Player
-    var player = new Player(0, 0);
+    player = new Player(0, 0);
 
     player_go = false;
     player_go_x = 0;
     player_go_y = 0;
 
-    //Enemy
-    enemies = new Array();
-    for (var k = 0; k < 3; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        //if (checkCollisions(i,j)){
-        enemies.push(new Enemy(i, j))
-        //}
-    }
-
     //Bombs
-    var bombs = new Array();
+    bombs = new Array();
 
-    var fires = new Array();
+    fires = new Array();
+
+    enemies = new Array();
 
     //Creating an objects
-    createObjects(backGround, blocks, player, boxes);
 
     //Main loop
     setInterval(function() {
@@ -311,9 +174,17 @@
             if (!enemies[i].dead) {
                 var to_go = pathFind(enemies[i].x, enemies[i].y, player.x, player.y);
                 enemies[i].goTo(to_go[0], to_go[1]);
-                if (getRandomInt(0,25)<2) {
+                if ((getRandomInt(0,25)<2) && (enemies[i].just_put > 4)) {
                     putBomb(bombs, enemies[i].getX(),enemies[i].getY(), ++bombsCounter, ++firesCounter)
+                    enemies[i].just_put = 0;
+                } else {
+                    var dist = Math.sqrt(Math.pow(enemies[i].x-player.x,2)+Math.pow(enemies[i].y-player.y,2))
+                    if ((dist<3) && (enemies[i].just_put > 4)) {
+                        putBomb(bombs, enemies[i].getX(),enemies[i].getY(), ++bombsCounter, ++firesCounter)
+                        enemies[i].just_put = 0;
+                    }
                 }
+                enemies[i].just_put += 1;
             }
         }
 
@@ -349,7 +220,7 @@
     <span class="bottom" ></span>
     <span class="right"></span>
 </div>
-<div style="position: absolute; top: 400px;">
+<div style="position: absolute; top: 400px; left: 800px;">
     <input class="bomb_creation" type="button" value="Bomb">
 </div>
 
