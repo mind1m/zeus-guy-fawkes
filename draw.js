@@ -75,7 +75,7 @@ function resize(){
 
     max_size = Math.min(body_height,body_width)
 
-    summary_div_heigth = max_size;
+    summary_div_heigth = max_size ;
     div_height = summary_div_heigth/numberOfTiles;
 
     sizeOfTile = Math.round(div_height);
@@ -92,6 +92,8 @@ function resize(){
     var bombControlX = 0;
 
     if (body_width > body_height) {
+        sizeOfMap = Math.round(sizeOfMap * 0.8);
+        sizeOfTile = Math.round(sizeOfTile * 0.8);
         fieldX = body_width/2 - sizeOfMap/2;
         sizeOfControls = controls.offsetWidth;
         controlsX = fieldX/2 - sizeOfControls/2;
