@@ -95,6 +95,35 @@
             //alert(sizeOfTile);
             sizeOfMap = summary_div_heigth;
 
+            var fieldDiv = document.getElementById("field");
+            var controls = document.getElementById("controls");
+            var bombControlDiv = document.getElementById("bombControl");
+            var fieldX = 0;
+            var sizeOfControl = 0;
+            var controlsX = 0;
+            var sizeOfBombControl = 0;
+            var bombControlX = 0;
+
+            if (body_width > body_height) {
+                fieldX = body_width/2 - sizeOfMap/2;
+                sizeOfControls = controls.offsetWidth;
+                controlsX = fieldX/2 - sizeOfControls/2;
+                sizeOfBombControl = bombControlDiv.offsetWidth;
+                bombControlX = body_width/2 + sizeOfMap/2 + fieldX/2 - sizeOfBombControl/2;
+                fieldDiv.style.left = fieldX + "px";
+                controls.style.left = controlsX + "px";
+                controls.style.top = (body_height/2 - controls.offsetHeight/2) + "px";
+                bombControlDiv.style.left = bombControlX + "px";
+                bombControlDiv.style.top = (body_height/2 - bombControlDiv.offsetHeight/2) + "px";
+            } else {
+                fieldDiv.style.top = "0px";
+                fieldDiv.style.left = "0px";
+                controls.style.top = sizeOfMap + "px";
+                controls.style.left = "0px";
+                bombControlDiv.style.top = sizeOfMap + "px";
+                bombControlDiv.style.left = (sizeOfMap - bombControlDiv.offsetWidth) + "px";
+            }
+
             //Background
             var backgroundDiv = document.getElementById("background");
             backgroundDiv.innerHTML = "";
@@ -328,7 +357,7 @@
         jQuery('.bottom').bind('tapone',function(){
             goTo('bottom', 20, player);
         });
-        jQuery('.bomb_creation').bind('click',function(){
+        jQuery('.putBomb').bind('click',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
 
@@ -340,9 +369,7 @@
     <span class="bottom" ></span>
     <span class="right"></span>
 </div>
-<div style="position: absolute; top: 400px;">
-    <input class="bomb_creation" type="button" value="Bomb">
-</div>
+<div id="bombControl"></div>
 
 
 </body>
