@@ -100,14 +100,18 @@ function createObjects(backGround, blocks, player, boxes) {
         boxDiv.appendChild(element);
     }
     //Enemy
-    var enemyDiv = document.createElement('div');
-    enemyDiv.setAttribute('id', 'enemy');
-    enemyDiv.style.position = "absolute";
-    enemyDiv.style.left = enemy.getX() * sizeOfTile+ "px";
-    enemyDiv.style.top = enemy.getY() * sizeOfTile+ "px";
-    enemyDiv.style.width = sizeOfTile + "px";
-    enemyDiv.style.height = sizeOfTile + "px";
-    enemyDiv.style.zIndex = enemyIndex;
-    enemyDiv.style.backgroundImage = enemyImage;
-    document.getElementById("field").appendChild(enemyDiv);
+    for (var i=0; i<enemies.length; i++) {
+        id = getRandomInt(1,1000);
+        enemies[i].id = id;
+        var enemyDiv = document.createElement('div');
+        enemyDiv.setAttribute('id', 'enemy_'+enemies[i].id);
+        enemyDiv.style.position = "absolute";
+        enemyDiv.style.left = enemies[i].getX() * sizeOfTile+ "px";
+        enemyDiv.style.top = enemies[i].getY() * sizeOfTile+ "px";
+        enemyDiv.style.width = sizeOfTile + "px";
+        enemyDiv.style.height = sizeOfTile + "px";
+        enemyDiv.style.zIndex = enemyIndex;
+        enemyDiv.style.backgroundImage = enemyImage;
+        document.getElementById("field").appendChild(enemyDiv);
+    }
 }

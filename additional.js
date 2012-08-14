@@ -29,19 +29,20 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
         return false;
 
     //Enemy
-    if (!enemy.dead) {
-        if (enemy.getX() == newX && enemy.getY() == newY) {
-            if (typeof fire === "undefined") {
-                return false;
-            } else {
-                var enemy_div = document.getElementById("enemy");
-                enemy_div.style.display = "None";
-                enemy.dead = true;
-                return true;
+    for (var i=0; i<enemies.length; i++) {
+        if (!enemies[i].dead) {
+            if (enemies[i].getX() == newX && enemies[i].getY() == newY) {
+                if (typeof fire === "undefined") {
+                    return false;
+                } else {
+                    //var enemy_div = document.getElementById("enemy");
+                    //enemy_div.style.display = "None"; TODO!!
+                    enemies[i].dead = true;
+                    return true;
+                }
             }
         }
     }
-
     //Blocks
     for (var i = 0; i < blocks.length; ++i) {
         if (blocks[i].getX() == newX && blocks[i].getY() == newY) {
@@ -90,9 +91,9 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
-                var enemy_div = document.getElementById("enemy");
-                enemy_div.style.display = "None";
-                enemy.dead = true;
+                //var enemy_div = document.getElementById("enemy");
+                //enemy_div.style.display = "None";
+                //enemy.dead = true; TODO!!!
                 return false;
             }
         }
@@ -105,11 +106,14 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
 function clearObject () {
     var i, j;
     var id;
-
+    bombs = []
     var element;
     //Player
     player.setX(0);
     player.setY(0);
+
+    //Enemy
+
 
     //Background
     backGround.splice(0, background.length);
@@ -177,6 +181,17 @@ function clearObject () {
         element.style.zIndex = boxIndex;
         boxDiv.appendChild(element);
     }
+
+    enemies = new Array();
+    for (var k = 0; k < 3; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        //if (checkCollisions(i,j)){
+        enemies.push(new Enemy(i, j));
+        //}
+    }
+
+
 }
 
 function getArrayOfMap() {

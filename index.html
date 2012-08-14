@@ -119,7 +119,14 @@
     player_go_y = 0;
 
     //Enemy
-    var enemy = new Enemy(5, 6);
+    enemies = new Array();
+    for (var k = 0; k < 3; ++k) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        //if (checkCollisions(i,j)){
+        enemies.push(new Enemy(i, j))
+        //}
+    }
 
     //Bombs
     var bombs = new Array();
@@ -134,7 +141,7 @@
         //clearDOM();
         //update(bombs);
 
-        draw(player, bombs, fires, enemy);
+        draw(player, bombs, fires, enemies);
         if (player_go) {
             var to_go = pathFind(player.x, player.y, player_go_x, player_go_y);
             if (to_go[2]) {
@@ -147,11 +154,13 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
-        if (!enemy.dead) {
-            var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
-            enemy.goTo(to_go[0], to_go[1]);
-            if (getRandomInt(0,25)<2) {
-                putBomb(bombs, enemy.getX(),enemy.getY(), ++bombsCounter, ++firesCounter)
+        for (var i=0; i<enemies.length; i++) {
+            if (!enemies[i].dead) {
+                var to_go = pathFind(enemies[i].x, enemies[i].y, player.x, player.y);
+                enemies[i].goTo(to_go[0], to_go[1]);
+                if (getRandomInt(0,25)<2) {
+                    putBomb(bombs, enemies[i].getX(),enemies[i].getY(), ++bombsCounter, ++firesCounter)
+                }
             }
         }
 
