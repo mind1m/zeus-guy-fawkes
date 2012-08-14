@@ -85,13 +85,26 @@ function resize(){
     var fieldDiv = document.getElementById("field");
     var controls = document.getElementById("controls");
     var bombControlDiv = document.getElementById("bombControl");
+    var controls_container = document.getElementById("controls_container");
     var fieldX = 0;
-    var sizeOfControl = 0;
+    var sizeOfControls = 0;
     var controlsX = 0;
     var sizeOfBombControl = 0;
     var bombControlX = 0;
 
     if (body_width > body_height) {
+        var rightTopX;
+        var rightBottomX;
+        controls_container.style.top = "0px";
+        controls_container.style.left = "0px";
+
+        controls_container.style.width = Number(Math.round(body_width/2 - sizeOfMap/2))+ "px";
+
+
+        controls.style.width = Number(Math.round(body_width/3 - sizeOfMap/3))+ "px";
+        controls.style.height = controls.style.width;
+        //controls.style.width = "200px";
+        //console.log(controls.style.height);
         fieldX = body_width/2 - sizeOfMap/2;
         sizeOfControls = controls.offsetWidth;
         controlsX = fieldX/2 - sizeOfControls/2;
@@ -102,7 +115,13 @@ function resize(){
         controls.style.top = (body_height/2 - controls.offsetHeight/2) + "px";
         bombControlDiv.style.left = bombControlX + "px";
         bombControlDiv.style.top = (body_height/2 - bombControlDiv.offsetHeight/2) + "px";
+
     } else {
+
+        //var controlsHeight = body_height-sizeOfMap;
+        controls.style.width = (body_height-sizeOfMap)*0.9 + "px";
+        controls.style.height = controls.style.width;
+
         fieldDiv.style.top = "0px";
         fieldDiv.style.left = "0px";
         controls.style.top = sizeOfMap + "px";

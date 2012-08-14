@@ -15,36 +15,51 @@
 #controls span{
     text-indent: -999em;
     display: block;
-    padding: 10px 0;
-    width: 32px;
-    height: 32px;
+
+
     float: left;
     position: absolute;
     cursor: pointer;
 }
 
+#controls .left, #controls .right {
+    width: 40%;
+    height: 20%;
+}
+
+#controls .top, #controls .bottom {
+    width: 20%;
+    height: 40%;
+}
+
 #controls .left{
     background: url('images/arrow_left.png') no-repeat;
+    background-size: 100% 100%;
     left: 0;
-    top: 20px;
+    top: 40%;
+
 }
 
 #controls .right{
     background: url('images/arrow_right.png') no-repeat;
+    background-size: 100% 100%;
     right: 0;
-    top: 20px;
+    top: 40%;
+
 }
 
 #controls .top{
     background: url('images/arrow_top.png') no-repeat;
-    left: 30px;
-    top: 0px;
+    left: 40%;
+    top: 0;
+    background-size: 100% 100%;
 }
 
 #controls .bottom{
     background: url('images/arrow_down.png') no-repeat;
-    left: 30px;
-    bottom: 0px;
+    left: 40%;
+    bottom: 0;
+    background-size: 100% 100%;
 }
 
 #bombControl{
@@ -57,7 +72,8 @@
     display: block;
     clear: both;
     z-index: 999;
-    background: url('images/putBomb.png') no-repeat;
+    background: url(images/putBomb.png) no-repeat;
     cursor: pointer;
+    background-size: 100% 100%;
 
 }
