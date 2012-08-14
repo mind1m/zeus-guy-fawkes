@@ -276,11 +276,13 @@ function createObjects () {
 
     enemies = new Array();
     for (var k = 0; k < 3; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        //if (checkCollisions(i,j)){
+        var i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        var j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        while (!checkCollisions(i,j)) {
+            i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+            j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        }
         enemies.push(new Enemy(i, j));
-        //}
     }
     for (var i=0; i<enemies.length; i++) {
         var id = getRandomInt(1,1000);
