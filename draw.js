@@ -234,5 +234,5 @@ function resize(){
 
     //Main loop
 
-
+    window.scrollTo(0, 1);
 }
