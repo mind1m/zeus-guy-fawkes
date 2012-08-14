@@ -11,10 +11,36 @@
     <script src="jgestures.min.js"  type="text/javascript"></script>
     <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="controls.css" />
+    <link rel="stylesheet" type="text/css" href="menu.css" />
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="additional.js"></script>
     <script type="text/javascript" src="classes.js"></script>
     <script type="text/javascript" src="createObjects.js"></script>
+    <script type="text/javascript" src="draw.js"></script>
+    <script type="text/javascript" src="enemy_ai.js"></script>
+    <script>
+        function ng(){
+            removeElement(document.getElementById("field"));
+            clearObject();
+            $('#menu').hide();
+            $('#over').hide();
+            $("#field:hidden").show();
+            $('#manag:hidden').show();
+        }
+        function pause() {
+            $('#menu:hidden').show();
+            $('#field').hide();
+            $('#manag').hide();
+        }
+        function cont(){
+            $('#menu').hide();
+            $('#over').hide();
+            $("#field:hidden").show();
+            $('#manag:hidden').show();
+        }
+
+    </script>
+
     <script type="text/javascript" src="draw.js"></script>
 
     <meta name="viewport" content="user-scalable=no" />
@@ -152,10 +178,36 @@
 
     </script>
 
+
 </head>
+<body style="background-color: #000">
+<center>
+<div id="menu">
+    <div id="top_pic"></div>
+    <div id="name" align="center"></div><br>
+    <div id="new game" >
+        <a href="index.html" onclick="ng()"><img src="images/ng.png" ></a>
+    </div>
+    <div id="continue">
+        <a href="" onclick="cont()"><img src="images/cont.png"></a>
+    </div>
+   <!-- <div id="new_game">
+        <a href="index.html"><img src="images/ng.png"></a>
+    </div>
+    <div id="continue">
+        <a href="index.html"><img src="images/cont.png"></a>
+    </div>-->
+</div>
+    <div id="over">
+        <div id="go"></div>
+        <div id="score"></div><br>
+        <div id="try">
+            <a href="" onclick="ng()"><img src="images/ta.png"></a>
+        </div><br><br><br>
+        <div id="sad"></div>
+    </div>
+</center>
 
-
-<body>
 <script type="text/javascript">
     var i, j ,k;
     var bombsCounter = 0;
@@ -180,7 +232,7 @@
     //Background of the field
 
     var backGround = new Array();
-    for (i = 0; i < numberOfTiles; ++i) {
+    for (var i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
             backGround.push(new BackgroundTile(i,j));
         }
@@ -189,14 +241,14 @@
 
     //Block of the field
     var blocks = new Array();
-    for (k = 0; k < 5; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        blocks.push(new Block(i, j));
+    for (var p = 0; p < 5; ++p) {
+        for (var k = 0; k < 5; ++k) {
+            blocks.push(new Block(p*2, k*2));
+        }
     }
     //Box
     var boxes = new Array();
-    for (k = 0; k < 10; ++k) {
+    for (var k = 0; k < 10; ++k) {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
         boxes.push(new Box(i, j));
@@ -204,6 +256,13 @@
 
     //Player
     var player = new Player(0, 0);
+
+    player_go = false;
+    player_go_x = 0;
+    player_go_y = 0;
+
+    //Enemy
+    var enemy = new Enemy(5, 6);
 
     //Bombs
     var bombs = new Array();
@@ -217,9 +276,30 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
-        draw(player, bombs, fires);
 
+        draw(player, bombs, fires, enemy);
+        if (player_go) {
+            var to_go = pathFind(player.x, player.y, player_go_x, player_go_y);
+            if (to_go[2]) {
+                player_go = false;
+            } else {
+                player.goTo(to_go[0], to_go[1]);
+            }
+        }
     }, 200);
+    setInterval(function() {
+        //clearDOM();
+        //update(bombs);
+        if (!enemy.dead) {
+            var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
+            enemy.goTo(to_go[0], to_go[1]);
+            if (getRandomInt(0,25)<2) {
+                putBomb(bombs, enemy.getX(),enemy.getY(), ++bombsCounter, ++firesCounter)
+            }
+        }
+
+
+    }, 1000);
 
 
     $(document).ready(function() {
@@ -241,18 +321,20 @@
         jQuery('.bomb_creation').bind('click',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
-        //    jQuery(".partOfBackground").click(function() {
-        //var contentPanelId = jQuery(this).attr("id");
-        //alert(contentPanelId);
-        //       var playerPos = jQuery("#player").position();
-        //alert(playerPos.top + ', ' + playerPos.left);
+    //    jQuery(".partOfBackground").click(function() {
+            //var contentPanelId = jQuery(this).attr("id");
+            //alert(contentPanelId);
+     //       var playerPos = jQuery("#player").position();
+            //alert(playerPos.top + ', ' + playerPos.left);
 
-        //       var pos = jQuery(this).position();
-        //alert(pos.top + ', ' + pos.left);
+     //       var pos = jQuery(this).position();
+            //alert(pos.top + ', ' + pos.left);
 
-        //     $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
+       //     $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
 
-        //     });
+   //     });
+
+        });
 
 
         //var p = $("p:first");

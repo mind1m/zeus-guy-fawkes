@@ -5,11 +5,18 @@
  * Time: 14:33
  * To change this template use File | Settings | File Templates.
  */
-function draw(player,bombs, fires) {
+function draw(player,bombs, fires, enemy) {
     //Player
     var playerDiv = document.getElementById("player");
     playerDiv.style.left = player.getX()*sizeOfTile + "px";
     playerDiv.style.top = player.getY()*sizeOfTile + "px";
+
+    //Enemy
+    if (!enemy.dead) {
+        var enemyDiv = document.getElementById("enemy");
+        enemyDiv.style.left = enemy.getX()*sizeOfTile + "px";
+        enemyDiv.style.top = enemy.getY()*sizeOfTile + "px";
+    }
 
     //Bombs
     if (bombs.length != 0) {
