@@ -112,14 +112,11 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                     for (var j = 0; j < enemyDivs.length; j++) {
                         if (enemies[i].id == enemyDivs[j].getAttribute('id')) {
                             enemyDivs[j].style.display = "None";
+                            enemyDivs[j].parentNode.removeChild(enemyDivs[j]);
                             enemies[i].dead = true;
                             break;
                         }
                     }
-                    //var enemy_div = document.getElementById("enemy");
-                    //enemy_div.style.display = "None"; TODO!!
-
-                    //return true;
                 }
             }
         }
@@ -139,7 +136,6 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                 var box_div = document.getElementById("box_" + boxes[i].id.toString());
                 box_div.parentNode.removeChild(box_div);
                 boxes.splice(i, 1);
-                i = i - 1;
                 //return true;
                 break;
             }
@@ -163,7 +159,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                     $('#field').hide();
                     $('#manag').hide();
                 }, 600)
-                return false;
+                //return false;
             }
         }
 
@@ -175,8 +171,8 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
-                for (var p = 0; p < fires.length; ++p) {
-                    if (fires[i].getX() == enemies[j].x && fires[i].getY() == enemies[j].y) {
+                for (var p = 0; p < enemies.length; ++p) {
+                    if (fires[i].getX() == enemies[p].x && fires[i].getY() == enemies[p].y) {
                         var enemyDivs = document.getElementsByClassName("enemy");
                         for (var j = 0; j < enemyDivs.length; j++) {
                             if (enemies[p].id == enemyDivs[j].getAttribute('id')) {

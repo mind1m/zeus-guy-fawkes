@@ -178,9 +178,13 @@
                 player.goTo(to_go[0], to_go[1]);
             }
         }
-        if ((enemies.length<1) && document.getElementById('field')) {
-            generateEnemy()
-            generateEnemy()
+        var alive_enemies = 0;
+        for (var i=0; i<enemies.length; i++) {
+            if (!enemies[i].dead) {
+                alive_enemies++;
+            }
+        }
+        if ((alive_enemies<4) && document.getElementById('field')) {
             generateEnemy()
         }
         if (boxes.length <= 10) {
@@ -191,10 +195,33 @@
 
     setInterval(function(){
         generateEnemy();
-    }, 5000)
+    }, 5000);
 
 
     $(document).ready(function() {
+        $(document).keydown(function(e){
+            if (e.keyCode == 37) {
+                goTo('left', 20, player);
+                return false;
+            }
+            if (e.keyCode == 40) {
+                goTo('bottom', 20, player);
+                return false;
+            }
+            if (e.keyCode == 39) {
+                goTo('right', 20, player);
+                return false;
+            }
+            if (e.keyCode == 38) {
+                goTo('top', 20, player);
+                return false;
+            }
+            if (e.keyCode == 32) {
+                putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
+                return false;
+            }
+        });
+
         $('#bombControl').hide();
         $('#controls').hide();
         jQuery('.left').bind('tapone',function(){
