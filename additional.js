@@ -128,6 +128,11 @@ function createObjects () {
 
 
     bombs = []
+    enemies = []
+    blocks = []
+    background = []
+    boxes = []
+    fires = []
     var element;
     //Player
     player.setX(0);

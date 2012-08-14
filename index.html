@@ -23,9 +23,10 @@ scaling=1; maximum-scaling=1; user-scalable=no;" />
     <script>
 
         function ng(){
-            removeElement(document.getElementById("field"));
+            removeElement("field");
             createObjects();
             resize();
+            window.scrollTo(0, 1);
             window.onresize = function() {
                 resize();
             };
@@ -128,7 +129,7 @@ scaling=1; maximum-scaling=1; user-scalable=no;" />
     var bombsCounter = 0;
     firesCounter = 0;
 
-    window.scrollTo(0, 1);
+
 
 
     //Main field

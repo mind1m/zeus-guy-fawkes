@@ -75,7 +75,7 @@ function resize(){
 
     max_size = Math.min(body_height,body_width)
 
-    summary_div_heigth = max_size * 0.9;
+    summary_div_heigth = max_size;
     div_height = summary_div_heigth/numberOfTiles;
 
     sizeOfTile = Math.round(div_height);
