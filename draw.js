@@ -104,25 +104,33 @@ function resize(){
         var rightTopX;
         var rightBottomX;
         controls_container.style.top = "0px";
-        controls_container.style.left = "0px";
+        controls_container.style.left = Number(Math.round(body_width/2 - sizeOfMap/2))+"px";
 
         controls_container.style.width = Number(Math.round(body_width/2 - sizeOfMap/2))+ "px";
 
+        var controls_width = Number(Math.round((body_width - sizeOfMap)/2))
 
-        controls.style.width = Number(Math.round(body_width/3 - sizeOfMap/3))+ "px";
+        if (controls_width<body_width/5) {
+            controls_width=body_width/5
+        }
+        controls.style.width = controls_width + "px";
+
         controls.style.height = controls.style.width;
         //controls.style.width = "200px";
         //console.log(controls.style.height);
-        fieldX = body_width/2 - sizeOfMap/2;
+        fieldX = body_width - (sizeOfMap+controls_width);
         sizeOfControls = controls.offsetWidth;
         controlsX = fieldX/2 - sizeOfControls/2;
-        sizeOfBombControl = bombControlDiv.offsetWidth;
-        bombControlX = body_width/2 + sizeOfMap/2 + fieldX/2 - sizeOfBombControl/2;
+        var sizeOfBombControl = fieldX;
+        bombControlX = 0;
         fieldDiv.style.left = fieldX + "px";
-        controls.style.left = controlsX + "px";
+        fieldDiv.style.top = Number((body_height-sizeOfMap)/2) + "px";
+        controls.style.left = sizeOfMap+Number(Math.round(body_width/2 - sizeOfMap/2))+controlsX + "px";
         controls.style.top = (body_height/2 - controls.offsetHeight/2) + "px";
         bombControlDiv.style.left = bombControlX + "px";
-        bombControlDiv.style.top = (body_height/2 - bombControlDiv.offsetHeight/2) + "px";
+        bombControlDiv.style.top = (body_height/2 - sizeOfBombControl/2) + "px";
+        bombControlDiv.style.width = sizeOfBombControl+"px"
+        bombControlDiv.style.height = sizeOfBombControl+"px"
 
     } else {
         fieldX = body_width/2 - sizeOfMap/2;
@@ -134,10 +142,13 @@ function resize(){
 
         fieldDiv.style.top = "0px";
         controls.style.top = sizeOfMap + "px";
-        controls.style.left = "0px";
-        bombControlDiv.style.top = sizeOfMap + "px";
+        controls.style.left = (body_width-(body_height-sizeOfMap)*0.9)+"px";
+        bombControlDiv.style.top = Number(sizeOfMap*1.05) + "px";
         //bombControlDiv.style.left = (sizeOfMap - bombControlDiv.offsetWidth) + "px";
-        bombControlDiv.style.left = body_width - bombControlDiv.offsetWidth + "px";
+        bombControlDiv.style.left = "5%";
+        sizeOfBombControl = (body_height-sizeOfMap)*0.8
+        bombControlDiv.style.width = sizeOfBombControl+"px"
+        bombControlDiv.style.height = sizeOfBombControl+"px"
     }
 
     //Background

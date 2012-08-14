@@ -13,16 +13,20 @@ function removeElement(elementId) {
     }
 }
 
+function dist(ax,ay,bx,by) {
+    return Math.sqrt(Math.pow(ax - bx, 2) + Math.pow(ay - by, 2))
+
+}
+
 function generateBox() {
     i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
     j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
-    while (!((checkCollisions(i, j) && (i != player.x + 1) && (j != player.y + 1)))){
-        if ((i != player.x) && (j != player.y)) {
-            boxes.push(new Box(i, j));
-        }
+    while (!checkCollisions(i, j) || (dist(i, j, player.x, player.y)<=2)){
+
         i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
     }
+    boxes.push(new Box(i, j));
 }
 
 function moveEnemy(id) {
@@ -39,8 +43,8 @@ function moveEnemy(id) {
             putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
             enemy.just_put = 0;
         } else {
-            var dist = Math.sqrt(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2))
-            if ((dist < 3) && (enemy.just_put > 4)) {
+
+            if ((dist(enemy.x, enemy.y, player.x, player.y) < 3) && (enemy.just_put > 4)) {
                 putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
                 enemy.just_put = 0;
             }
@@ -56,8 +60,8 @@ function generateEnemy() {
         var i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         var j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         var dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
-        while (!checkCollisions(i, j) && (dist > 5)) {
-            dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
+        while (!checkCollisions(i, j) && (dist(enemy.x, enemy.y, player.x, player.y) > 5)) {
+
             i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
             j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         }
