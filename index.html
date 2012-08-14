@@ -3,11 +3,12 @@
 <html>
 <head>
     <title>Game</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
     <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
-    <script src="jgestures.min.js"  type="text/javascript"></script>
+    <script src="jgestures.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="controls.css" />
-    <link rel="stylesheet" type="text/css" href="menu.css" />
+    <link rel="stylesheet" type="text/css" href="controls.css"/>
+    <link rel="stylesheet" type="text/css" href="menu.css"/>
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="additional.js"></script>
     <script type="text/javascript" src="classes.js"></script>
@@ -15,7 +16,7 @@
     <script type="text/javascript" src="draw.js"></script>
     <script type="text/javascript" src="enemy_ai.js"></script>
     <script>
-        function ng(){
+        function ng() {
             removeElement(document.getElementById("field"));
             clearObject();
             $('#menu').hide();
@@ -28,45 +29,89 @@
             $('#field').hide();
             $('#manag').hide();
         }
-        function cont(){
+        function cont() {
             $('#menu').hide();
             $('#over').hide();
             $("#field:hidden").show();
             $('#manag:hidden').show();
         }
 
+        function resizeMenu() {
+            body_height = window.innerHeight;
+            body_width = window.innerWidth;
+
+            if (body_height < body_width) {
+                var element = document.getElementById("top_pic");
+                element.style.float = "left";
+            }
+            else {
+                var element = document.getElementById("top_pic");
+                element.style.float = "none";
+                //element.style.backgroundSize="100%","100%";
+                //element.style.height = body_height * 0.65 + "px";
+            }
+
+            // max_size = Math.min(body_height,body_width)
+            /*if (body_height < body_width) {
+
+            }
+            else {
+                var element = document.getElementById("top_pic");
+                element.style.height = body_height * 0.65 + "px";
+                alert('else');
+            }*/
+          //  var element = document.getElementById("top_pic");
+          // element.style.backgroundSize="100%","100%";
+            //element.style.height = body_height * 0.60 + "px";
+          //  var element = document.getElementById("name");
+           // element.style.height = body_height * 0.15 + "px";
+          //  var element = document.getElementById("new_game");
+          //  element.style.height = body_height * 0.10 + "px";
+          //  var element = document.getElementById("continue");
+          //  element.style.height = body_height * 0.10 + "px";
+
+
+        }
+        window.onload = function () {
+            resizeMenu();
+        };
+
+        window.onresize = function () {
+            resizeMenu();
+        };
+
+
     </script>
 </head>
 <body style="background-color: #000">
-<center>
-<div id="menu">
-    <div id="top_pic"></div>
-    <div id="name" align="center"></div><br>
-    <div id="new game" >
-        <a href="index.html" onclick="ng()"><img src="images/ng.png" ></a>
+    <div id="menu">
+        <div id="top_pic"></div>
+        <div id="buttons">
+            <div id="name" ><img src="images/fox_name.png"></div>
+            <br>
+            <div id="new_game">
+                <a href="index.html" onclick="ng()" ><img src="images/ng.png"></a>
+            </div>
+            <div id="continue">
+                <a href="" onclick="cont()"><img src="images/cont.png"></a>
+            </div>
+        </div>
     </div>
-    <div id="continue">
-        <a href="" onclick="cont()"><img src="images/cont.png"></a>
-    </div>
-   <!-- <div id="new_game">
-        <a href="index.html"><img src="images/ng.png"></a>
-    </div>
-    <div id="continue">
-        <a href="index.html"><img src="images/cont.png"></a>
-    </div>-->
-</div>
     <div id="over">
         <div id="go"></div>
-        <div id="score"></div><br>
+        <div id="score"></div>
+        <br>
+
         <div id="try">
             <a href="" onclick="ng()"><img src="images/ta.png"></a>
-        </div><br><br><br>
+        </div>
+        <br><br><br>
+
         <div id="sad"></div>
     </div>
-</center>
 
 <script type="text/javascript">
-    var i, j ,k;
+    var i, j , k;
     var bombsCounter = 0;
     firesCounter = 0;
 
@@ -91,7 +136,7 @@
     var backGround = new Array();
     for (var i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
-            backGround.push(new BackgroundTile(i,j));
+            backGround.push(new BackgroundTile(i, j));
         }
     }
 
@@ -100,14 +145,14 @@
     var blocks = new Array();
     for (var p = 0; p < 5; ++p) {
         for (var k = 0; k < 5; ++k) {
-            blocks.push(new Block(p*2, k*2));
+            blocks.push(new Block(p * 2, k * 2));
         }
     }
     //Box
     var boxes = new Array();
     for (var k = 0; k < 10; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         boxes.push(new Box(i, j));
     }
 
@@ -130,7 +175,7 @@
     createObjects(backGround, blocks, player, boxes);
 
     //Main loop
-    setInterval(function() {
+    setInterval(function () {
         //clearDOM();
         //update(bombs);
 
@@ -144,14 +189,14 @@
             }
         }
     }, 200);
-    setInterval(function() {
+    setInterval(function () {
         //clearDOM();
         //update(bombs);
         if (!enemy.dead) {
             var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
             enemy.goTo(to_go[0], to_go[1]);
-            if (getRandomInt(0,25)<2) {
-                putBomb(bombs, enemy.getX(),enemy.getY(), ++bombsCounter, ++firesCounter)
+            if (getRandomInt(0, 25) < 2) {
+                putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
             }
         }
 
@@ -159,34 +204,33 @@
     }, 1000);
 
 
-    $(document).ready(function() {
-        jQuery('.left').bind('tapone',function(){
+    $(document).ready(function () {
+        jQuery('.left').bind('tapone', function () {
             goTo('left', 20, player);
         });
 
-        jQuery('.right').bind('tapone',function(){
+        jQuery('.right').bind('tapone', function () {
             goTo('right', 20, player);
         });
 
-        jQuery('.top').bind('tapone',function(){
+        jQuery('.top').bind('tapone', function () {
             goTo('top', 20, player);
         });
 
-        jQuery('.bottom').bind('tapone',function(){
+        jQuery('.bottom').bind('tapone', function () {
             goTo('bottom', 20, player);
         });
-        jQuery('.bomb_creation').bind('click',function(){
-            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
+        jQuery('.bomb_creation').bind('click', function () {
+            putBomb(bombs, player.getX(), player.getY(), ++bombsCounter, ++firesCounter)
         });
-        jQuery(".partOfBackground").bind('tapone', function() {
+        jQuery(".partOfBackground").bind('tapone', function () {
             var contentPanelId = jQuery(this).attr("id");
 
             var pos = jQuery(this).position();
             //alert(pos.top + ', ' + pos.left);
             player_go = true;
-            player_go_x = pos.left/sizeOfTile;
-            player_go_y = pos.top/sizeOfTile;
-
+            player_go_x = pos.left / sizeOfTile;
+            player_go_y = pos.top / sizeOfTile;
 
 
         });
@@ -195,7 +239,7 @@
         //var p = $("p:first");
         //var position = currentId.position();
 
-       // var pos = jQuery(currentId).position();
+        // var pos = jQuery(currentId).position();
         //alert(pos.top + ', ' + pos.left);
 
 
@@ -208,7 +252,7 @@
     <div id="controls">
         <span class="left"></span>
         <span class="top"></span>
-        <span class="bottom" ></span>
+        <span class="bottom"></span>
         <span class="right"></span>
     </div>
     <div style="position: absolute; top: 450px;">

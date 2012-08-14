@@ -1,3 +1,5 @@
+html,body {width: 100%; height: 100%;}
+
 #field{
     display: none;
 }
@@ -6,27 +8,19 @@
 }
 
 #menu {
-    display: block;
+    vertical-align: middle;
+    height: 100%;
+    background-position: center 10%;
+    margin-left:auto;
+    margin-right:auto;
 }
-#over {
-    display: none;
-}
-#top_pic {
-    width: 346px;
-    height: 496px;
-    background-image: url('images/fox.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: block;
-    margin: 0 auto;
 
+#buttons {
+    height: 100px !important;
 }
 
 #name {
-    width: 400px;
-    height: 100px;
-    background-image: url('images/fox_name.png');
-    background-repeat: no-repeat;
+    background: no-repeat;
 }
 
 div#new_game img {
@@ -36,6 +30,18 @@ div#new_game img {
 div#continue img {
     border: 1px solid  #fff;
 }
+#over {
+    display: none;
+    margin-left:auto;
+    margin-right:auto;
+}
+#top_pic {
+    width: 364px;
+    height: 100%;
+    background: url('images/fox.png') no-repeat center;
+    margin: 0 auto;
+}
+
 
 #Congratulations {
     width: 480px;
@@ -77,4 +83,31 @@ div#try img {
     height: 172px;
     background-image: url('images/sad.png');
     background-repeat: no-repeat;
+}
+
+/* #Media Queries
+================================================== */
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+}
+
+/* Mobile Sizes (devices and browser) */
+@media only screen and (min-width: 638px) and (max-width: 767px) {
+
+}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 637px) {
+
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+
 }
