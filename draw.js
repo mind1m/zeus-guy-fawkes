@@ -78,9 +78,9 @@ function resize(){
     summary_div_heigth = max_size ;
     div_height = summary_div_heigth/numberOfTiles;
 
-    sizeOfTile = Math.round(div_height*0.7);
+    sizeOfTile = Math.round(div_height);
     //alert(sizeOfTile);
-    sizeOfMap = Math.round(summary_div_heigth*0.7);
+    sizeOfMap = Math.round(summary_div_heigth);
 
     var fieldDiv = document.getElementById("field");
     var controls = document.getElementById("controls");
@@ -90,6 +90,14 @@ function resize(){
     var controlsX = 0;
     var sizeOfBombControl = 0;
     var bombControlX = 0;
+
+    if (body_width > body_height && sizeOfMap + controls.offsetWidth + bombControlDiv.offsetWidth > body_width) {
+        sizeOfMap = Math.round(sizeOfMap * 0.8);
+        sizeOfTile = Math.round(sizeOfTile * 0.8);
+    } else if (body_width < body_height && sizeOfMap + controls.offsetHeight > body_height) {
+        sizeOfMap = Math.round(sizeOfMap * 0.7);
+        sizeOfTile = Math.round(sizeOfTile * 0.7);
+    }
 
     if (body_width > body_height) {
         //sizeOfMap = Math.round(sizeOfMap * 0.8);
