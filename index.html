@@ -22,6 +22,7 @@
         function ng(){
             removeElement(document.getElementById("field"));
             clearObject();
+            resize();
             $('#menu').hide();
             $('#over').hide();
             $("#field:hidden").show();
@@ -97,7 +98,7 @@
             //Background
             var backgroundDiv = document.getElementById("background");
             backgroundDiv.innerHTML = "";
-            document.getElementById("field").appendChild(backgroundDiv);
+            //document.getElementById("field").appendChild(backgroundDiv);
             for (var i = 0; i < backGround.length; ++i) {
                 element = document.createElement('div');
                 element.setAttribute('class', 'partOfBackground');
@@ -155,6 +156,15 @@
             var playerDiv = document.getElementById("player");
             playerDiv.style.width = sizeOfTile + "px";
             playerDiv.style.height = sizeOfTile + "px";
+            playerDiv.style.backgroundRepeat = "no-repeat";
+            playerDiv.style.backgroundSize = "100% 100%";
+
+            //Enemy
+            var enemyDiv = document.getElementById("enemy");
+            enemyDiv.style.width = sizeOfTile + "px";
+            enemyDiv.style.height = sizeOfTile + "px";
+            enemyDiv.style.backgroundRepeat = "no-repeat";
+            enemyDiv.style.backgroundSize = "100% 100%";
 
             //alert(div_height);
             //$('div.partOfBackground').css('height', div_height);
@@ -321,31 +331,6 @@
         jQuery('.bomb_creation').bind('click',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
-    //    jQuery(".partOfBackground").click(function() {
-            //var contentPanelId = jQuery(this).attr("id");
-            //alert(contentPanelId);
-     //       var playerPos = jQuery("#player").position();
-            //alert(playerPos.top + ', ' + playerPos.left);
-
-     //       var pos = jQuery(this).position();
-            //alert(pos.top + ', ' + pos.left);
-
-       //     $("#player").animate({'top': pos.top + 'px', 'left': pos.left + 'px' }, "slow");
-
-   //     });
-
-        });
-
-
-        //var p = $("p:first");
-        //var position = currentId.position();
-
-        // var pos = jQuery(currentId).position();
-        //alert(pos.top + ', ' + pos.left);
-
-
-        //$("p:last").text( "left: " + position.left + ", top: " + position.top );
-
 
     })
 </script>

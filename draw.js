@@ -16,6 +16,7 @@ function draw(player,bombs, fires, enemy) {
         var enemyDiv = document.getElementById("enemy");
         enemyDiv.style.left = enemy.getX()*sizeOfTile + "px";
         enemyDiv.style.top = enemy.getY()*sizeOfTile + "px";
+        enemyDiv.style.width
     }
 
     //Bombs
@@ -29,6 +30,8 @@ function draw(player,bombs, fires, enemy) {
                     }
                     bombDivs[j].style.top = bombs[i].getY()*sizeOfTile + "px";
                     bombDivs[j].style.left = bombs[i].getX()*sizeOfTile + "px";
+                    bombDivs[j].style.backgroundRepeat = "no-repeat";
+                    bombDivs[j].style.backgroundSize = "100% 100%";
                     break;
                 }
             }

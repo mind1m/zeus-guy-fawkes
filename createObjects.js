@@ -5,8 +5,8 @@
  * Time: 11:18
  * To change this template use File | Settings | File Templates.
  */
-const sizeOfMap = 352;
-const sizeOfTile = 32;
+sizeOfMap = 352;
+sizeOfTile = 32;
 const numberOfTiles = sizeOfMap/sizeOfTile;
 const blockImage = "url(images/block.gif)";
 const backgroundImage = "url(images/background.gif)";
