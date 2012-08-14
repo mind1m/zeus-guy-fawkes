@@ -62,6 +62,7 @@ function putBomb(bombs, x,y, bombsCounter, firesCounter) {
         bombs.splice(0, 1);
         var ids = [];
         bombContainer.removeChild(bombDiv);
+        checkCollisions(x,y,true)
         ids.push(putFire(fireContainer, firesCounter, fires, x,y));
         if (checkCollisions(x+1,y, true)) {
             ids.push(putFire(fireContainer, firesCounter, fires, x+1,y));
@@ -102,7 +103,7 @@ function putBomb(bombs, x,y, bombsCounter, firesCounter) {
             }
             fireContainer.parentNode.removeChild(fireContainer);
         }, 1000)
-    },2000);
+    },2500);
 }
 
 function putFire(fireContainer, firesCounter, fires,x,y) {

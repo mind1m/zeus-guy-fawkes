@@ -6,12 +6,73 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function removeElement(elementId)
-{
+function removeElement(elementId) {
     element = document.getElementById(elementId);
     if (element) {
         element.parentNode.removeChild(element);
     }
+}
+
+function moveEnemy(id) {
+    var enemy = undefined;
+    for (var i = 0; i < enemies.length; i++) {
+        if (enemies[i].id == id) {
+            enemy = enemies[i]
+        }
+    }
+    if (!enemy.dead) {
+        var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
+        enemy.goTo(to_go[0], to_go[1]);
+        if ((getRandomInt(0, 25) < 2) && (enemy.just_put > 4)) {
+            putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
+            enemy.just_put = 0;
+        } else {
+            var dist = Math.sqrt(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2))
+            if ((dist < 3) && (enemy.just_put > 4)) {
+                putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
+                enemy.just_put = 0;
+            }
+        }
+        enemy.just_put += 1;
+    }
+}
+
+function generateEnemy() {
+
+    setTimeout(function () {
+
+        var i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+        var j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+        var dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
+        while (!checkCollisions(i, j) && (dist > 5)) {
+            i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+            j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+            dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
+        }
+        var enemy = new Enemy(i, j)
+        enemies.push(enemy);
+
+        var id = getRandomInt(1, 10000);
+        enemy.id = id;
+        var enemyDiv = document.createElement('div');
+        enemyDiv.setAttribute('id', enemy.id);
+        enemyDiv.setAttribute('class', 'enemy');
+        enemyDiv.style.position = "absolute";
+        enemyDiv.style.width = sizeOfTile + "px";
+        enemyDiv.style.height = sizeOfTile + "px";
+        enemyDiv.style.zIndex = enemyIndex;
+        enemyDiv.style.backgroundRepeat = "no-repeat";
+        enemyDiv.style.backgroundSize = "100% 100%";
+        enemyDiv.style.backgroundImage = enemyImage;
+        enemyDiv.style.left = enemy.getX() * sizeOfTile + "px";
+        enemyDiv.style.top = enemy.getY() * sizeOfTile + "px";
+        document.getElementById("field").appendChild(enemyDiv);
+
+        setInterval(function () {
+            moveEnemy(enemy.id)
+        }, getRandomInt(800, 2000));
+
+    }, getRandomInt(1, 500))
 }
 
 function getRandomInt(min, max) {
@@ -29,14 +90,14 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
         return false;
 
     //Enemy
-    for (var i=0; i<enemies.length; i++) {
+    for (var i = 0; i < enemies.length; i++) {
         if (!enemies[i].dead) {
             if (enemies[i].getX() == newX && enemies[i].getY() == newY) {
                 if (typeof fire === "undefined") {
                     return false;
                 } else {
                     var enemyDivs = document.getElementsByClassName("enemy");
-                    for (var j = 0; j<enemyDivs.length; j++) {
+                    for (var j = 0; j < enemyDivs.length; j++) {
                         if (enemies[i].id == enemyDivs[j].getAttribute('id')) {
                             enemyDivs[j].style.display = "None";
                             enemies[i].dead = true;
@@ -84,9 +145,11 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
-                setTimeout(function() { $('#over').show();
-                                        $('#field').hide();
-                                        $('#manag').hide();}  ,600)
+                setTimeout(function () {
+                    $('#over').show();
+                    $('#field').hide();
+                    $('#manag').hide();
+                }, 600)
                 return false;
             }
         }
@@ -102,7 +165,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                 for (var p = 0; p < fires.length; ++p) {
                     if (fires[i].getX() == enemies[j].x && fires[i].getY() == enemies[j].y) {
                         var enemyDivs = document.getElementsByClassName("enemy");
-                        for (var j = 0; j<enemyDivs.length; j++) {
+                        for (var j = 0; j < enemyDivs.length; j++) {
                             if (enemies[p].id == enemyDivs[j].getAttribute('id')) {
                                 enemyDivs[j].style.display = "None";
                                 enemies[p].dead = true;
@@ -121,10 +184,9 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     return true;
 }
 
-function createObjects () {
+function createObjects() {
     var i, j;
     var id;
-
 
 
     bombs = []
@@ -171,8 +233,8 @@ function createObjects () {
     var playerDiv = document.createElement('div');
     playerDiv.setAttribute('id', 'player');
     playerDiv.style.position = "absolute";
-    playerDiv.style.left = player.getX()*sizeOfTile+ "px";
-    playerDiv.style.top = player.getY()*sizeOfTile+ "px";
+    playerDiv.style.left = player.getX() * sizeOfTile + "px";
+    playerDiv.style.top = player.getY() * sizeOfTile + "px";
     playerDiv.style.width = sizeOfTile + "px";
     playerDiv.style.height = sizeOfTile + "px";
     playerDiv.style.zIndex = playerIndex;
@@ -190,14 +252,14 @@ function createObjects () {
     boxDiv.style.zIndex = boxIndex;
     document.getElementById("field").appendChild(boxDiv);
     for (var i = 0; i < boxes.length; ++i) {
-        id = getRandomInt(1,1000);
+        id = getRandomInt(1, 1000);
         boxes[i].id = id;
         element = document.createElement('div');
         element.setAttribute('class', 'box');
-        element.setAttribute('id', "box_"+id.toString());
+        element.setAttribute('id', "box_" + id.toString());
         element.style.position = "absolute";
-        element.style.left = boxes[i].getX()*sizeOfTile+ "px";
-        element.style.top = boxes[i].getY()*sizeOfTile + "px";
+        element.style.left = boxes[i].getX() * sizeOfTile + "px";
+        element.style.top = boxes[i].getY() * sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = boxImage;
@@ -209,22 +271,22 @@ function createObjects () {
     background.splice(0, background.length);
     for (i = 0; i < numberOfTiles; ++i) {
         for (j = 0; j < numberOfTiles; ++j) {
-            background.push(new BackgroundTile(i,j));
+            background.push(new BackgroundTile(i, j));
         }
     }
     //Block of the field
     blocks.splice(0, blocks.length);
-    for (var p = 0; p<5; p++) {
+    for (var p = 0; p < 5; p++) {
         for (k = 0; k < 5; ++k) {
-            blocks.push(new Block(p*2+1, k*2+1));
+            blocks.push(new Block(p * 2 + 1, k * 2 + 1));
         }
     }
     //Box
     boxes.splice(0, boxes.length);
     for (k = 0; k < 25; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        if (checkCollisions(i,j) && (i != player.x+1) && (j != player.y+1)) {
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+        if (checkCollisions(i, j) && (i != player.x + 1) && (j != player.y + 1)) {
             boxes.push(new Box(i, j));
         }
     }
@@ -244,8 +306,8 @@ function createObjects () {
         element.setAttribute('class', 'block');
         element.setAttribute('id', i.toString());
         element.style.position = "absolute";
-        element.style.left = blocks[i].getX()*sizeOfTile+ "px";
-        element.style.top = blocks[i].getY()*sizeOfTile + "px";
+        element.style.left = blocks[i].getX() * sizeOfTile + "px";
+        element.style.top = blocks[i].getY() * sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = blockImage;
@@ -264,14 +326,14 @@ function createObjects () {
     var boxDiv = document.getElementById('boxes');
     boxDiv.innerHTML = "";
     for (var i = 0; i < boxes.length; ++i) {
-        id = getRandomInt(1,1000);
+        id = getRandomInt(1, 1000);
         boxes[i].id = id;
         element = document.createElement('div');
         element.setAttribute('class', 'box');
-        element.setAttribute('id', "box_"+id.toString());
+        element.setAttribute('id', "box_" + id.toString());
         element.style.position = "absolute";
-        element.style.left = boxes[i].getX()*sizeOfTile+ "px";
-        element.style.top = boxes[i].getY()*sizeOfTile + "px";
+        element.style.left = boxes[i].getX() * sizeOfTile + "px";
+        element.style.top = boxes[i].getY() * sizeOfTile + "px";
         element.style.width = sizeOfTile + "px";
         element.style.height = sizeOfTile + "px";
         element.style.backgroundImage = boxImage;
@@ -281,28 +343,7 @@ function createObjects () {
 
     enemies = new Array();
     for (var k = 0; k < 3; ++k) {
-        var i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        var j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        while (!checkCollisions(i,j)) {
-            i = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-            j = getRandomInt(0, (sizeOfMap - sizeOfTile)/sizeOfTile);
-        }
-        enemies.push(new Enemy(i, j));
-    }
-    for (var i=0; i<enemies.length; i++) {
-        var id = getRandomInt(1,1000);
-        enemies[i].id = id;
-        var enemyDiv = document.createElement('div');
-        enemyDiv.setAttribute('id', enemies[i].id);
-        enemyDiv.setAttribute('class', 'enemy');
-        enemyDiv.style.position = "absolute";
-        enemyDiv.style.left = enemies[i].getX() * sizeOfTile+ "px";
-        enemyDiv.style.top = enemies[i].getY() * sizeOfTile+ "px";
-        enemyDiv.style.width = sizeOfTile + "px";
-        enemyDiv.style.height = sizeOfTile + "px";
-        enemyDiv.style.zIndex = enemyIndex;
-        enemyDiv.style.backgroundImage = enemyImage;
-        document.getElementById("field").appendChild(enemyDiv);
+        generateEnemy();
     }
 
 
@@ -342,7 +383,7 @@ function pathFind(startx, starty, finishx, finishy) {
     queuex.push(finishx);
     queuey.push(finishy);
 
-    var map_size = sizeOfMap/sizeOfTile;
+    var map_size = sizeOfMap / sizeOfTile;
     map_size--;
 
     var count = 1;
@@ -368,25 +409,25 @@ function pathFind(startx, starty, finishx, finishy) {
                 res.push(false);
                 return res
             }
-            if ((x+1<=map_size) && (map[y][x+1] == 0)) {
-                map[y][x+1] = count;
-                new_queuex.push(x+1);
+            if ((x + 1 <= map_size) && (map[y][x + 1] == 0)) {
+                map[y][x + 1] = count;
+                new_queuex.push(x + 1);
                 new_queuey.push(y);
             }
-            if ((x-1>=0) && (map[x - 1][y] == 0)) {
+            if ((x - 1 >= 0) && (map[x - 1][y] == 0)) {
                 map[y][x - 1] = count;
-                new_queuex.push(x-1);
+                new_queuex.push(x - 1);
                 new_queuey.push(y);
             }
-            if ((y+1<=map_size) && (map[y+1][x] == 0)) {
-                map[y+1][x] = count;
+            if ((y + 1 <= map_size) && (map[y + 1][x] == 0)) {
+                map[y + 1][x] = count;
                 new_queuex.push(x);
-                new_queuey.push(y+1);
+                new_queuey.push(y + 1);
             }
-            if ((y-1>=0) && (map[y-1][x] == 0)) {
-                map[y-1][x] = count;
+            if ((y - 1 >= 0) && (map[y - 1][x] == 0)) {
+                map[y - 1][x] = count;
                 new_queuex.push(x);
-                new_queuey.push(y-1);
+                new_queuey.push(y - 1);
             }
             steps++;
         }

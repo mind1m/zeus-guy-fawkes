@@ -178,30 +178,15 @@
                 player.goTo(to_go[0], to_go[1]);
             }
         }
-    }, 200);
-    setInterval(function() {
-        //clearDOM();
-        //update(bombs);
-        for (var i=0; i<enemies.length; i++) {
-            if (!enemies[i].dead) {
-                var to_go = pathFind(enemies[i].x, enemies[i].y, player.x, player.y);
-                enemies[i].goTo(to_go[0], to_go[1]);
-                if ((getRandomInt(0,25)<2) && (enemies[i].just_put > 4)) {
-                    putBomb(bombs, enemies[i].getX(),enemies[i].getY(), ++bombsCounter, ++firesCounter)
-                    enemies[i].just_put = 0;
-                } else {
-                    var dist = Math.sqrt(Math.pow(enemies[i].x-player.x,2)+Math.pow(enemies[i].y-player.y,2))
-                    if ((dist<3) && (enemies[i].just_put > 4)) {
-                        putBomb(bombs, enemies[i].getX(),enemies[i].getY(), ++bombsCounter, ++firesCounter)
-                        enemies[i].just_put = 0;
-                    }
-                }
-                enemies[i].just_put += 1;
-            }
+        if ((enemies.length<1) && document.getElementById('field')) {
+            generateEnemy()
         }
+    }, 200);
 
 
-    }, 1000);
+    setInterval(function(){
+        generateEnemy();
+    }, 10000)
 
 
     $(document).ready(function() {
