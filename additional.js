@@ -26,7 +26,25 @@ function generateBox() {
         i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
     }
-    boxes.push(new Box(i, j));
+    var newbox = new Box(i, j);
+    boxes.push(newbox);
+    var boxDiv = document.getElementById("boxes");
+
+    id = getRandomInt(1, 1000);
+    newbox.id = id;
+    element = document.createElement('div');
+    element.setAttribute('class', 'box');
+    element.setAttribute('id', "box_" + id.toString());
+    element.style.position = "absolute";
+    element.style.left = newbox.getX() * sizeOfTile + "px";
+    element.style.top = newbox.getY() * sizeOfTile + "px";
+    element.style.width = sizeOfTile + "px";
+    element.style.height = sizeOfTile + "px";
+    element.style.backgroundImage = boxImage;
+    element.style.zIndex = boxIndex;
+    element.style.backgroundRepeat = "no-repeat";
+    element.style.backgroundSize = "100% 100%";
+    boxDiv.appendChild(element);
 }
 
 function moveEnemy(id) {
@@ -103,7 +121,7 @@ function clearDOM() {
 }
 function checkCollisions(newX, newY, fire, player, isenemy) {
     //Screen limit
-    if (newX > 10 || newX  < 0 || newY > 10 || newY < 0)
+    if (newX > 10 || newX < 0 || newY > 10 || newY < 0)
         return false;
 
     //Enemy
@@ -174,7 +192,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                 $('#score').text(score);
                 $('#controls_container').hide();
                 $('#bombControl').hide();
-                for (var e=0; e<enemies.length; e++) {
+                for (var e = 0; e < enemies.length; e++) {
                     clearInterval(enemies[e].interval);
                 }
                 enemies = []
@@ -183,7 +201,6 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
         }
 
     }
-
 
 
     if (typeof isenemy === "undefined") {
