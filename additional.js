@@ -13,6 +13,18 @@ function removeElement(elementId) {
     }
 }
 
+function generateBox() {
+    i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+    j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+    while (!((checkCollisions(i, j) && (i != player.x + 1) && (j != player.y + 1)))){
+        if ((i != player.x) && (j != player.y)) {
+            boxes.push(new Box(i, j));
+        }
+        i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+        j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
+    }
+}
+
 function moveEnemy(id) {
     var enemy = undefined;
     for (var i = 0; i < enemies.length; i++) {
@@ -45,9 +57,9 @@ function generateEnemy() {
         var j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         var dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
         while (!checkCollisions(i, j) && (dist > 5)) {
+            dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
             i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
             j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
-            dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
         }
         var enemy = new Enemy(i, j)
         enemies.push(enemy);
@@ -107,7 +119,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                     //var enemy_div = document.getElementById("enemy");
                     //enemy_div.style.display = "None"; TODO!!
 
-                    return true;
+                    //return true;
                 }
             }
         }
@@ -128,7 +140,8 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                 box_div.parentNode.removeChild(box_div);
                 boxes.splice(i, 1);
                 i = i - 1;
-                return true;
+                //return true;
+                break;
             }
 
         }
@@ -141,7 +154,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     }
 
     if (typeof player === "undefined") {
-        return true;
+        //return true;
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
@@ -158,7 +171,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
 
 
     if (typeof isenemy === "undefined") {
-        return true;
+        //return true;
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
@@ -283,12 +296,8 @@ function createObjects() {
     }
     //Box
     boxes.splice(0, boxes.length);
-    for (k = 0; k < 25; ++k) {
-        i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
-        j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
-        if (checkCollisions(i, j) && (i != player.x + 1) && (j != player.y + 1)) {
-            boxes.push(new Box(i, j));
-        }
+    for (k = 0; k <15; ++k) {
+        generateBox()
     }
     //Player
     player.setX(0);

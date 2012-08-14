@@ -180,13 +180,18 @@
         }
         if ((enemies.length<1) && document.getElementById('field')) {
             generateEnemy()
+            generateEnemy()
+            generateEnemy()
+        }
+        if (boxes.length <= 10) {
+            generateBox()
         }
     }, 200);
 
 
     setInterval(function(){
         generateEnemy();
-    }, 10000)
+    }, 5000)
 
 
     $(document).ready(function() {
