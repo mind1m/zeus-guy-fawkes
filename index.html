@@ -19,6 +19,7 @@
     <script type="text/javascript" src="draw.js"></script>
     <script type="text/javascript" src="enemy_ai.js"></script>
     <script>
+
         function ng(){
             removeElement(document.getElementById("field"));
             createObjects();
@@ -30,17 +31,24 @@
             $('#over').hide();
             $("#field:hidden").show();
             $('#manag:hidden').show();
+            $('#manag:hidden').show();
+            $('#bombControl:hidden').show();
+            $('#controls:hidden').show();
         }
         function pause() {
             $('#menu:hidden').show();
             $('#field').hide();
             $('#manag').hide();
+            $('#bombControl').hide();
+            $('#controls').hide();
         }
         function cont(){
             $('#menu').hide();
             $('#over').hide();
             $("#field:hidden").show();
             $('#manag:hidden').show();
+            $('#bombControl:hidden').show();
+            $('#controls:hidden').show();
         }
 
     </script>
@@ -193,6 +201,8 @@
 
 
     $(document).ready(function() {
+        $('#bombControl').hide();
+        $('#controls').hide();
         jQuery('.left').bind('tapone',function(){
             goTo('left', 20, player);
         });
@@ -208,7 +218,7 @@
         jQuery('.bottom').bind('tapone',function(){
             goTo('bottom', 20, player);
         });
-        jQuery('.putBomb').bind('click',function(){
+        jQuery('#bombControl').bind('click',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
 

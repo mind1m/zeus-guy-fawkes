@@ -9,6 +9,7 @@
     clear: both;
     z-index: 999;
     opacity: 0.5;
+
 }
 
 #controls span{
@@ -57,4 +58,6 @@
     clear: both;
     z-index: 999;
     background: url('images/putBomb.png') no-repeat;
+    cursor: pointer;
+
 }
