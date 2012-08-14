@@ -110,7 +110,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
         if (!enemies[i].dead) {
             if (enemies[i].getX() == newX && enemies[i].getY() == newY) {
                 if (typeof fire === "undefined") {
-                    return false;
+                    //return false;
                 } else {
                     var enemyDivs = document.getElementsByClassName("enemy");
                     for (var j = 0; j < enemyDivs.length; j++) {
