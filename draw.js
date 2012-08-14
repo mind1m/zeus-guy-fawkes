@@ -78,9 +78,9 @@ function resize(){
     summary_div_heigth = max_size ;
     div_height = summary_div_heigth/numberOfTiles;
 
-    sizeOfTile = Math.round(div_height);
+    sizeOfTile = Math.round(div_height*0.7);
     //alert(sizeOfTile);
-    sizeOfMap = summary_div_heigth;
+    sizeOfMap = Math.round(summary_div_heigth*0.7);
 
     var fieldDiv = document.getElementById("field");
     var controls = document.getElementById("controls");
@@ -92,8 +92,8 @@ function resize(){
     var bombControlX = 0;
 
     if (body_width > body_height) {
-        sizeOfMap = Math.round(sizeOfMap * 0.8);
-        sizeOfTile = Math.round(sizeOfTile * 0.8);
+        //sizeOfMap = Math.round(sizeOfMap * 0.8);
+        //sizeOfTile = Math.round(sizeOfTile * 0.8);
         fieldX = body_width/2 - sizeOfMap/2;
         sizeOfControls = controls.offsetWidth;
         controlsX = fieldX/2 - sizeOfControls/2;
@@ -105,12 +105,14 @@ function resize(){
         bombControlDiv.style.left = bombControlX + "px";
         bombControlDiv.style.top = (body_height/2 - bombControlDiv.offsetHeight/2) + "px";
     } else {
+        fieldX = body_width/2 - sizeOfMap/2;
+        fieldDiv.style.left = fieldX + "px";
         fieldDiv.style.top = "0px";
-        fieldDiv.style.left = "0px";
         controls.style.top = sizeOfMap + "px";
         controls.style.left = "0px";
         bombControlDiv.style.top = sizeOfMap + "px";
-        bombControlDiv.style.left = (sizeOfMap - bombControlDiv.offsetWidth) + "px";
+        //bombControlDiv.style.left = (sizeOfMap - bombControlDiv.offsetWidth) + "px";
+        bombControlDiv.style.left = body_width - bombControlDiv.offsetWidth + "px";
     }
 
     //Background
