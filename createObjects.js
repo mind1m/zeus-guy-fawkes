@@ -12,8 +12,10 @@ const blockImage = "url(images/wall.png)";
 const backgroundImage = "url(images/grass.png)";
 const playerImage = "url(images/player2.png)";
 const bombImage = "url(images/bomb.png)";
-const boxImage = "url(images/dom.png)";
+const boxImage = "url(images/box2.png)";
 const enemyImage = "url(images/guard.png)";
+const fireImage = "url(images/fire.png)";
+
 const backgroundIndex = 1;
 const blocksIndex = 2;
 const boxIndex = 2;
