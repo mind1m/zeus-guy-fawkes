@@ -86,7 +86,7 @@ function resize(){
     var controls = document.getElementById("controls");
     var bombControlDiv = document.getElementById("bombControl");
     var fieldX = 0;
-    var sizeOfControl = 0;
+    var sizeOfControls = 0;
     var controlsX = 0;
     var sizeOfBombControl = 0;
     var bombControlX = 0;
