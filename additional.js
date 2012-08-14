@@ -13,7 +13,7 @@ function removeElement(elementId) {
     }
 }
 
-function dist(ax,ay,bx,by) {
+function dist(ax, ay, bx, by) {
     return Math.sqrt(Math.pow(ax - bx, 2) + Math.pow(ay - by, 2))
 
 }
@@ -21,7 +21,7 @@ function dist(ax,ay,bx,by) {
 function generateBox() {
     i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
     j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
-    while (!checkCollisions(i, j) || (dist(i, j, player.x, player.y)<=2)){
+    while (!checkCollisions(i, j) || (dist(i, j, player.x, player.y) <= 2)) {
 
         i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
@@ -40,16 +40,18 @@ function moveEnemy(id) {
         var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
         enemy.goTo(to_go[0], to_go[1]);
         if ((getRandomInt(0, 25) < 2) && (enemy.just_put > 4)) {
-            putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
+            putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter);
             enemy.just_put = 0;
         } else {
 
             if ((dist(enemy.x, enemy.y, player.x, player.y) < 3) && (enemy.just_put > 4)) {
-                putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter)
+                putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter);
                 enemy.just_put = 0;
             }
         }
         enemy.just_put += 1;
+    } else {
+        clearInterval(enemy.interval)
     }
 }
 
@@ -59,7 +61,7 @@ function generateEnemy() {
 
         var i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         var j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
-        while (!checkCollisions(i, j) && (dist(i,j, player.x, player.y) > 5)) {
+        while (!checkCollisions(i, j) || (dist(i, j, player.x, player.y) < 5)) {
 
             i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
             j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
@@ -83,7 +85,7 @@ function generateEnemy() {
         enemyDiv.style.top = enemy.getY() * sizeOfTile + "px";
         document.getElementById("field").appendChild(enemyDiv);
 
-        setInterval(function () {
+        enemy.interval = setInterval(function () {
             moveEnemy(enemy.id)
         }, getRandomInt(800, 2000));
 
@@ -101,36 +103,44 @@ function clearDOM() {
 }
 function checkCollisions(newX, newY, fire, player, isenemy) {
     //Screen limit
-    if (newX * sizeOfTile >= sizeOfMap || newX * sizeOfTile < 0 || newY * sizeOfTile >= sizeOfMap || newY * sizeOfTile < 0)
+    if (newX > 10 || newX  < 0 || newY > 10 || newY < 0)
         return false;
 
     //Enemy
     for (var i = 0; i < enemies.length; i++) {
         if (!enemies[i].dead) {
             if (enemies[i].getX() == newX && enemies[i].getY() == newY) {
+                console.log('enemy here!')
                 if (typeof fire === "undefined") {
                     //return false;
                 } else {
+                    console.log('need to kill')
                     var enemyDivs = document.getElementsByClassName("enemy");
                     for (var j = 0; j < enemyDivs.length; j++) {
                         if (enemies[i].id == enemyDivs[j].getAttribute('id')) {
+                            console.log('staring to kill')
                             enemyDivs[j].style.display = "None";
                             enemyDivs[j].parentNode.removeChild(enemyDivs[j]);
                             enemies[i].dead = true;
-                            break;
+                            if (fire == "byplayer") {
+                                score += 20;
+                            }
+                            console.log('killed')
+                            //return true;
                         }
                     }
+
                 }
             }
         }
     }
-    //Blocks
+//Blocks
     for (var i = 0; i < blocks.length; ++i) {
         if (blocks[i].getX() == newX && blocks[i].getY() == newY) {
             return false;
         }
     }
-    //Boxes
+//Boxes
     for (var i = 0; i < boxes.length; ++i) {
         if (boxes[i].getX() == newX && boxes[i].getY() == newY) {
             if (typeof fire === "undefined") {
@@ -145,7 +155,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
 
         }
     }
-    //Bombs
+//Bombs
     for (var i = 0; i < bombs.length; ++i) {
         if (bombs[i].getX() == newX && bombs[i].getY() == newY) {
             return false;
@@ -157,16 +167,23 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
-                setTimeout(function () {
-                    $('#over').show();
-                    $('#field').hide();
-                    $('#manag').hide();
-                }, 600)
-                //return false;
+                on_pause = true;
+                $('#over').show();
+                $('#field').hide();
+                $('#manag').hide();
+                $('#score').text(score);
+                $('#controls_container').hide();
+                $('#bombControl').hide();
+                for (var e=0; e<enemies.length; e++) {
+                    clearInterval(enemies[e].interval);
+                }
+                enemies = []
+                return true;
             }
         }
 
     }
+
 
 
     if (typeof isenemy === "undefined") {
@@ -181,7 +198,10 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                             if (enemies[p].id == enemyDivs[j].getAttribute('id')) {
                                 enemyDivs[j].style.display = "None";
                                 enemies[p].dead = true;
-                                break;
+                                if (fires[i].byplayer) {
+                                    score += 20;
+                                }
+                                return true;
                             }
                         }
                     }
@@ -200,6 +220,7 @@ function createObjects() {
     var i, j;
     var id;
 
+    score = 0;
 
     bombs = []
     enemies = []
@@ -213,6 +234,13 @@ function createObjects() {
     player.setY(0);
 
     //Enemy
+
+    removeElement('background');
+    removeElement('boxes')
+    removeElement('blocks')
+    removeElement('enemies')
+    removeElement('fires')
+    removeElement("field");
 
 
     var element = document.createElement('div');
@@ -295,7 +323,7 @@ function createObjects() {
     }
     //Box
     boxes.splice(0, boxes.length);
-    for (k = 0; k <15; ++k) {
+    for (k = 0; k < 15; ++k) {
         generateBox()
     }
     //Player

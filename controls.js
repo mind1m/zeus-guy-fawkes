@@ -29,7 +29,7 @@ function goTo(dir, px, player){
     }
 }
 
-function putBomb(bombs, x,y, bombsCounter, firesCounter) {
+function putBomb(bombs, x,y, bombsCounter, firesCounter, byplayer) {
     bombs.push(new Bomb(x, y, bombsCounter));
     var bombsDiv = document.getElementById("bombs");
 
@@ -58,37 +58,40 @@ function putBomb(bombs, x,y, bombsCounter, firesCounter) {
 
     bombContainer.appendChild(bombDiv);
     bombContainer.appendChild(fireContainer);
+    if (typeof byplayer === "undefined") {
+        byplayer = true;
+    }
     setTimeout(function() {
         bombs.splice(0, 1);
         var ids = [];
         bombContainer.removeChild(bombDiv);
-        checkCollisions(x,y,true)
-        ids.push(putFire(fireContainer, firesCounter, fires, x,y));
-        if (checkCollisions(x+1,y, true)) {
-            ids.push(putFire(fireContainer, firesCounter, fires, x+1,y));
-            if (checkCollisions(x+2,y, true)) {
-                ids.push(putFire(fireContainer, firesCounter, fires, x+2,y));
+        checkCollisions(x,y,byplayer)
+        ids.push(putFire(fireContainer, firesCounter, fires, x,y, byplayer));
+        if (checkCollisions(x+1,y, byplayer)) {
+            ids.push(putFire(fireContainer, firesCounter, fires, x+1,y, byplayer));
+            if (checkCollisions(x+2,y, byplayer)) {
+                ids.push(putFire(fireContainer, firesCounter, fires, x+2,y, byplayer));
             }
         }
 
-        if (checkCollisions(x-1,y, true)) {
-            ids.push(putFire(fireContainer, firesCounter, fires, x-1,y));
-            if (checkCollisions(x-2,y, true)) {
-                ids.push(putFire(fireContainer, firesCounter, fires, x-2,y));
+        if (checkCollisions(x-1,y, byplayer)) {
+            ids.push(putFire(fireContainer, firesCounter, fires, x-1,y, byplayer));
+            if (checkCollisions(x-2,y, byplayer)) {
+                ids.push(putFire(fireContainer, firesCounter, fires, x-2,y, byplayer));
             }
         }
 
-        if (checkCollisions(x,y+1, true)) {
-            ids.push(putFire(fireContainer, firesCounter, fires, x,y+1));
-            if (checkCollisions(x,y+2, true)) {
-                ids.push(putFire(fireContainer, firesCounter, fires, x,y+2));
+        if (checkCollisions(x,y+1, byplayer)) {
+            ids.push(putFire(fireContainer, firesCounter, fires, x,y+1, byplayer));
+            if (checkCollisions(x,y+2, byplayer)) {
+                ids.push(putFire(fireContainer, firesCounter, fires, x,y+2, byplayer));
             }
         }
 
-        if (checkCollisions(x,y-1, true)) {
-            ids.push(putFire(fireContainer, firesCounter, fires, x,y-1));
-            if (checkCollisions(x,y-2, true)) {
-                ids.push(putFire(fireContainer, firesCounter, fires, x,y-2));
+        if (checkCollisions(x,y-1, byplayer)) {
+            ids.push(putFire(fireContainer, firesCounter, fires, x,y-1, byplayer));
+            if (checkCollisions(x,y-2, byplayer)) {
+                ids.push(putFire(fireContainer, firesCounter, fires, x,y-2, byplayer));
             }
         }
 
@@ -106,9 +109,14 @@ function putBomb(bombs, x,y, bombsCounter, firesCounter) {
     },2500);
 }
 
-function putFire(fireContainer, firesCounter, fires,x,y) {
+function putFire(fireContainer, firesCounter, fires,x,y, byplayer) {
     var id = getRandomInt(1,100000);
-    fires.push(new Fire(x, y, id));
+    newfire = new Fire(x, y, id)
+    if (!typeof byplayer === "undefined") {
+        newfire.byplayer = true;
+    }
+    fires.push(newfire);
+
     var fireDiv = document.createElement('div');
     fireDiv.setAttribute('class', "fire");
     fireDiv.setAttribute('id', fires[fires.length - 1].getID().toString());

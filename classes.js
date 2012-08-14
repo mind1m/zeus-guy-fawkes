@@ -188,6 +188,7 @@ function Fire(x, y, id) {
     this.timer = 0;
     this.power = 0;
     this.id = id;
+    this.byplayer = false;
 }
 
 Fire.prototype = {

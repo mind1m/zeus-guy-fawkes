@@ -151,6 +151,8 @@ function resize(){
         bombControlDiv.style.height = sizeOfBombControl+"px"
     }
 
+
+
     //Background
     var backgroundDiv = document.getElementById("background");
     backgroundDiv.innerHTML = "";

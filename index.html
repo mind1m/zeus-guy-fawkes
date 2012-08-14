@@ -20,41 +20,6 @@
     <script type="text/javascript" src="enemy_ai.js"></script>
     <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <script>
-
-        function ng(){
-            removeElement("field");
-            createObjects();
-            window.scrollTo(0, 1);
-            window.onresize = function() {
-                resize();
-            };
-            $('#menu').hide();
-            $('#over').hide();
-            $("#field:hidden").show();
-            $('#manag:hidden').show();
-            $('#manag:hidden').show();
-            $('#bombControl:hidden').show();
-            $('#controls:hidden').show();
-            resize();
-        }
-        function pause() {
-            $('#menu:hidden').show();
-            $('#field').hide();
-            $('#manag').hide();
-            $('#bombControl').hide();
-            $('#controls').hide();
-        }
-        function cont(){
-            $('#menu').hide();
-            $('#over').hide();
-            $("#field:hidden").show();
-            $('#manag:hidden').show();
-            $('#bombControl:hidden').show();
-            $('#controls:hidden').show();
-        }
-
-    </script>
 
     <script type="text/javascript" src="draw.js"></script>
 
@@ -132,6 +97,10 @@
         </div><br><br><br>
         <div id="sad"></div>
     </div>
+
+    <div id="score_container">
+        <span id="score_label"></span>
+    </div>
 </center>
 
 <script type="text/javascript">
@@ -139,12 +108,43 @@
     var bombsCounter = 0;
     firesCounter = 0;
 
-
+    on_pause = true;
 
 
     //Main field
 
-
+    function ng(){
+        $('#controls_container').show();
+        createObjects();
+        on_pause = false;
+        window.scrollTo(0, 1);
+        window.onresize = function() {
+            resize();
+        };
+        $('#menu').hide();
+        $('#over').hide();
+        $("#field:hidden").show();
+        $('#manag:hidden').show();
+        $('#manag:hidden').show();
+        $('#bombControl:hidden').show();
+        $('#controls:hidden').show();
+        resize();
+    }
+    function pause() {
+        $('#menu:hidden').show();
+        $('#field').hide();
+        $('#manag').hide();
+        $('#bombControl').hide();
+        $('#controls').hide();
+    }
+    function cont(){
+        $('#menu').hide();
+        $('#over').hide();
+        $("#field:hidden").show();
+        $('#manag:hidden').show();
+        $('#bombControl:hidden').show();
+        $('#controls:hidden').show();
+    }
     //Bombs
 
 
@@ -178,29 +178,38 @@
     setInterval(function() {
         //clearDOM();
         //update(bombs);
+        if (!on_pause) {
+            if (player_go) {
+                var to_go = pathFind(player.x, player.y, player_go_x, player_go_y);
+                if (to_go[2]) {
+                    player_go = false;
+                } else {
+                    player.goTo(to_go[0], to_go[1]);
+                }
+            }
+            var alive_enemies = 0;
+            for (var i=0; i<enemies.length; i++) {
+                if (!enemies[i].dead) {
+                    alive_enemies++;
+                }
+            }
+            if ((alive_enemies<4) && document.getElementById('field')) {
+                generateEnemy()
+            }
+            if (boxes.length <= 10) {
+                generateBox()
+            }
+            $('#score_label').text('Score: '+score);
+            draw(player, bombs, fires, enemies);
+        }
 
-        draw(player, bombs, fires, enemies);
-        if (player_go) {
-            var to_go = pathFind(player.x, player.y, player_go_x, player_go_y);
-            if (to_go[2]) {
-                player_go = false;
-            } else {
-                player.goTo(to_go[0], to_go[1]);
-            }
-        }
-        var alive_enemies = 0;
-        for (var i=0; i<enemies.length; i++) {
-            if (!enemies[i].dead) {
-                alive_enemies++;
-            }
-        }
-        if ((alive_enemies<4) && document.getElementById('field')) {
-            generateEnemy()
-        }
-        if (boxes.length <= 10) {
-            generateBox()
-        }
     }, 200);
+
+    setInterval(function(){
+        if (!on_pause) {
+            score++;
+        }
+    },1000)
 
 
     $(document).ready(function() {
@@ -222,7 +231,7 @@
                 return false;
             }
             if (e.keyCode == 32) {
-                putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
+                putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter, "byplayer")
                 return false;
             }
         });
@@ -245,7 +254,7 @@
             goTo('bottom', 20, player);
         });
         jQuery('#bombControl').bind('tapone',function(){
-            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
+            putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter, "byplayer")
         });
 
     })

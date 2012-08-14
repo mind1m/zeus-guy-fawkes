@@ -56,10 +56,13 @@ div#continue img {
     background-repeat: no-repeat;
 }
 #score {
-    width: 200px;
+    width: 300px;
+    padding-left: 200px;
     height: 100px;
     background-image: url('images/Score.png');
     background-repeat: no-repeat;
+    color: #ffffff;
+    font-size: 5em;
 }
 div#try img {
     border: 1px solid white;
