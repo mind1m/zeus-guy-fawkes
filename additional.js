@@ -60,7 +60,7 @@ function generateEnemy() {
         var i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         var j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
         var dist = Math.sqrt(Math.pow(i - player.x, 2) + Math.pow(j - player.y, 2))
-        while (!checkCollisions(i, j) && (dist(enemy.x, enemy.y, player.x, player.y) > 5)) {
+        while (!checkCollisions(i, j) && (dist(i, j, player.x, player.y) > 5)) {
 
             i = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
             j = getRandomInt(0, (sizeOfMap - sizeOfTile) / sizeOfTile);
