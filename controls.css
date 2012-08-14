@@ -27,24 +27,28 @@
     background: url('images/arrow_left.png') no-repeat;
     left: 0;
     top: 20px;
+    background-size: 100% 100%;
 }
 
 #controls .right{
     background: url('images/arrow_right.png') no-repeat;
     right: 0;
     top: 20px;
+    background-size: 100% 100%;
 }
 
 #controls .top{
     background: url('images/arrow_top.png') no-repeat;
     left: 30px;
     top: 0px;
+    background-size: 100% 100%;
 }
 
 #controls .bottom{
     background: url('images/arrow_down.png') no-repeat;
     left: 30px;
     bottom: 0px;
+    background-size: 100% 100%;
 }
 
 #bombControl{
@@ -57,7 +61,8 @@
     display: block;
     clear: both;
     z-index: 999;
-    background: url('images/putBomb.png') no-repeat;
+    background: url(images/putBomb.png) no-repeat;
     cursor: pointer;
+    background-size: 100% 100%;
 
 }

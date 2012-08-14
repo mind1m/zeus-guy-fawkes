@@ -37,6 +37,7 @@
             $('#manag:hidden').show();
             $('#bombControl:hidden').show();
             $('#controls:hidden').show();
+            resize();
         }
         function pause() {
             $('#menu:hidden').show();
@@ -97,6 +98,13 @@
 
 </head>
 <body style="background-color: #000">
+<div id="controls">
+    <span class="left"></span>
+    <span class="top"></span>
+    <span class="bottom" ></span>
+    <span class="right"></span>
+</div>
+<div id="bombControl"></div>
 <center>
 <div id="menu">
     <div id="top_pic"></div>
@@ -222,19 +230,13 @@
         jQuery('.bottom').bind('tapone',function(){
             goTo('bottom', 20, player);
         });
-        jQuery('#bombControl').bind('click',function(){
+        jQuery('#bombControl').bind('tapone',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter)
         });
 
     })
 </script>
-<div id="controls">
-    <span class="left"></span>
-    <span class="top"></span>
-    <span class="bottom" ></span>
-    <span class="right"></span>
-</div>
-<div id="bombControl"></div>
+
 
 
 </body>
