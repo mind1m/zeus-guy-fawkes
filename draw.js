@@ -132,6 +132,17 @@ function resize(){
         bombControlDiv.style.width = sizeOfBombControl+"px"
         bombControlDiv.style.height = sizeOfBombControl+"px"
 
+        var score_div = document.getElementById("score_container");
+        score_div.style.top = 10+'px';
+        if ((body_height-sizeOfBombControl)>50) {
+            score_div.style.left = 15+'px';
+            console.log('first')
+        } else {
+            score_div.style.left = (fieldX + 10) + 'px';
+            console.log('second')
+        }
+        score_div.style.zIndex = '1000'
+
     } else {
         fieldX = body_width/2 - sizeOfMap/2;
         fieldDiv.style.left = fieldX + "px";
@@ -149,6 +160,11 @@ function resize(){
         sizeOfBombControl = (body_height-sizeOfMap)*0.8
         bombControlDiv.style.width = sizeOfBombControl+"px"
         bombControlDiv.style.height = sizeOfBombControl+"px"
+
+        var score_div = document.getElementById("score_container");
+        score_div.style.top = 10+'px';
+        score_div.style.left = 15+'px';
+        score_div.style.zIndex = '1000'
     }
 
 

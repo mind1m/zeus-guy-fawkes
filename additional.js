@@ -128,22 +128,22 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     for (var i = 0; i < enemies.length; i++) {
         if (!enemies[i].dead) {
             if (enemies[i].getX() == newX && enemies[i].getY() == newY) {
-                console.log('enemy here!')
+                //console.log('enemy here!')
                 if (typeof fire === "undefined") {
                     //return false;
                 } else {
-                    console.log('need to kill')
+                    //console.log('need to kill')
                     var enemyDivs = document.getElementsByClassName("enemy");
                     for (var j = 0; j < enemyDivs.length; j++) {
                         if (enemies[i].id == enemyDivs[j].getAttribute('id')) {
-                            console.log('staring to kill')
+                            //console.log('staring to kill')
                             enemyDivs[j].style.display = "None";
                             enemyDivs[j].parentNode.removeChild(enemyDivs[j]);
                             enemies[i].dead = true;
                             if (fire == "byplayer") {
                                 score += 20;
                             }
-                            console.log('killed')
+                            //console.log('killed')
                             //return true;
                         }
                     }
@@ -176,7 +176,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
 //Bombs
     for (var i = 0; i < bombs.length; ++i) {
         if (bombs[i].getX() == newX && bombs[i].getY() == newY) {
-            return false;
+            //return false;
         }
     }
 
@@ -191,6 +191,8 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                 $('#manag').hide();
                 $('#score').text(score);
                 $('#controls_container').hide();
+                $('#score_container').hide();
+
                 $('#bombControl').hide();
                 for (var e = 0; e < enemies.length; e++) {
                     clearInterval(enemies[e].interval);
