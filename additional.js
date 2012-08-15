@@ -57,16 +57,16 @@ function moveEnemy(id) {
     if (!enemy.dead) {
         var to_go = pathFind(enemy.x, enemy.y, player.x, player.y);
         enemy.goTo(to_go[0], to_go[1]);
-        if ((getRandomInt(0, 25) < 2) && (enemy.just_put > 4)) {
-            putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter);
-            enemy.just_put = 0;
-        } else {
+        //if ((getRandomInt(0, 25) < 2) && (enemy.just_put > 4)) {
+            //putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter);
+            //enemy.just_put = 0;
+        //} else {
 
             if ((dist(enemy.x, enemy.y, player.x, player.y) < 3) && (enemy.just_put > 4)) {
                 putBomb(bombs, enemy.getX(), enemy.getY(), ++bombsCounter, ++firesCounter);
                 enemy.just_put = 0;
             }
-        }
+        //}
         enemy.just_put += 1;
     } else {
         clearInterval(enemy.interval)
@@ -192,7 +192,7 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
                 $('#score').text(score);
                 $('#controls_container').hide();
                 $('#score_container').hide();
-
+                resizeMenu()
                 $('#bombControl').hide();
                 for (var e = 0; e < enemies.length; e++) {
                     clearInterval(enemies[e].interval);

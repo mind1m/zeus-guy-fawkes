@@ -266,6 +266,10 @@ function resizeMenu(){
     var new_game = document.getElementById("new_game");
     var continue1 = document.getElementById("continue");
 
+    if (!on_pause) {
+        return
+    }
+
     if (body_width > body_height) {
         var ratio = (body_height * 0.6)/menuImgOriginalHeight;
         var menuImgNewWidth = Number(menuImgOriginalWidth*ratio);
