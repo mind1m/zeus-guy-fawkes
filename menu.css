@@ -20,6 +20,8 @@
 
 #over {
     display: none;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 #top_pic {
@@ -82,22 +84,25 @@ div#continue img {
 }
 #score {
     width: 300px;
-    padding-left: 200px;
+    padding-left: 80px;
     height: 100px;
     background-image: url('images/Score.png');
     background-repeat: no-repeat;
     color: #ffffff;
     font-size: 5em;
+    overflow: hidden;
 }
+
 div#try img {
     border: 1px solid white;
 }
 
 #go {
-    width: 480px;
-    height: 300px;
-    background-image: url('images/go.png');
-    background-repeat: no-repeat;
+    display: block;
+}
+
+#go img{
+    width: 100%;
 }
 
 #sad {

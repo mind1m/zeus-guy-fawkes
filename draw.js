@@ -262,9 +262,15 @@ function resizeMenu(){
     var menuImgOriginalWidth = 353;
     var menuImgOriginalHeight = 252;
 
+    var endImgOriginalWidth = 353;
+    var endImgOriginalHeight =221;
+
     var top_pic = document.getElementById("top_pic");
     var new_game = document.getElementById("new_game");
     var continue1 = document.getElementById("continue");
+
+    var over = document.getElementById("over");
+    var score = document.getElementById("score");
 
     if (body_width > body_height) {
         var ratio = (body_height * 0.6)/menuImgOriginalHeight;
@@ -287,6 +293,18 @@ function resizeMenu(){
 
         new_game.style.height = Number(body_height * 0.1)+"px";
         continue1.style.height = Number(body_height * 0.1)+"px";
+
+
+        //Resize Ending screen
+        //var ratio = (body_height * 0.6)/menuImgOriginalHeight;
+        var endImgNewWidth = Number(endImgOriginalWidth * ratio);
+        //alert(endImgNewWidth);
+
+        over.style.width = endImgNewWidth + "px";
+        score.style.width = endImgNewWidth + "px";
+
+
+
     } else {
         var ratio = (body_width * 0.8)/menuImgOriginalWidth;
 
