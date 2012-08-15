@@ -280,7 +280,6 @@ function resizeMenu(){
 
         top_pic.style.width = menuImgNewWidth +"px";
         top_pic.style.height = Number(body_height * 0.6)+"px";
-        top_pic.style.backgroundColor = "#fff";
 
         var newGameImgOriginalWidth = 300;
         var newGameImgNewWidth = Number(newGameImgOriginalWidth*ratio);
@@ -290,6 +289,9 @@ function resizeMenu(){
         continue1.style.height = Number(body_height * 0.1)+"px";
     } else {
         top_pic.style.width = (body_width)*0.8 + "px";
+        new_game.style.width = (body_width)*0.8 + "px";
+        continue1.style.width = (body_width)*0.8 + "px";
+
         //alert(body_width);
 
 
