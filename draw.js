@@ -277,13 +277,19 @@ function resizeMenu(){
     var menuImgOriginalWidth = 353;
     var menuImgOriginalHeight = 252;
 
+    var endImgOriginalWidth = 353;
+    var endImgOriginalHeight =221;
+
     var top_pic = document.getElementById("top_pic");
     var new_game = document.getElementById("new_game");
     var continue1 = document.getElementById("continue");
-
+    var over_controls = document.getElementById("over_controls");
     if (!on_pause) {
         return
     }
+    var over = document.getElementById("over");
+    var score = document.getElementById("score");
+    var try1 = document.getElementById("try");
 
     if (body_width > body_height) {
         var ratio = (body_height * 0.6)/menuImgOriginalHeight;
@@ -306,6 +312,18 @@ function resizeMenu(){
 
         new_game.style.height = Number(body_height * 0.1)+"px";
         continue1.style.height = Number(body_height * 0.1)+"px";
+
+
+        //Resize Ending screen
+        //var ratio = (body_height * 0.6)/menuImgOriginalHeight;
+        var endImgNewWidth = Number(endImgOriginalWidth * ratio);
+        //alert(endImgNewWidth);
+
+        over.style.width = endImgNewWidth + "px";
+        over_controls.style.width = endImgNewWidth + "px";
+
+
+
     } else {
         var ratio = (body_width * 0.8)/menuImgOriginalWidth;
 
@@ -319,6 +337,17 @@ function resizeMenu(){
         continue1.style.height = Number(body_height *0.09) + "px";
 
         //alert(body_width);
+        over.style.width = Number(body_width *0.8) + "px";
+        over_controls.style.width = Number(body_width *0.8) + "px";
+
+        /*var over_controlsHeight = Number((body_height - (menuImgOriginalHeight*ratio)));
+
+        over_controls.style.height = over_controlsHeight +"px";
+        over_controls.style.border = "1px solid red";
+
+        score.style.height = Number(over_controlsHeight*0.2) + "px";
+        try1.style.height = Number(over_controlsHeight*0.2) + "px";
+        */
 
 
     }
