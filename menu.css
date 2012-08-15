@@ -42,12 +42,19 @@
 
 div#new_game{
     overflow: hidden;
-    padding: 2px;
+     margin: 0 auto;
+    padding: 3px 0;
 }
 div#new_game img {
     height: 98%;
     border: 1px solid #fff;
 
+}
+
+div#continue{
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 3px 0;
 }
 
 div#continue img {

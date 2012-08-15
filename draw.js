@@ -288,9 +288,16 @@ function resizeMenu(){
         new_game.style.height = Number(body_height * 0.1)+"px";
         continue1.style.height = Number(body_height * 0.1)+"px";
     } else {
-        top_pic.style.width = (body_width)*0.8 + "px";
-        new_game.style.width = (body_width)*0.8 + "px";
-        continue1.style.width = (body_width)*0.8 + "px";
+        var ratio = (body_width * 0.8)/menuImgOriginalWidth;
+
+        top_pic.style.height = Number(menuImgOriginalHeight*ratio) + "px";
+        top_pic.style.width = Number(body_width*0.8) + "px";
+
+        new_game.style.width = Number(body_width *0.8) + "px";
+        new_game.style.height = Number(body_height *0.09) + "px";
+
+        continue1.style.width = Number(body_width *0.8) + "px";
+        continue1.style.height = Number(body_height *0.09) + "px";
 
         //alert(body_width);
 
