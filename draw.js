@@ -147,8 +147,8 @@ function resize(){
         fieldX = body_width/2 - sizeOfMap/2;
         fieldDiv.style.left = fieldX + "px";
 
-        //var controlsHeight = body_height-sizeOfMap;
-        controls.style.width = (body_height-sizeOfMap)*0.9 + "px";
+        var controlsSize = (body_height-sizeOfMap)*0.9;
+        controls.style.width = controlsSize + "px";
         controls.style.height = controls.style.width;
 
         fieldDiv.style.top = "0px";
@@ -158,6 +158,9 @@ function resize(){
         //bombControlDiv.style.left = (sizeOfMap - bombControlDiv.offsetWidth) + "px";
         bombControlDiv.style.left = "5%";
         sizeOfBombControl = (body_height-sizeOfMap)*0.8
+        if (body_width - controlsSize < sizeOfBombControl) {
+            sizeOfBombControl = body_width - controlsSize - 10
+        }
         bombControlDiv.style.width = sizeOfBombControl+"px"
         bombControlDiv.style.height = sizeOfBombControl+"px"
 
