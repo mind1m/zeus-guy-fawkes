@@ -104,7 +104,7 @@ function generateEnemy() {
             if(a==1){
                 return enemyImage;
             } else{
-                return "url(images/ninja.png)";
+                return "url(images/royal.png)";
             }
         }
         enemyDiv.style.backgroundImage = im();
