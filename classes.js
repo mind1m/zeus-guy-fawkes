@@ -188,6 +188,7 @@ function Fire(x, y, id) {
     this.timer = 0;
     this.power = 0;
     this.id = id;
+    this.byplayer = false;
 }
 
 Fire.prototype = {
@@ -220,11 +221,13 @@ Fire.prototype = {
 };
 
 function Enemy(x, y) {
+    this.id = 0;
     this.x = x;
     this.y = y;
     this.lastX = 0;
     this.lastY = 0;
     this.dead = false;
+    this.just_put = 0;
 }
 
 Enemy.prototype = {
@@ -261,22 +264,22 @@ Enemy.prototype = {
     },
 
     goLeft: function() {
-        if (checkCollisions(this.x-1, this.y))
+        if (checkCollisions(this.x-1, this.y, undefined, undefined, true))
         //if(this.x-sizeOfTile >= 0)
             this.x=this.x-1;
     },
     goUp: function() {
-        if (checkCollisions(this.x, this.y-1))
+        if (checkCollisions(this.x, this.y-1, undefined, undefined, true))
         //if(this.y-sizeOfTile >= 0)
             this.y=this.y-1;
     },
     goRight: function() {
-        if (checkCollisions(this.x+1, this.y))
+        if (checkCollisions(this.x+1, this.y, undefined, undefined, true))
         //if(this.x+sizeOfTile < sizeOfMap)
             this.x=this.x+1;
     },
     goDown: function() {
-        if (checkCollisions(this.x, this.y+1))
+        if (checkCollisions(this.x, this.y+1, undefined, undefined, true))
         //if(this.y+sizeOfTile < sizeOfMap)
             this.y=this.y+1;
     },
