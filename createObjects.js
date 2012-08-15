@@ -14,6 +14,7 @@ const playerImage = "url(images/player.gif)";
 const bombImage = "url(images/bomb.png)";
 const boxImage = "url(images/box.jpg)";
 const enemyImage = "url(images/ninja.png)";
+const fireImage = "url(images/fire.png)";
 const backgroundIndex = 1;
 const blocksIndex = 2;
 const boxIndex = 2;
