@@ -98,7 +98,17 @@ function generateEnemy() {
         enemyDiv.style.zIndex = enemyIndex;
         enemyDiv.style.backgroundRepeat = "no-repeat";
         enemyDiv.style.backgroundSize = "100% 100%";
-        enemyDiv.style.backgroundImage = enemyImage;
+
+        var im = function(){
+           var a=Math.floor(Math.random()*2+1);
+            if(a==1){
+                return enemyImage;
+            } else{
+                return "url(images/ninja.png)";
+            }
+        }
+        enemyDiv.style.backgroundImage = im();
+
         enemyDiv.style.left = enemy.getX() * sizeOfTile + "px";
         enemyDiv.style.top = enemy.getY() * sizeOfTile + "px";
         document.getElementById("field").appendChild(enemyDiv);
