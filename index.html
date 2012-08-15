@@ -104,6 +104,9 @@
     <div id="score_container">
         <span id="score_label"></span>
     </div>
+    <div id="pause" onclick="pause()">
+        pause
+    </div>
 </div><!-- /menu-container -->
 
 <script type="text/javascript">
@@ -126,6 +129,7 @@
         };
         $('#menu').hide();
         $('#over').hide();
+        $('#pause').show();
         $("#field:hidden").show();
         $('#manag:hidden').show();
         $('#manag:hidden').show();
@@ -140,15 +144,23 @@
         $('#manag').hide();
         $('#bombControl').hide();
         $('#controls').hide();
+        $('#pause').hide();
+        on_pause = true;
     }
     function cont(){
+        $('#controls_container').show();
+        on_pause = false;
+        window.scrollTo(0, 1);
         $('#menu').hide();
         $('#over').hide();
-        $('#score_container').show();
         $("#field:hidden").show();
+        $('#manag:hidden').show();
         $('#manag:hidden').show();
         $('#bombControl:hidden').show();
         $('#controls:hidden').show();
+        $('#score_container').show();
+        $('#pause').show();
+        resize();
     }
     //Bombs
 

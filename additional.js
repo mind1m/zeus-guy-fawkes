@@ -185,19 +185,24 @@ function checkCollisions(newX, newY, fire, player, isenemy) {
     } else {
         for (var i = 0; i < fires.length; ++i) {
             if (fires[i].getX() == newX && fires[i].getY() == newY) {
-                on_pause = true;
-                $('#over').show();
-                $('#field').hide();
-                $('#manag').hide();
-                $('#score').text(score);
-                $('#controls_container').hide();
-                $('#score_container').hide();
-                resizeMenu()
-                $('#bombControl').hide();
-                for (var e = 0; e < enemies.length; e++) {
-                    clearInterval(enemies[e].interval);
-                }
-                enemies = []
+
+                console.log('duying');
+                setTimeout(function() {
+                    on_pause = true;
+                    $('#over').show();
+                    $('#field').hide();
+                    $('#manag').hide();
+                    $('#score').text(score);
+                    $('#controls_container').hide();
+                    $('#score_container').hide();
+                    resizeMenu()
+                    $('#pause').hide();
+                    $('#bombControl').hide();
+                    for (var e = 0; e < enemies.length; e++) {
+                        clearInterval(enemies[e].interval);
+                    }
+                    enemies = []
+                }, 300)
                 return true;
             }
         }

@@ -89,3 +89,12 @@
     color: #ffffff;
     font-size: 20px;
 }
+
+#pause {
+    position: absolute;
+    color: #ffffff;
+    border-color: #ffffff;
+    border-style: solid;
+    border-width: 2px;
+    display: none;
+}

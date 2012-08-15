@@ -136,12 +136,19 @@ function resize(){
         score_div.style.top = 10+'px';
         if ((body_height-sizeOfBombControl)>50) {
             score_div.style.left = 15+'px';
-            console.log('first')
         } else {
             score_div.style.left = (fieldX + 10) + 'px';
-            console.log('second')
         }
         score_div.style.zIndex = '1000'
+
+        var pause_div = document.getElementById("pause");
+        pause_div.style.top = 10+'px';
+        if ((body_height-sizeOfBombControl)>50) {
+            pause_div.style.left = 100+'px';
+        } else {
+            pause_div.style.left = (fieldX + 100) + 'px';
+        }
+        pause_div.style.zIndex = '1000'
 
     } else {
         fieldX = body_width/2 - sizeOfMap/2;
@@ -168,6 +175,11 @@ function resize(){
         score_div.style.top = 10+'px';
         score_div.style.left = 15+'px';
         score_div.style.zIndex = '1000'
+
+        var pause_div = document.getElementById("pause");
+        pause_div.style.top = 10+'px';
+        pause_div.style.left = 100+'px';
+        pause_div.style.zIndex = '1000'
     }
 
 
