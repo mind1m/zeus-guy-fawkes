@@ -319,7 +319,8 @@ function resizeMenu(){
 
         //alert(body_width);
 
-
+        over.style.width = Number(body_width *0.8) + "px";
+        score.style.width = Number(body_width *0.8) + "px";
     }
 
 }
