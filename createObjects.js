@@ -8,12 +8,12 @@
 sizeOfMap = 352;
 sizeOfTile = 32;
 const numberOfTiles = sizeOfMap/sizeOfTile;
-const blockImage = "url(images/block.gif)";
-const backgroundImage = "url(images/background.gif)";
-const playerImage = "url(images/player.gif)";
+const blockImage = "url(images/wall.png)";
+const backgroundImage = "url(images/back2.png)";
+const playerImage = "url(images/player2.png)";
 const bombImage = "url(images/bomb.png)";
-const boxImage = "url(images/box.jpg)";
-const enemyImage = "url(images/ninja.png)";
+const boxImage = "url(images/box2.png)";
+const enemyImage = "url(images/guard.png)";
 const fireImage = "url(images/fire.png)";
 const backgroundIndex = 1;
 const blocksIndex = 2;
