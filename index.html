@@ -57,8 +57,16 @@
 
 
     </style>
+    <script type="text/javascript">
 
+        window.onload = function() {
+            resizeMenu();
+        };
+        window.onresize = function() {
+            resizeMenu();
+        };
 
+    </script>
 
 </head>
 <body style="background-color: #000; overflow:hidden;">
@@ -72,13 +80,17 @@
 </div>
 
 <div id="bombControl"></div>
-<center>
+
+<div id="menu-container">
+
     <div id="menu">
         <div id="top_pic"></div>
-        <div id="name" align="center"></div><br>
-        <div id="new game" >
+        <div id="name"></div><br>
+
+        <div id="new_game" >
             <a href="index.html" onclick="ng()"><img src="images/ng.png" ></a>
         </div>
+
         <div id="continue">
             <a href="" onclick="cont()"><img src="images/cont.png"></a>
         </div>
@@ -101,7 +113,7 @@
     <div id="score_container">
         <span id="score_label"></span>
     </div>
-</center>
+</div><!-- /menu-container -->
 
 <script type="text/javascript">
     var i, j ,k;

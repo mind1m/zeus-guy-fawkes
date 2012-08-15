@@ -131,7 +131,6 @@ function resize(){
         bombControlDiv.style.top = (body_height/2 - sizeOfBombControl/2) + "px";
         bombControlDiv.style.width = sizeOfBombControl+"px"
         bombControlDiv.style.height = sizeOfBombControl+"px"
-
     } else {
         fieldX = body_width/2 - sizeOfMap/2;
         fieldDiv.style.left = fieldX + "px";
@@ -237,4 +236,46 @@ function resize(){
     //Main loop
 
     window.scrollTo(0, 1);
+}
+
+function resizeMenu(){
+    body_height =  window.innerHeight;
+    body_width = window.innerWidth;
+
+    var menuImgOriginalWidth = 353;
+    var menuImgOriginalHeight = 252;
+
+    var top_pic = document.getElementById("top_pic");
+    var new_game = document.getElementById("new_game");
+    var continue1 = document.getElementById("continue");
+
+    if (body_width > body_height) {
+        var ratio = (body_height * 0.6)/menuImgOriginalHeight;
+        var menuImgNewWidth = Number(menuImgOriginalWidth*ratio);
+
+
+        /*var menu1 = document.getElementById("menu");
+         menu1.style.width = menuImgNewWidth +"px";
+         menu1.style.height = Number(body_height * 0.8)+"px";
+         menu1.style.backgroundColor = "#fff";
+        */
+
+
+        top_pic.style.width = menuImgNewWidth +"px";
+        top_pic.style.height = Number(body_height * 0.6)+"px";
+        top_pic.style.backgroundColor = "#fff";
+
+        var newGameImgOriginalWidth = 300;
+        var newGameImgNewWidth = Number(newGameImgOriginalWidth*ratio);
+
+
+        new_game.style.height = Number(body_height * 0.1)+"px";
+        continue1.style.height = Number(body_height * 0.1)+"px";
+    } else {
+        top_pic.style.width = (body_width)*0.8 + "px";
+        //alert(body_width);
+
+
+    }
+
 }
