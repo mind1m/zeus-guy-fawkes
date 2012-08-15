@@ -126,6 +126,8 @@ function putFire(fireContainer, firesCounter, fires,x,y, byplayer) {
     fireDiv.style.height = sizeOfTile + "px";
     fireDiv.style.zIndex = bombIndex;
     fireDiv.style.backgroundImage = fireImage;
+    fireDiv.style.backgroundRepeat = "no-repeat";
+    fireDiv.style.backgroundSize = "100% 100%";
     fireContainer.appendChild(fireDiv);
     return id;
 }
