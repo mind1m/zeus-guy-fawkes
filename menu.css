@@ -7,33 +7,51 @@
 
 #menu {
     display: block;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 10px 0;
+    /*position:absolute;
+    width: 80%;
+    top:10%;
+    bottom:10%;
+    margin-left: 10%;
+    margin-right: 10%;*/
 }
+
 #over {
     display: none;
 }
+
 #top_pic {
-    width: 346px;
-    height: 496px;
-    background-image: url('images/fox.png');
+    width: 353px;
+    height: 252px;
+    background-image: url('images/fox1.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     display: block;
     margin: 0 auto;
-
 }
 
 #name {
     width: 400px;
-    height: 100px;
+
     background-image: url('images/fox_name.png');
     background-repeat: no-repeat;
+    margin: 0 auto;
 }
 
+div#new_game{
+    overflow: hidden;
+    padding: 2px;
+}
 div#new_game img {
+    height: 98%;
     border: 1px solid #fff;
+
 }
 
 div#continue img {
+    height: 98%;
     border: 1px solid  #fff;
 }
 
