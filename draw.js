@@ -69,6 +69,7 @@ function draw(player,bombs, fires) {
 }
 
 function resize(){
+    window.scrollTo(0, 1);
     var element;
     body_height =  window.innerHeight;
     body_width = window.innerWidth;
@@ -252,7 +253,7 @@ function resize(){
 
     //Main loop
 
-    window.scrollTo(0, 1);
+
 }
 
 function resizeMenu(){
