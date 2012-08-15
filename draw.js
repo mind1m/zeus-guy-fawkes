@@ -268,9 +268,11 @@ function resizeMenu(){
     var top_pic = document.getElementById("top_pic");
     var new_game = document.getElementById("new_game");
     var continue1 = document.getElementById("continue");
+    var over_controls = document.getElementById("over_controls");
 
     var over = document.getElementById("over");
     var score = document.getElementById("score");
+    var try1 = document.getElementById("try");
 
     if (body_width > body_height) {
         var ratio = (body_height * 0.6)/menuImgOriginalHeight;
@@ -301,7 +303,7 @@ function resizeMenu(){
         //alert(endImgNewWidth);
 
         over.style.width = endImgNewWidth + "px";
-        score.style.width = endImgNewWidth + "px";
+        over_controls.style.width = endImgNewWidth + "px";
 
 
 
@@ -318,9 +320,19 @@ function resizeMenu(){
         continue1.style.height = Number(body_height *0.09) + "px";
 
         //alert(body_width);
-
         over.style.width = Number(body_width *0.8) + "px";
-        score.style.width = Number(body_width *0.8) + "px";
+        over_controls.style.width = Number(body_width *0.8) + "px";
+
+        /*var over_controlsHeight = Number((body_height - (menuImgOriginalHeight*ratio)));
+
+        over_controls.style.height = over_controlsHeight +"px";
+        over_controls.style.border = "1px solid red";
+
+        score.style.height = Number(over_controlsHeight*0.2) + "px";
+        try1.style.height = Number(over_controlsHeight*0.2) + "px";
+        */
+
+
     }
 
 }
