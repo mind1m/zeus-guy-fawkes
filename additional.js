@@ -453,7 +453,7 @@ function pathFind(startx, starty, finishx, finishy) {
     queuex.push(finishx);
     queuey.push(finishy);
 
-    var map_size = sizeOfMap / sizeOfTile;
+    var map_size = 11;
     map_size--;
 
     var count = 1;
