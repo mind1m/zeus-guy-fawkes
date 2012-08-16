@@ -92,13 +92,7 @@ function resize(){
     var sizeOfBombControl = 0;
     var bombControlX = 0;
 
-    if (body_width > body_height && sizeOfMap + controls.offsetWidth + bombControlDiv.offsetWidth > body_width) {
-        //sizeOfMap = Math.round(sizeOfMap * 0.8);
-        //sizeOfTile = Math.round(sizeOfTile * 0.8);
-    } else if (body_width < body_height && sizeOfMap + controls.offsetHeight > body_height) {
-        sizeOfMap = Math.round(sizeOfMap * 0.7);
-        sizeOfTile = Math.round(sizeOfTile * 0.7);
-    }
+
 
     if (body_width > body_height) {
         var rightTopX;
@@ -183,6 +177,14 @@ function resize(){
         pause_div.style.top = 10+'px';
         pause_div.style.left = 130+'px';
         pause_div.style.zIndex = '1000'
+    }
+
+    if (body_width > body_height && sizeOfMap + controls.offsetWidth + bombControlDiv.offsetWidth > body_width) {
+        //sizeOfMap = Math.round(sizeOfMap * 0.8);
+        //sizeOfTile = Math.round(sizeOfTile * 0.8);
+    } else if (body_width < body_height && sizeOfMap + controls.offsetHeight > body_height) {
+        sizeOfMap = Math.round(sizeOfMap * 0.7);
+        sizeOfTile = Math.round(sizeOfTile * 0.7);
     }
 
 
