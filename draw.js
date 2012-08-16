@@ -183,8 +183,8 @@ function resize(){
         //sizeOfMap = Math.round(sizeOfMap * 0.8);
         //sizeOfTile = Math.round(sizeOfTile * 0.8);
     } else if (body_width < body_height && sizeOfMap + controls.offsetHeight > body_height) {
-        //sizeOfMap = Math.round(sizeOfMap * 0.7);
-       // sizeOfTile = Math.round(sizeOfTile * 0.7);
+        sizeOfMap = Math.round(sizeOfMap * 0.7);
+        sizeOfTile = Math.round(sizeOfTile * 0.7);
     }
 
 
