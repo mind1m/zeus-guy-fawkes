@@ -108,11 +108,13 @@ function resize(){
 
         controls_container.style.width = Number(Math.round(body_width/2 - sizeOfMap/2))+ "px";
 
-        var controls_width = Number(Math.round((body_width - sizeOfMap)/2))
+        var controls_width = Number(Math.round((body_width - sizeOfMap)/2));
 
         if (controls_width<body_width/5) {
             controls_width=body_width/5
         }
+
+        console.log(controls_width)
         controls.style.width = controls_width + "px";
 
         controls.style.height = controls.style.width;
@@ -157,6 +159,7 @@ function resize(){
         var controlsSize = (body_height-sizeOfMap)*0.9;
         controls.style.width = controlsSize + "px";
         controls.style.height = controls.style.width;
+        console.log(controlsSize)
 
         fieldDiv.style.top = "0px";
         controls.style.top = sizeOfMap + "px";

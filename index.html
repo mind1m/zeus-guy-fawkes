@@ -281,26 +281,26 @@
 
         $('#bombControl').hide();
         $('#controls').hide();
-        jQuery('.left').on('touchstart mousedown',function(e){
+        jQuery('.left').on('touchstart',function(e){
             goTo('left', 20, player);
             //alert($(this).attr('class'))
         });
 
-        jQuery('.right').on('touchstart mousedown',function(){
+        jQuery('.right').on('touchstart',function(){
             goTo('right', 20, player);
             //alert($(this).attr('class'))
         });
 
-        jQuery('.top').on('touchstart mousedown',function(){
+        jQuery('.top').on('touchstart',function(){
             goTo('top', 20, player);
             //alert($(this).attr('class'))
         });
 
-        jQuery('.bottom').on('touchstart mousedown',function(){
+        jQuery('.bottom').on('touchstart',function(){
             goTo('bottom', 20, player);
             //alert($(this).attr('class'))
         });
-        jQuery('#bombControl').bind('touchstart mousedown',function(){
+        jQuery('#bombControl').bind('touchstart',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter, "byplayer")
         });
 
