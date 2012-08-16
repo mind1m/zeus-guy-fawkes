@@ -109,7 +109,7 @@
         <span id="score_label"></span>
     </div>
     <div id="pause" onclick="pause()">
-        pause
+        pause - touch test
     </div>
 </div><!-- /menu-container -->
 
@@ -279,22 +279,22 @@
 
         $('#bombControl').hide();
         $('#controls').hide();
-        jQuery('.left').bind('tapone',function(){
+        jQuery('.left').bind('touchstart mousedown',function(){
             goTo('left', 20, player);
         });
 
-        jQuery('.right').bind('tapone',function(){
+        jQuery('.right').bind('touchstart mousedown',function(){
             goTo('right', 20, player);
         });
 
-        jQuery('.top').bind('tapone',function(){
+        jQuery('.top').bind('touchstart mousedown',function(){
             goTo('top', 20, player);
         });
 
-        jQuery('.bottom').bind('tapone',function(){
+        jQuery('.bottom').bind('touchstart mousedown',function(){
             goTo('bottom', 20, player);
         });
-        jQuery('#bombControl').bind('tapone',function(){
+        jQuery('#bombControl').bind('touchstart mousedown',function(){
             putBomb(bombs, player.getX(),player.getY(), ++bombsCounter, ++firesCounter, "byplayer")
         });
 
