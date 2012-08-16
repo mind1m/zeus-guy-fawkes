@@ -11,21 +11,26 @@
 }*/
 
 function goTo(dir, px, player){
+    if (time_to_go) {
+        if (dir == 'left') {
+            player.goLeft();
+        }
 
-    if (dir == 'left') {
-        player.goLeft();
-    }
+        if (dir == 'right') {
+            player.goRight();
+        }
 
-    if (dir == 'right') {
-        player.goRight();
-    }
+        if (dir == 'top') {
+            player.goUp();
+        }
 
-    if (dir == 'top') {
-        player.goUp();
-    }
-
-    if (dir == 'bottom') {
-        player.goDown();
+        if (dir == 'bottom') {
+            player.goDown();
+        }
+        time_to_go = false;
+        setTimeout(function() {
+            time_to_go = true
+        }, 10)
     }
 }
 
