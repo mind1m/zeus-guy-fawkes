@@ -144,9 +144,9 @@ function resize(){
         var pause_div = document.getElementById("pause");
         pause_div.style.top = 10+'px';
         if ((body_height-sizeOfBombControl)>50) {
-            pause_div.style.left = 100+'px';
+            pause_div.style.left = 130+'px';
         } else {
-            pause_div.style.left = (fieldX + 100) + 'px';
+            pause_div.style.left = (fieldX + 130) + 'px';
         }
         pause_div.style.zIndex = '1000'
 
@@ -178,7 +178,7 @@ function resize(){
 
         var pause_div = document.getElementById("pause");
         pause_div.style.top = 10+'px';
-        pause_div.style.left = 100+'px';
+        pause_div.style.left = 130+'px';
         pause_div.style.zIndex = '1000'
     }
 
