@@ -82,7 +82,7 @@
         </div>
 
         <div id="continue">
-            <a href="" onclick="cont()"><img src="images/cont.png"></a>
+            <a href="" id="continue_link"><img src="images/cont.png"></a>
         </div>
         <!-- <div id="new_game">
             <a href="index.html"><img src="images/ng.png"></a>
@@ -160,6 +160,7 @@
         $('#controls:hidden').show();
         $('#score_container').show();
         resize();
+        $('#continue_link').bind('click', function(){cont()});
     }
     function pause() {
         $('#menu:hidden').show();
@@ -170,6 +171,7 @@
         $('#pause').hide();
         resizeMenu()
         on_pause = true;
+
     }
     function cont(){
         $('#controls_container').show();
