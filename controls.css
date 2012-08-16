@@ -34,7 +34,8 @@
 
 #controls .left{
     background: url('images/arrow_left.png') no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% 50%;
+    background-position: center;
     left: 0;
     top: 30%;
 
@@ -42,7 +43,8 @@
 
 #controls .right{
     background: url('images/arrow_right.png') no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% 50%;
+    background-position: center;
     right: 0;
     top: 30%;
 
@@ -52,14 +54,16 @@
     background: url('images/arrow_top.png') no-repeat;
     left: 30%;
     top: 0;
-    background-size: 100% 100%;
+    background-size: 50% 100%;
+    background-position: center;
 }
 
 #controls .bottom{
     background: url('images/arrow_down.png') no-repeat;
     left: 30%;
     bottom: 0;
-    background-size: 100% 100%;
+    background-size: 50% 100%;
+    background-position: center;
 }
 
 #bombControl{
