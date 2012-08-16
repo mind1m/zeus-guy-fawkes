@@ -30,7 +30,7 @@ function goTo(dir, px, player){
         time_to_go = false;
         setTimeout(function() {
             time_to_go = true
-        }, 10)
+        }, 200)
     }
 }
 
