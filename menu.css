@@ -84,18 +84,14 @@ div#continue img {
 }
 #score {
 
-    padding-left: 80px;
-
-    background-image: url('images/Score.png');
-    background-repeat: no-repeat;
     color: #ffffff;
     font-size: 5em;
     overflow: hidden;
 }
 
-div#try img {
+div#try {
     border: 1px solid white;
-    width: 100%;
+    width: 99%;
 }
 
 #go {

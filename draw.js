@@ -278,17 +278,19 @@ function resizeMenu(){
     var menuImgOriginalHeight = 252;
 
     var endImgOriginalWidth = 353;
-    var endImgOriginalHeight =221;
+    var endImgOriginalHeight =180;
 
     var top_pic = document.getElementById("top_pic");
     var new_game = document.getElementById("new_game");
     var continue1 = document.getElementById("continue");
     var over_controls = document.getElementById("over_controls");
+    var over_pic_div = document.getElementById("go");
+    var over_pic = document.getElementById("go_pic");
     if (!on_pause) {
         return
     }
     var over = document.getElementById("over");
-    var score = document.getElementById("score");
+    var score_div = document.getElementById("score");
     var try1 = document.getElementById("try");
 
     if (body_width > body_height) {
@@ -315,12 +317,19 @@ function resizeMenu(){
 
 
         //Resize Ending screen
-        //var ratio = (body_height * 0.6)/menuImgOriginalHeight;
+        var ratio = (body_height * 0.6)/endImgOriginalHeight;
         var endImgNewWidth = Number(endImgOriginalWidth * ratio);
+        var endImgNewHeight = Number(body_height * 0.6);
         //alert(endImgNewWidth);
 
         over.style.width = endImgNewWidth + "px";
+        over.style.height = "100%";
+        over_pic.style.width = endImgNewWidth + "px";
+        over_pic.style.height = endImgNewHeight + "px";
         over_controls.style.width = endImgNewWidth + "px";
+        score_div.style.fontSize = ratio*30+"px"
+        score_div.innerHTML = "Score: "+score;
+
 
 
 
@@ -339,6 +348,19 @@ function resizeMenu(){
         //alert(body_width);
         over.style.width = Number(body_width *0.8) + "px";
         over_controls.style.width = Number(body_width *0.8) + "px";
+
+        var ratio = (body_width * 0.9)/endImgOriginalWidth;
+        var endImgNewHeight= Number(endImgOriginalHeight * ratio);
+        var endImgNewWidth = Number(body_width * 0.9);
+        //alert(endImgNewWidth);
+
+        over.style.width = endImgNewWidth + "px";
+        over.style.height = "100%";
+        over_pic.style.width = endImgNewWidth + "px";
+        over_pic.style.height = endImgNewHeight + "px";
+        over_controls.style.width = endImgNewWidth + "px";
+        score_div.style.fontSize = ratio*50+"px"
+        score_div.innerHTML = "Score: "+score;
 
         /*var over_controlsHeight = Number((body_height - (menuImgOriginalHeight*ratio)));
 

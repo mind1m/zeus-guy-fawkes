@@ -94,14 +94,13 @@
     <div id="over">
 
         <div id="go">
-            <img src="images/go1.png">
+            <img id="go_pic" src="images/go1.png">
         </div>
 
         <div id="over_controls">
 
             <div id="score"></div>
             <div id="try"><a href="" onclick="ng()"><img src="images/ta.png"></a></div>
-            <div id="sad"></div>
 
         </div>
     </div>
@@ -149,6 +148,7 @@
 
         window.onresize = function() {
             resize();
+            resizeMenu();
         };
         $('#menu').hide();
         $('#over').hide();
