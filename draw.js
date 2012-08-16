@@ -318,8 +318,9 @@ function resizeMenu(){
 
 
         new_game.style.height = Number(body_height * 0.1)+"px";
-        new_game.style.width = "90%";
+        new_game.style.width = "80%";
         continue1.style.height = Number(body_height * 0.1)+"px";
+        continue1.style.width = "80%";
 
 
         //Resize Ending screen

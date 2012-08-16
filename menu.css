@@ -45,10 +45,10 @@
 div#new_game{
     overflow: hidden;
      margin: 0 auto;
-    padding: 3px 0;
+    padding: 1px;
 }
 div#new_game img {
-    height: 98%;
+    height: 95%;
     border: 1px solid #fff;
 
 }
@@ -56,11 +56,11 @@ div#new_game img {
 div#continue{
     overflow: hidden;
     margin: 0 auto;
-    padding: 3px 0;
+    padding: 1px;
 }
 
 div#continue img {
-    height: 98%;
+    height: 95%;
     border: 1px solid  #fff;
 }
 
