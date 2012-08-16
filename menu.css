@@ -92,6 +92,7 @@ div#continue img {
 div#try {
     border: 1px solid white;
     width: 99%;
+    height: 90%;
 }
 
 #go {
